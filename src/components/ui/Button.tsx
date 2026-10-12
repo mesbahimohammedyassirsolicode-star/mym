@@ -21,6 +21,7 @@ interface ButtonBaseProps {
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLElement>;
   "aria-label"?: string;
+  "aria-busy"?: boolean;
 }
 
 function getButtonClassName({
@@ -52,6 +53,7 @@ export default function Button({
   disabled,
   onClick,
   "aria-label": ariaLabel,
+  "aria-busy": ariaBusy,
 }: ButtonBaseProps) {
   const classes = getButtonClassName({ variant, size, fullWidth, className });
 
@@ -62,6 +64,7 @@ export default function Button({
         className={classes}
         onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
         aria-label={ariaLabel}
+        aria-busy={ariaBusy}
         aria-disabled={disabled}
       >
         {children}
@@ -75,6 +78,7 @@ export default function Button({
       className: classes,
       onClick,
       "aria-label": ariaLabel,
+      "aria-busy": ariaBusy,
     };
 
     return <a {...anchorProps}>{children}</a>;
@@ -86,6 +90,7 @@ export default function Button({
     disabled,
     onClick,
     "aria-label": ariaLabel,
+    "aria-busy": ariaBusy,
   };
 
   return <button {...buttonProps}>{children}</button>;

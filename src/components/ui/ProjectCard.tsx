@@ -1,4 +1,5 @@
-import type { Project } from "../../types/project";
+import type { Project, ProjectPreview } from "../../types/project";
+import ProjectPreviewGraphic from "./ProjectPreview";
 
 const statusLabels: Record<Project["status"], string> = {
   concept: "Concept",
@@ -10,6 +11,7 @@ interface ProjectCardProps {
   category: string;
   tags: string[];
   status: Project["status"];
+  preview: ProjectPreview;
 }
 
 export default function ProjectCard({
@@ -18,24 +20,12 @@ export default function ProjectCard({
   category,
   tags,
   status,
+  preview,
 }: ProjectCardProps) {
   return (
     <article className="project-card">
       <div className="project-card__visual" aria-hidden="true">
-        <div className="project-card__window">
-          <span className="project-card__dot" />
-          <span className="project-card__dot" />
-          <span className="project-card__dot" />
-        </div>
-        <div className="project-card__layout">
-          <span className="project-card__skeleton" />
-          <div className="project-card__tiles">
-            <span className="project-card__tile" />
-            <span className="project-card__tile" />
-            <span className="project-card__tile" />
-            <span className="project-card__tile" />
-          </div>
-        </div>
+        <ProjectPreviewGraphic variant={preview} />
       </div>
 
       <div className="project-card__body">

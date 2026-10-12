@@ -29,6 +29,10 @@
   gap: var(--space-3);
 }
 
+.service-detail .btn {
+  justify-self: start;
+}
+
 .service-detail__index {
   margin-bottom: 0;
   color: var(--mym-yellow);

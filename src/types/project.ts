@@ -1,3 +1,5 @@
+export type ProjectPreview = "dashboard" | "saas" | "mobile";
+
 export interface Project {
   id: string;
   title: string;
@@ -5,4 +7,5 @@ export interface Project {
   category: string;
   tags: string[];
   status: "concept";
+  preview: ProjectPreview;
 }

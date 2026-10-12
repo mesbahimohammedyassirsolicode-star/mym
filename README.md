@@ -32,12 +32,16 @@ provides SPA fallback so each route can be opened or refreshed directly.
 Copy `.env.example` to `.env` and set the public site origin:
 
 ```sh
-VITE_SITE_URL=https://www.your-domain.com
+VITE_SITE_URL=https://mym-dusky.vercel.app
 ```
 
 `VITE_SITE_URL` is only used to build canonical and Open Graph URLs. When it is
 empty, no canonical or `og:url` tags are emitted, so no domain is assumed. This
 value is public by design — never place secrets in `VITE_`-prefixed variables.
+
+All `VITE_`-prefixed variables are inlined at build time, so they **must also be
+set in the hosting platform's environment** (for this project, the Vercel
+project settings). See the deployment section for the full list.
 
 ## Metadata and SEO
 
@@ -45,11 +49,14 @@ value is public by design — never place secrets in `VITE_`-prefixed variables.
   `og:title` / `og:description` / `twitter:title` / `twitter:description`.
 - Canonical and `og:url` tags are emitted per route only when `VITE_SITE_URL`
   is set.
-- `public/robots.txt` currently allows all crawlers. A `Sitemap:` directive and
-  a `public/sitemap.xml` should be added once the production domain is known.
+- `public/robots.txt` allows all crawlers and points to
+  `public/sitemap.xml`, which lists the five routes under the production origin.
+  Update `SITE_URL` in both files if the domain changes.
 - An Open Graph preview image is intentionally not set yet: no approved raster
   (for example 1200×630 PNG) asset exists. Social platforms do not reliably use
   SVG, so this waits on an approved export of the MYM mark.
+- `public/favicon.svg` is a brand-colour placeholder tile; it should be replaced
+  with an approved icon export of the MYM mark.
 
 ## Contact form
 
@@ -98,12 +105,18 @@ npm run preview
 
 - Output directory: `dist`.
 - Hosting must rewrite unknown paths to `/index.html` (SPA fallback), otherwise
-  deep links such as `/services` or `/about` return 404 on refresh.
+  deep links such as `/services` or `/about` return 404 on refresh. This project
+  ships a `vercel.json` that provides the rewrite for Vercel.
 - Serve over HTTPS. Set security headers at the host/CDN (for example
   `Content-Security-Policy`, `X-Content-Type-Options`, `Referrer-Policy`, and
   HSTS); they are not configured in the repository.
-- These hosting-specific settings depend on the chosen platform and are
-  intentionally not guessed here.
+- Environment variables to configure on Vercel (Project → Settings →
+  Environment Variables) before the production build:
+  - `VITE_SITE_URL` — the production origin (e.g.
+    `https://mym-dusky.vercel.app`).
+  - `VITE_EMAILJS_PUBLIC_KEY` — EmailJS Public Key.
+  - `VITE_EMAILJS_SERVICE_ID` — EmailJS Service ID.
+  - `VITE_EMAILJS_TEMPLATE_ID` — EmailJS Template ID.
 
 ## Validation and production build
 

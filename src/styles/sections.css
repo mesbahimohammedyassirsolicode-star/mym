@@ -163,55 +163,336 @@
 
 .project-card__visual {
   position: relative;
-  height: 12rem;
-  padding: var(--space-4);
+  display: flex;
+  height: 13rem;
+  align-items: stretch;
+  justify-content: center;
+  padding: var(--space-5) var(--space-5) 0;
+  overflow: hidden;
   border-bottom: 1px solid var(--border-dark);
   background: linear-gradient(160deg, var(--surface-dark-2), var(--bg-page));
 }
 
-.project-card__window {
+.pv {
   display: flex;
-  gap: 0.375rem;
-  margin-bottom: var(--space-4);
+  width: 100%;
+  flex-direction: column;
 }
 
-.project-card__dot {
+.pv-window {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.375rem;
+  margin-bottom: var(--space-3);
+}
+
+.pv-dot {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
   background: var(--mym-grey);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
-.project-card__dot:first-child {
+.pv-dot:first-child {
   background: var(--mym-yellow);
   opacity: 1;
 }
 
-.project-card__layout {
+/* Dashboard preview — operations / management systems */
+.pv-dash {
   display: flex;
-  gap: var(--space-4);
-}
-
-.project-card__skeleton {
-  width: 34%;
-  border: 1px solid var(--border-accent);
-  border-radius: var(--radius-md);
-  background: var(--mym-yellow-tint);
-}
-
-.project-card__tiles {
-  display: grid;
   flex: 1;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-3);
+  min-height: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--border-dark);
+  border-bottom: 0;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: var(--surface-dark);
 }
 
-.project-card__tile {
-  height: 3rem;
+.pv-dash__rail {
+  display: flex;
+  width: 1.5rem;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-right: var(--space-2);
+  border-right: 1px solid var(--border-dark);
+}
+
+.pv-dash__rail-item {
+  height: 0.5rem;
+  border-radius: var(--radius-sm);
+  background: rgb(255 255 255 / 8%);
+}
+
+.pv-dash__rail-item--active {
+  background: var(--mym-yellow);
+}
+
+.pv-dash__main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.pv-dash__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.pv-dash__stat {
+  height: 1.75rem;
   border: 1px solid var(--border-dark);
   border-radius: var(--radius-sm);
   background: rgb(255 255 255 / 4%);
+}
+
+.pv-dash__stat:first-child {
+  border-color: var(--border-accent);
+  background: var(--mym-yellow-tint);
+}
+
+.pv-dash__chart {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  gap: var(--space-2);
+  min-height: 0;
+}
+
+.pv-dash__bar {
+  flex: 1;
+  min-width: 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: rgb(255 255 255 / 10%);
+}
+
+.pv-dash__bar:nth-child(1) {
+  height: 45%;
+}
+
+.pv-dash__bar:nth-child(2) {
+  height: 70%;
+}
+
+.pv-dash__bar:nth-child(3) {
+  height: 55%;
+}
+
+.pv-dash__bar:nth-child(4) {
+  height: 85%;
+  background: var(--mym-yellow);
+}
+
+.pv-dash__bar:nth-child(5) {
+  height: 60%;
+}
+
+.pv-dash__bar:nth-child(6) {
+  height: 75%;
+}
+
+.pv-dash__bar:nth-child(7) {
+  height: 50%;
+}
+
+/* SaaS preview — customer account platform */
+.pv-saas {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--border-dark);
+  border-bottom: 0;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: var(--surface-dark);
+}
+
+.pv-saas__tabs {
+  display: flex;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.pv-saas__tab {
+  width: 2.5rem;
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 8%);
+}
+
+.pv-saas__tab--active {
+  background: var(--mym-yellow);
+}
+
+.pv-saas__account {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.pv-saas__avatar {
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  border: 1px solid var(--border-accent);
+  border-radius: 50%;
+  background: var(--mym-yellow-tint);
+}
+
+.pv-saas__lines {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 0;
+}
+
+.pv-saas__line {
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 10%);
+}
+
+.pv-saas__line--wide {
+  width: 70%;
+}
+
+.pv-saas__line--short {
+  width: 45%;
+}
+
+.pv-saas__usage {
+  height: 0.5rem;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 8%);
+}
+
+.pv-saas__usage-fill {
+  display: block;
+  width: 62%;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--mym-yellow);
+}
+
+.pv-saas__rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
+.pv-saas__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.pv-saas__row-line {
+  flex: 1;
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 8%);
+}
+
+.pv-saas__pill {
+  width: 1.75rem;
+  height: 0.75rem;
+  flex: 0 0 auto;
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-pill);
+  background: var(--mym-yellow-tint);
+}
+
+/* Mobile preview — service booking app */
+.pv--mobile {
+  align-items: center;
+}
+
+.pv-phone {
+  display: flex;
+  width: 8.5rem;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-3) var(--space-3) 0;
+  border: 1px solid var(--border-dark-strong);
+  border-bottom: 0;
+  border-radius: 1.25rem 1.25rem 0 0;
+  background: var(--surface-dark);
+}
+
+.pv-phone__notch {
+  width: 3rem;
+  height: 0.35rem;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 16%);
+}
+
+.pv-phone__bar {
+  width: 60%;
+  height: 0.5rem;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 12%);
+}
+
+.pv-phone__dates {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.3rem;
+  margin-bottom: var(--space-3);
+}
+
+.pv-phone__date {
+  height: 1.1rem;
+  border-radius: var(--radius-sm);
+  background: rgb(255 255 255 / 6%);
+}
+
+.pv-phone__date--active {
+  background: var(--mym-yellow);
+}
+
+.pv-phone__slots {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.pv-phone__slot {
+  height: 1rem;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  background: rgb(255 255 255 / 4%);
+}
+
+.pv-phone__slot--active {
+  border-color: var(--border-accent);
+  background: var(--mym-yellow-tint);
+}
+
+.pv-phone__cta {
+  width: 80%;
+  height: 1.25rem;
+  margin-top: auto;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--mym-yellow);
 }
 
 .project-card__body {

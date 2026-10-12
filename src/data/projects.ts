@@ -9,6 +9,7 @@ export const projects: Project[] = [
     category: "Management Systems",
     tags: ["Management System", "Automation"],
     status: "concept",
+    preview: "dashboard",
   },
   {
     id: "customer-platform",
@@ -18,6 +19,7 @@ export const projects: Project[] = [
     category: "SaaS Platforms",
     tags: ["SaaS", "Web App"],
     status: "concept",
+    preview: "saas",
   },
   {
     id: "service-booking-app",
@@ -27,5 +29,6 @@ export const projects: Project[] = [
     category: "Mobile Applications",
     tags: ["Mobile App", "Automation"],
     status: "concept",
+    preview: "mobile",
   },
 ];
