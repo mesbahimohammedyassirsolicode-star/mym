@@ -15,10 +15,10 @@ export default function Footer() {
             <Link to="/" className="brand-link" aria-label="MYM — Make Your Move, home">
               <img
                 className="brand-logo"
-                src="/assets/logo/MYM-logo.svg"
-                alt="MYM — Make Your Move"
-                width="1612"
-                height="590"
+                src="/assets/logo/Aurasoli-logo.png"
+                alt="Aurasoli"
+                width="1400"
+                height="404"
                 loading="lazy"
               />
             </Link>

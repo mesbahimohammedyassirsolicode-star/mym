@@ -55,8 +55,8 @@ project settings). See the deployment section for the full list.
 - An Open Graph preview image is intentionally not set yet: no approved raster
   (for example 1200×630 PNG) asset exists. Social platforms do not reliably use
   SVG, so this waits on an approved export of the MYM mark.
-- `public/favicon.svg` is a brand-colour placeholder tile; it should be replaced
-  with an approved icon export of the MYM mark.
+- The supplied Aurasoli monogram at `public/assets/logo/Aurasoli-icon.png` is
+  used as the site favicon.
 
 ## Contact form
 
@@ -139,8 +139,8 @@ Use `npm run preview` to serve the production build locally.
 - `public` — static assets and site metadata files
 
 Design tokens are centralized in `src/styles/tokens.css` and implement the
-Aurasoli palette. No approved Aurasoli logo is present in the repository, so
-the existing MYM logo at `public/assets/logo/MYM-logo.svg` remains in use
-without modifying its artwork until the approved asset is supplied. The favicon
-uses the Clay brand color as a temporary placeholder until an approved app-icon
-asset is available.
+Aurasoli palette. The supplied Aurasoli wordmark is used in the header and
+footer at `public/assets/logo/Aurasoli-logo.png`; its dark lettering is rendered
+in Cloud for legibility on the site's dark surfaces while preserving the
+Clay/Ochre mark. The matching monogram at `public/assets/logo/Aurasoli-icon.png`
+is used as the site favicon.

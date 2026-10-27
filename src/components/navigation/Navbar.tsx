@@ -58,10 +58,10 @@ export default function Navbar() {
           >
             <img
               className="brand-logo"
-              src="/assets/logo/MYM-logo.svg"
-              alt="MYM — Make Your Move"
-              width="1612"
-              height="590"
+              src="/assets/logo/Aurasoli-logo.png"
+              alt="Aurasoli"
+              width="1400"
+              height="404"
             />
           </Link>
 
