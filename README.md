@@ -107,6 +107,8 @@ npm run preview
 - Hosting must rewrite unknown paths to `/index.html` (SPA fallback), otherwise
   deep links such as `/services` or `/about` return 404 on refresh. This project
   ships a `vercel.json` that provides the rewrite for Vercel.
+- Vercel Web Analytics is mounted from the React entry point. Enable Web
+  Analytics in the Vercel project dashboard to view production traffic.
 - Serve over HTTPS. Set security headers at the host/CDN (for example
   `Content-Security-Policy`, `X-Content-Type-Options`, `Referrer-Policy`, and
   HSTS); they are not configured in the repository.
