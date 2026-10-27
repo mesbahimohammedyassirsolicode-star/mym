@@ -35,14 +35,14 @@
 }
 
 .filter-button.is-active {
-  border-color: var(--mym-yellow);
-  background: var(--mym-yellow);
-  color: var(--mym-black);
+  border-color: var(--color-clay);
+  background: var(--color-clay);
+  color: var(--color-night);
   font-weight: var(--font-weight-semibold);
 }
 
 .filter-button.is-active:active {
-  background: var(--mym-yellow-active);
+  background: var(--color-clay-active);
 }
 
 .empty-state {

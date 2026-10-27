@@ -1,54 +1,55 @@
 :root {
   color-scheme: dark;
 
-  /* Brand */
-  --mym-yellow: #f7c600;
-  --mym-black: #0d0d0d;
-  --mym-grey: #6b7280;
-  --mym-white: #ffffff;
+  /* Aurasoli palette */
+  --color-night: #0b0c0f;
+  --color-charcoal: #1a1d24;
+  --color-cloud: #f5f5f7;
+  --color-clay: #c66b4e;
+  --color-ochre: #d5ad6c;
+  --color-steel: #34363d;
+  --color-muted: #a9adb6;
 
-  /* Brand (derived states / tints) */
-  --mym-yellow-hover: #ffd426;
-  --mym-yellow-active: #d9ae00;
-  --mym-yellow-ink: #8a6d00;
-  --mym-yellow-ink-lg: #b38f00;
-  --mym-yellow-tint: rgb(247 198 0 / 12%);
-  --mym-grey-light: #9ca3af;
+  /* Brand states and tints */
+  --color-clay-hover: #d17a5e;
+  --color-clay-active: #c66b4e;
+  --color-clay-tint: rgb(198 107 78 / 12%);
+  --color-ochre-tint: rgb(213 173 108 / 12%);
 
   /* Text */
-  --text-on-dark: var(--mym-white);
-  --text-on-dark-muted: var(--mym-grey-light);
-  --text-on-light: var(--mym-black);
-  --text-on-light-muted: var(--mym-grey);
-  --text-on-yellow: var(--mym-black);
-  --text-accent: var(--mym-yellow);
+  --text-on-dark: var(--color-cloud);
+  --text-on-dark-muted: var(--color-muted);
+  --text-on-light: var(--color-night);
+  --text-on-light-muted: var(--color-steel);
+  --text-on-clay: var(--color-night);
+  --text-accent: var(--color-clay);
 
   /* Backgrounds / surfaces */
-  --bg-page: var(--mym-black);
-  --bg-section-alt: #111111;
-  --surface-dark: #141414;
-  --surface-dark-2: #1a1a1a;
-  --surface-light: var(--mym-white);
-  --surface-light-2: #f7f7f8;
-  --nav-bg: rgb(13 13 13 / 80%);
-  --overlay-scrim: rgb(0 0 0 / 55%);
+  --bg-page: var(--color-night);
+  --bg-section-alt: #111319;
+  --surface-dark: var(--color-charcoal);
+  --surface-dark-2: #22262f;
+  --surface-light: var(--color-cloud);
+  --surface-light-2: #e9eaee;
+  --nav-bg: rgb(11 12 15 / 84%);
+  --overlay-scrim: rgb(11 12 15 / 64%);
 
   /* Borders */
-  --border-dark: rgb(255 255 255 / 10%);
-  --border-dark-strong: rgb(255 255 255 / 18%);
-  --border-light: #e5e7eb;
-  --border-accent: rgb(247 198 0 / 45%);
+  --border-dark: rgb(245 245 247 / 10%);
+  --border-dark-strong: rgb(245 245 247 / 18%);
+  --border-light: #dfe1e6;
+  --border-accent: rgb(198 107 78 / 48%);
 
   /* Buttons */
-  --btn-primary-bg: var(--mym-yellow);
-  --btn-primary-fg: var(--mym-black);
-  --btn-secondary-bg: rgb(255 255 255 / 4%);
-  --btn-secondary-fg: var(--mym-white);
+  --btn-primary-bg: var(--color-clay);
+  --btn-primary-fg: var(--text-on-clay);
+  --btn-secondary-bg: rgb(245 245 247 / 4%);
+  --btn-secondary-fg: var(--color-cloud);
   --btn-secondary-border: var(--border-dark-strong);
 
   /* Focus indicators */
-  --focus-ring: 0 0 0 3px rgb(13 13 13 / 100%), 0 0 0 5px var(--mym-yellow);
-  --focus-ring-light: 0 0 0 2px var(--mym-white), 0 0 0 4px var(--mym-black);
+  --focus-ring: 0 0 0 3px var(--color-night), 0 0 0 5px var(--color-ochre);
+  --focus-ring-light: 0 0 0 2px var(--color-cloud), 0 0 0 4px var(--color-night);
 
   /* Status */
   --color-error: #f87171;
@@ -93,10 +94,10 @@
   --space-10: 8rem;
 
   /* Radii */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.125rem;
   --radius-pill: 999px;
 
   /* Shadows */
@@ -104,25 +105,25 @@
   --shadow-md: 0 8px 24px rgb(0 0 0 / 40%);
   --shadow-lg: 0 24px 60px rgb(0 0 0 / 50%);
   --shadow-light-panel: 0 10px 30px rgb(17 24 39 / 8%);
-  --glow-yellow: 0 0 40px rgb(247 198 0 / 18%);
+  --glow-clay: 0 0 32px rgb(198 107 78 / 12%);
 
   /* Hero visual (3D laptop product showcase) */
-  --hv-label: #c9ced8;
-  --hv-screen-bg: #0b0b0b;
-  --hv-panel: rgb(0 0 0 / 22%);
-  --hv-track: rgb(255 255 255 / 14%);
-  --hv-grid: rgb(247 198 0 / 6%);
-  --hv-gridline: rgb(255 255 255 / 6%);
-  --hv-glow: rgb(247 198 0 / 12%);
-  --hv-glow-corner: rgb(247 198 0 / 22%);
-  --hv-streak: rgb(247 198 0 / 45%);
-  --hv-streak-glow: rgb(247 198 0 / 28%);
-  --hv-sheen: rgb(255 255 255 / 6%);
-  --hv-bezel-hi: #303030;
-  --hv-bezel-mid: #171717;
-  --hv-bezel-low: #090909;
-  --hv-glass-border: rgb(247 198 0 / 40%);
-  --hv-glass-bg: rgb(18 18 18 / 80%);
+  --hv-label: var(--color-muted);
+  --hv-screen-bg: var(--color-night);
+  --hv-panel: rgb(11 12 15 / 30%);
+  --hv-track: rgb(245 245 247 / 14%);
+  --hv-grid: rgb(198 107 78 / 6%);
+  --hv-gridline: rgb(245 245 247 / 6%);
+  --hv-glow: rgb(198 107 78 / 10%);
+  --hv-glow-corner: rgb(213 173 108 / 14%);
+  --hv-streak: rgb(198 107 78 / 34%);
+  --hv-streak-glow: rgb(198 107 78 / 18%);
+  --hv-sheen: rgb(245 245 247 / 6%);
+  --hv-bezel-hi: var(--color-steel);
+  --hv-bezel-mid: var(--color-charcoal);
+  --hv-bezel-low: var(--color-night);
+  --hv-glass-border: rgb(198 107 78 / 38%);
+  --hv-glass-bg: rgb(26 29 36 / 88%);
   --hv-glass-blur: 10px;
 
   /* Layout */

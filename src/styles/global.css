@@ -85,8 +85,8 @@ p {
 }
 
 ::selection {
-  background: var(--mym-yellow);
-  color: var(--mym-black);
+  background: var(--color-clay);
+  color: var(--color-night);
 }
 
 @media (prefers-reduced-motion: reduce) {

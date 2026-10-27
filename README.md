@@ -138,8 +138,9 @@ Use `npm run preview` to serve the production build locally.
 - `src/styles` — design tokens, global styles, and utilities
 - `public` — static assets and site metadata files
 
-Design tokens are centralized in `src/styles/tokens.css`, following the
-supplied MYM design guide. The official logo is stored at
-`public/assets/logo/MYM-logo.svg` and used on dark surfaces without modifying
-its artwork. The favicon remains a neutral placeholder
-(`public/favicon.svg`) until an approved MYM app-icon asset is available.
+Design tokens are centralized in `src/styles/tokens.css` and implement the
+Aurasoli palette. No approved Aurasoli logo is present in the repository, so
+the existing MYM logo at `public/assets/logo/MYM-logo.svg` remains in use
+without modifying its artwork until the approved asset is supplied. The favicon
+uses the Clay brand color as a temporary placeholder until an approved app-icon
+asset is available.

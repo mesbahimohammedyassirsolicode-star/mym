@@ -17,18 +17,24 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    60rem 30rem at 88% -10%,
-    var(--mym-yellow-tint),
-    transparent 60%
-  );
+  background:
+    radial-gradient(
+      42rem 30rem at 88% 12%,
+      var(--color-clay-tint),
+      transparent 68%
+    ),
+    radial-gradient(
+      36rem 28rem at 8% 95%,
+      var(--color-ochre-tint),
+      transparent 72%
+    );
   pointer-events: none;
 }
 
 .hero__inner {
   position: relative;
   display: grid;
-  gap: clamp(3rem, 6vw, 5.5rem);
+  gap: clamp(2.5rem, 5vw, 4.5rem);
   align-items: center;
 }
 
@@ -43,7 +49,7 @@
   margin-bottom: 0;
   font-size: clamp(2.5rem, 6vw + 1rem, 4.5rem);
   font-weight: var(--font-weight-extrabold);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
   line-height: 1.05;
 }
 
@@ -77,6 +83,12 @@
 
 @media (min-width: 64rem) {
   .hero__inner {
-    grid-template-columns: 1.05fr 1fr;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+  }
+
+  .hero {
+    display: grid;
+    min-height: min(46rem, calc(100svh - var(--header-height)));
+    align-items: center;
   }
 }

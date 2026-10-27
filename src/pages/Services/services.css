@@ -20,8 +20,8 @@
   justify-content: center;
   border: 1px solid var(--border-accent);
   border-radius: var(--radius-md);
-  background: var(--mym-yellow-tint);
-  color: var(--mym-yellow);
+  background: var(--color-clay-tint);
+  color: var(--color-clay);
 }
 
 .service-detail__intro {
@@ -35,7 +35,7 @@
 
 .service-detail__index {
   margin-bottom: 0;
-  color: var(--mym-yellow);
+  color: var(--color-ochre);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.12em;
@@ -92,7 +92,7 @@
 .check-list__icon {
   flex: 0 0 auto;
   margin-top: 0.15rem;
-  color: var(--mym-yellow);
+  color: var(--color-clay);
 }
 
 @media (min-width: 64rem) {

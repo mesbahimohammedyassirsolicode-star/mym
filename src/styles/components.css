@@ -4,7 +4,7 @@
 
 /* Highlighted word inside headings / taglines */
 .hl {
-  color: var(--mym-yellow);
+  color: var(--color-clay);
 }
 
 /* --------------------------------------------------------------------------
@@ -49,12 +49,12 @@
 }
 
 .btn--primary:hover {
-  background: var(--mym-yellow-hover);
+  background: var(--color-clay-hover);
   transform: translateY(-1px);
 }
 
 .btn--primary:active {
-  background: var(--mym-yellow-active);
+  background: var(--color-clay-active);
   transform: translateY(0);
 }
 
@@ -66,12 +66,12 @@
 
 .btn--secondary:hover {
   border-color: var(--border-accent);
-  background: rgb(255 255 255 / 8%);
+  background: rgb(245 245 247 / 8%);
   transform: translateY(-1px);
 }
 
 .btn--secondary:active {
-  background: rgb(255 255 255 / 12%);
+  background: rgb(245 245 247 / 12%);
   transform: translateY(0);
 }
 
@@ -147,11 +147,11 @@
 
 .nav-link:hover {
   color: var(--text-on-dark);
-  background: rgb(255 255 255 / 5%);
+  background: rgb(245 245 247 / 5%);
 }
 
 .nav-link.is-active {
-  color: var(--mym-yellow);
+  color: var(--color-clay);
 }
 
 .nav-link.is-active::after {
@@ -194,7 +194,7 @@
 
 .nav-toggle:hover {
   border-color: var(--border-accent);
-  background: rgb(255 255 255 / 6%);
+  background: rgb(245 245 247 / 6%);
 }
 
 /* --------------------------------------------------------------------------
@@ -214,7 +214,7 @@
   padding: var(--space-5) var(--container-gutter) var(--space-7);
   overflow-y: auto;
   border-top: 1px solid var(--border-dark);
-  background: var(--mym-black);
+  background: var(--color-night);
   animation: mobile-nav-enter var(--transition-base);
 }
 
@@ -243,12 +243,12 @@
 }
 
 .mobile-nav__link:hover {
-  background: rgb(255 255 255 / 5%);
+  background: rgb(245 245 247 / 5%);
 }
 
 .mobile-nav__link.is-active {
-  color: var(--mym-yellow);
-  background: var(--mym-yellow-tint);
+  color: var(--color-clay);
+  background: var(--color-clay-tint);
 }
 
 .mobile-nav__cta {
@@ -333,11 +333,11 @@
 }
 
 .footer-link:hover {
-  color: var(--mym-yellow);
+  color: var(--color-clay);
 }
 
 .footer-link:active {
-  color: var(--mym-yellow-active);
+  color: var(--color-clay-active);
 }
 
 .footer-bottom {
