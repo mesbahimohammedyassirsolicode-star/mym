@@ -140,7 +140,7 @@ Use `npm run preview` to serve the production build locally.
 
 Design tokens are centralized in `src/styles/tokens.css` and implement the
 Aurasoli palette. The supplied Aurasoli wordmark is used in the header and
-footer at `public/assets/logo/Aurasoli-logo.png`; its dark lettering is rendered
-in Cloud for legibility on the site's dark surfaces while preserving the
-Clay/Ochre mark. The matching monogram at `public/assets/logo/Aurasoli-icon.png`
-is used as the site favicon.
+footer at `public/assets/logo/Aurasoli-logo.png`. The transparent PNG web
+version renders the supplied dark lettering in Cloud for legibility on the
+site's dark surfaces while preserving the Clay/Ochre mark. The matching
+monogram at `public/assets/logo/Aurasoli-icon.png` is used as the site favicon.
