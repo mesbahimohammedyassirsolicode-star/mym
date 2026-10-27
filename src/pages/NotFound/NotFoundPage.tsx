@@ -4,7 +4,7 @@ import usePageMeta from "../../hooks/usePageMeta";
 
 export default function NotFoundPage() {
   usePageMeta(
-    "Page not found | MYM — Make Your Move",
+    "Page not found | Aurasoli",
     "The page you requested does not exist.",
   );
 

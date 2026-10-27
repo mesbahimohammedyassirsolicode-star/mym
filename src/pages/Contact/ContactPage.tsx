@@ -7,8 +7,8 @@ import "./contact.css";
 
 export default function ContactPage() {
   usePageMeta(
-    "Contact | MYM — Make Your Move",
-    "Tell MYM what you're planning to build. Share your goals and requirements so we can understand how we may help your business move forward.",
+    "Contact | Aurasoli",
+    "Tell Aurasoli what you're planning to build. Share your goals and requirements so we can understand how we may help your business move forward.",
   );
 
   return (

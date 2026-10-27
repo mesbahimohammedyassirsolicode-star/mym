@@ -6,8 +6,8 @@ import "./projects.css";
 
 export default function ProjectsPage() {
   usePageMeta(
-    "Projects | MYM — Make Your Move",
-    "A look at the digital products, applications, and business solutions MYM designs and builds — currently shown as neutral conceptual examples.",
+    "Projects | Aurasoli",
+    "A look at the digital products, applications, and business solutions Aurasoli designs and builds — currently shown as neutral conceptual examples.",
   );
 
   return (

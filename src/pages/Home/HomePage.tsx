@@ -9,8 +9,8 @@ import "./homepage.css";
 
 export default function HomePage() {
   usePageMeta(
-    "MYM — Make Your Move | Digital Solutions for Modern Businesses",
-    "MYM builds digital solutions that help businesses develop their ideas, automate operations, and grow their digital presence.",
+    "Aurasoli | Digital Solutions for Modern Businesses",
+    "Aurasoli builds digital solutions that help businesses develop their ideas, automate operations, and grow their digital presence.",
   );
 
   return (

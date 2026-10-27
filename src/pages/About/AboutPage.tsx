@@ -9,8 +9,8 @@ import "./about.css";
 
 export default function AboutPage() {
   usePageMeta(
-    "About | MYM — Make Your Move",
-    "Learn about MYM, a digital solutions partner that helps businesses build useful products, improve operations, strengthen their online presence, and establish consistent brand identities.",
+    "About | Aurasoli",
+    "Learn about Aurasoli, a digital solutions partner that helps businesses build useful products, improve operations, strengthen their online presence, and establish consistent brand identities.",
   );
 
   return (

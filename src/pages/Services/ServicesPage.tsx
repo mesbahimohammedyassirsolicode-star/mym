@@ -6,8 +6,8 @@ import "./services.css";
 
 export default function ServicesPage() {
   usePageMeta(
-    "Services | MYM — Make Your Move",
-    "Explore MYM's services: web development, SaaS platforms, mobile applications, management systems, digital marketing & SEO, automation & integrations, and brand identity.",
+    "Services | Aurasoli",
+    "Explore Aurasoli's services: web development, SaaS platforms, mobile applications, management systems, digital marketing & SEO, automation & integrations, and brand identity.",
   );
 
   return (
