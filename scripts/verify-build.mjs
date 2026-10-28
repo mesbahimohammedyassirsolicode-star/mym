@@ -182,6 +182,24 @@ const perf = async () => {
 };
 groups.perf = perf;
 
+const deploy = async () => {
+  const config = JSON.parse(await readFile("vercel.json", "utf8"));
+  check("clean urls", config.cleanUrls === true);
+  check("no trailing slash", config.trailingSlash === false);
+  const redirect = config.redirects?.find((r) => r.has?.some((h) => h.type === "host" && h.value === "aura-soli.online"));
+  check("apex 301", redirect?.statusCode === 301 && redirect.destination === "https://www.aura-soli.online/:path*");
+  check("no spa catch-all", !JSON.stringify(config.rewrites ?? []).includes("index.html"));
+  const headerText = JSON.stringify(config.headers ?? []);
+  check("immutable assets", headerText.includes("public, max-age=31536000, immutable"));
+  for (const name of ["Content-Security-Policy", "Strict-Transport-Security", "X-Content-Type-Options", "Referrer-Policy", "X-Frame-Options", "Permissions-Policy"]) {
+    check(`header ${name}`, headerText.includes(name));
+  }
+  check("csp allows emailjs", headerText.includes("https://api.emailjs.com"));
+  check("404 file", existsSync("dist/404.html"));
+  check("checklist exists", existsSync("docs/seo-launch-checklist.md"));
+};
+groups.deploy = deploy;
+
 const requested = process.argv.slice(2);
 const active = requested.length ? requested : Object.keys(groups);
 for (const name of active) {

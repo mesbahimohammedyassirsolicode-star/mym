@@ -1,7 +1,8 @@
 # Aurasoli
 
-Architecture foundation for the official Aurasoli website, built with React,
-TypeScript, Vite, and React Router. Inter is bundled locally as a variable font.
+Official Aurasoli website, built with React, TypeScript, Vite, and React Router.
+Inter is bundled locally as a variable font. Every route is prerendered to static
+HTML at build time, so content and metadata are present without JavaScript.
 
 ## Requirements
 
@@ -15,8 +16,11 @@ npm install
 npm run dev
 ```
 
-Vite prints the local development URL after startup. Its development server
-provides SPA fallback so each route can be opened or refreshed directly.
+Vite prints the local development URL after startup. The development server
+provides an SPA fallback so each route can be opened or refreshed directly.
+
+On Windows PowerShell, invoke npm as `npm.cmd` (for example
+`npm.cmd run build`).
 
 ## Routes
 
@@ -27,17 +31,60 @@ provides SPA fallback so each route can be opened or refreshed directly.
 - `/contact` — Contact
 - Unknown paths — Not Found
 
+## Build output
+
+```sh
+npm run build
+```
+
+The build runs `tsc -b`, the client Vite build, a server bundle used only for
+prerendering, and `scripts/prerender.mjs`. It does not produce an SPA rewrite;
+it writes real HTML for every route:
+
+- `dist/index.html` — Home
+- `dist/services/index.html`
+- `dist/projects/index.html`
+- `dist/about/index.html`
+- `dist/contact/index.html`
+- `dist/404.html` — custom Not Found page (`noindex, nofollow`)
+- `dist/sitemap.xml` — five URLs with `lastmod`, `changefreq`, and `priority`
+- `dist/robots.txt` — copied from `public/robots.txt`
+- `dist/assets/*` — content-hashed JS, CSS, and fonts
+- `dist/og-image.png`, icons, and `dist/site.webmanifest` — copied from `public`
+
+Because the HTML is written at build time, each route already contains its page
+copy, `<h1>`, title, description, canonical, Open Graph/Twitter tags, and
+JSON-LD before the JavaScript module runs. Search engines and social crawlers do
+not need to execute JavaScript to see them.
+
+Verify the production output after a build:
+
+```sh
+npm run verify
+```
+
+This checks prerendering, per-page SEO tags, structured data and sitemap, image
+assets, motion safeguards, UI behaviour, route splitting/fonts, and the Vercel
+deployment configuration.
+
 ## Environment
 
-Copy `.env.example` to `.env` and set the public site origin:
+`src/config/site.ts` resolves the public site origin from `VITE_SITE_URL`, with a
+production fallback of `https://www.aura-soli.online`:
 
 ```sh
 VITE_SITE_URL=https://www.aura-soli.online
 ```
 
-`VITE_SITE_URL` is only used to build canonical and Open Graph URLs. When it is
-empty, no canonical or `og:url` tags are emitted, so no domain is assumed. This
+Setting it is optional for the current production domain; the fallback keeps
+canonical, Open Graph, JSON-LD, and sitemap URLs stable when the variable is
+absent. Override it for a different origin (for example a staging domain). The
 value is public by design — never place secrets in `VITE_`-prefixed variables.
+
+`SITE_URL` is also used when prerendering, so the generated sitemap always uses
+the production origin. If the domain changes, update the fallback in
+`src/config/site.ts`, the matching constant in `scripts/prerender.mjs`, and
+`public/robots.txt`.
 
 All `VITE_`-prefixed variables are inlined at build time, so they **must also be
 set in the hosting platform's environment** (for this project, the Vercel
@@ -45,18 +92,20 @@ project settings). See the deployment section for the full list.
 
 ## Metadata and SEO
 
-- Every route sets its own document title, meta description, and matching
-  `og:title` / `og:description` / `twitter:title` / `twitter:description`.
-- Canonical and `og:url` tags are emitted per route only when `VITE_SITE_URL`
-  is set.
+- Every route sets its own document title, meta description, canonical URL, and
+  matching `og:title` / `og:description` / `og:url` /
+  `twitter:title` / `twitter:description` tags.
+- The home page emits `Organization` and `WebSite` JSON-LD; the services page
+  emits an `ItemList` of `Service` entries with stable `#service` anchors.
+- The 404 page emits no canonical and no JSON-LD, and is marked
+  `noindex, nofollow`.
 - `public/robots.txt` allows all crawlers and points to
-  `public/sitemap.xml`, which lists the five routes under the production origin.
-  Update `SITE_URL` in both files if the domain changes.
-- An Open Graph preview image is intentionally not set yet: no approved raster
-  (for example 1200×630 PNG) asset exists. Social platforms do not reliably use
-  SVG, so this waits on an approved export of the Aurasoli mark.
-- The supplied Aurasoli monogram at `public/assets/logo/Aurasoli-icon.png` is
-  used as the site favicon.
+  `https://www.aura-soli.online/sitemap.xml`. The sitemap is generated during
+  the build and lists the five public routes.
+- `public/og-image.png` is a 1200×630 PNG used for Open Graph and Twitter
+  previews.
+- Generated favicon, Apple touch icon, and PWA icons live in `public/` along
+  with `site.webmanifest`.
 
 ## Contact form
 
@@ -91,58 +140,88 @@ Dashboard setup (owner steps):
 4. The recipient is whatever address is configured on the EmailJS account for
    that service; it is not set (and must not be guessed) in this code.
 
-Until the Service ID is supplied and the dashboard setup is complete, real
-delivery remains unverified.
+The `@emailjs/browser` SDK is loaded lazily when the form is submitted, so it is
+not part of the initial page bundle. Until the Service ID is supplied and the
+dashboard setup is complete, real delivery remains unverified.
 
 ## Deployment
 
-The build is a static single-page application:
+The project deploys as static files on Vercel:
 
 ```sh
 npm run build
 npm run preview
 ```
 
-- Output directory: `dist`.
-- Hosting must rewrite unknown paths to `/index.html` (SPA fallback), otherwise
-  deep links such as `/services` or `/about` return 404 on refresh. This project
-  ships a `vercel.json` that provides the rewrite for Vercel.
+- Build command: `npm run build`. Output directory: `dist`.
+- `vercel.json` sets `cleanUrls: true` and `trailingSlash: false`, so routes are
+  served at `/services`, `/projects`, `/about`, and `/contact` without `.html`
+  or a trailing slash.
+- An apex redirect sends `https://aura-soli.online/*` with a `301` to
+  `https://www.aura-soli.online/*`. Only the `www` host is canonical.
+- Unknown paths are served by `dist/404.html` with a real 404 status. There is
+  no catch-all rewrite to `/index.html`.
+- Security headers are applied by `vercel.json` to all responses:
+  `Content-Security-Policy`, `Strict-Transport-Security`,
+  `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, and
+  `Permissions-Policy`. The CSP allows the Vercel analytics endpoints and
+  `https://api.emailjs.com` for contact-form submissions.
+- Files under `/assets/*` are served with
+  `Cache-Control: public, max-age=31536000, immutable`. Vite content-hashes the
+  JS, CSS, and font filenames, so this is safe for them.
+- **The logo files under `/assets/logo/*` are not content-hashed.** Because they
+  receive the same immutable cache header, rename the files (or otherwise change
+  their URLs) whenever the artwork changes; replacing them in place would leave
+  returning visitors and CDNs on the old image.
 - Vercel Web Analytics is mounted from the React entry point. Enable Web
   Analytics in the Vercel project dashboard to view production traffic.
-- Serve over HTTPS. Set security headers at the host/CDN (for example
-  `Content-Security-Policy`, `X-Content-Type-Options`, `Referrer-Policy`, and
-  HSTS); they are not configured in the repository.
+- `vercel.json` headers and clean URLs are only applied by Vercel. `npm run
+  preview` serves the static build with Vite's SPA fallback and without those
+  headers, so route resolution, redirects, and CSP must be checked on a Vercel
+  preview deployment.
 - Environment variables to configure on Vercel (Project → Settings →
   Environment Variables) before the production build:
-  - `VITE_SITE_URL` — the production origin (e.g.
-    `https://www.aura-soli.online`).
+  - `VITE_SITE_URL` — optional override for the production origin (the code
+    falls back to `https://www.aura-soli.online`).
   - `VITE_EMAILJS_PUBLIC_KEY` — EmailJS Public Key.
   - `VITE_EMAILJS_SERVICE_ID` — EmailJS Service ID.
   - `VITE_EMAILJS_TEMPLATE_ID` — EmailJS Template ID.
+
+After deploying, follow [the SEO launch checklist](docs/seo-launch-checklist.md)
+for Search Console verification, sitemap submission, URL inspection, and Core
+Web Vitals review.
 
 ## Validation and production build
 
 ```sh
 npm run lint
-npx tsc -b
 npm run build
+npm run verify
 ```
 
-Use `npm run preview` to serve the production build locally.
+`npm run lint` runs ESLint, `npm run build` type-checks and builds the client,
+server bundle, and prerendered output, and `npm run verify` runs the full
+production verification suite against `dist`. Use `npm run preview` to serve the
+production build locally.
 
 ## Project structure
 
 - `src/app` — application entry and route configuration
+- `src/config` — site origin, page metadata, and structured data
 - `src/layouts` — shared page layouts
 - `src/components` — reusable layout, navigation, and UI foundations
 - `src/pages` — route-level pages
 - `src/data` and `src/types` — typed content data and models
 - `src/styles` — design tokens, global styles, and utilities
 - `public` — static assets and site metadata files
+- `scripts` — asset generation, prerendering, and build verification
+- `docs/seo-launch-checklist.md` — post-deploy Search Console checklist
 
 Design tokens are centralized in `src/styles/tokens.css` and implement the
 Aurasoli palette. The supplied Aurasoli wordmark is used in the header and
-footer at `public/assets/logo/Aurasoli-logo.png`. The transparent PNG web
-version renders the supplied dark lettering in Cloud for legibility on the
-site's dark surfaces while preserving the Clay/Ochre mark. The matching
-monogram at `public/assets/logo/Aurasoli-icon.png` is used as the site favicon.
+footer, with responsive AVIF, WebP, and PNG exports at
+`public/assets/logo/Aurasoli-logo-352.*` and
+`public/assets/logo/Aurasoli-logo-704.*`. The transparent PNG web version
+renders the supplied dark lettering in Cloud for legibility on the site's dark
+surfaces while preserving the Clay/Ochre mark. The generated monogram icons in
+`public/` are used for the favicon, Apple touch icon, and web manifest.
