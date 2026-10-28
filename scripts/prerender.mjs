@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -48,22 +48,31 @@ for (const { url, file } of outputs) {
   console.log(`Prerendered ${url} -> ${file}`);
 }
 
+const SITEMAP_META = {
+  "/": { changefreq: "weekly", priority: "1.0" },
+  "/services": { changefreq: "monthly", priority: "0.8" },
+  "/projects": { changefreq: "monthly", priority: "0.8" },
+  "/about": { changefreq: "monthly", priority: "0.6" },
+  "/contact": { changefreq: "monthly", priority: "0.6" },
+};
+
 const buildDate = new Date().toISOString().slice(0, 10);
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-  ...PUBLIC_ROUTES.map(
-    (url) =>
-      `  <url>\n    <loc>${SITE_URL}${url}</loc>\n    <lastmod>${buildDate}</lastmod>\n  </url>`,
-  ),
+  ...PUBLIC_ROUTES.map((url) => {
+    const meta = SITEMAP_META[url];
+    if (!meta) {
+      throw new Error(`Missing sitemap metadata for ${url}`);
+    }
+    return `  <url>\n    <loc>${SITE_URL}${url}</loc>\n    <lastmod>${buildDate}</lastmod>\n    <changefreq>${meta.changefreq}</changefreq>\n    <priority>${meta.priority}</priority>\n  </url>`;
+  }),
   "</urlset>",
   "",
 ].join("\n");
 await writeFile(join(distDir, "sitemap.xml"), sitemap, "utf8");
 console.log(`Wrote dist/sitemap.xml with ${PUBLIC_ROUTES.length} URLs`);
 
-await copyFile(
-  join(root, "public", "robots.txt"),
-  join(distDir, "robots.txt"),
-);
-console.log("Copied public/robots.txt -> dist/robots.txt");
+const robots = await readFile(join(root, "public", "robots.txt"), "utf8");
+await writeFile(join(distDir, "robots.txt"), robots, "utf8");
+console.log("Wrote dist/robots.txt from public/robots.txt");

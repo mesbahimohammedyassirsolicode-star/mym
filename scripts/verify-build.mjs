@@ -65,6 +65,28 @@ const groups = {
     const missing = await render("/nope");
     check("unknown path noindex", missing.head.includes('name="robots" content="noindex, nofollow"'));
   },
+  structured: async () => {
+    const parse = (html) => [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+      .map((m) => JSON.parse(m[1]));
+    const home = await readFile("dist/index.html", "utf8");
+    const homeLd = parse(home);
+    check("Organization JSON-LD", homeLd.some((x) => x["@type"] === "Organization" && x["@id"].endsWith("#organization")));
+    check("WebSite JSON-LD", homeLd.some((x) => x["@type"] === "WebSite" && x["@id"].endsWith("#website")));
+    check("no invented sameAs", homeLd.every((x) => x.sameAs === undefined));
+    const services = parse(await readFile("dist/services/index.html", "utf8"));
+    const list = services.find((x) => x["@type"] === "ItemList");
+    check("Service ItemList", list?.itemListElement?.length === 7);
+    check("Service entries typed", list?.itemListElement?.every((x) => x.item?.["@type"] === "Service"));
+    const notFound = parse(await readFile("dist/404.html", "utf8"));
+    check("404 has no JSON-LD", notFound.length === 0);
+    const sitemap = await readFile("dist/sitemap.xml", "utf8");
+    for (const url of ["/", "/services", "/projects", "/about", "/contact"]) {
+      check(`sitemap includes ${url}`, sitemap.includes(`<loc>https://www.aura-soli.online${url}</loc>`));
+    }
+    check("sitemap lastmod is ISO", /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(sitemap));
+    check("sitemap changefreq", sitemap.includes("<changefreq>weekly</changefreq>"));
+    check("sitemap priority", sitemap.includes("<priority>1.0</priority>"));
+  },
 };
 
 const requested = process.argv.slice(2);

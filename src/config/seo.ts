@@ -1,3 +1,4 @@
+import { serviceCategories } from "../data/services";
 import { SITE_NAME, SITE_URL } from "./site";
 
 export interface PageSeo {
@@ -68,6 +69,67 @@ function absoluteUrl(path: string): string {
   return `${SITE_URL}${path}`;
 }
 
+const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+const LOGO_URL = `${SITE_URL}/assets/logo/Aurasoli-logo-704.png`;
+
+export function buildOrganizationJsonLd(): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": ORGANIZATION_ID,
+    name: SITE_NAME,
+    url: `${SITE_URL}/`,
+    logo: {
+      "@type": "ImageObject",
+      url: LOGO_URL,
+      width: 704,
+      height: 203,
+    },
+    description: PAGE_SEO["/"].description,
+  };
+}
+
+export function buildWebSiteJsonLd(): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": WEBSITE_ID,
+    name: SITE_NAME,
+    url: `${SITE_URL}/`,
+    inLanguage: "en",
+    publisher: { "@id": ORGANIZATION_ID },
+  };
+}
+
+export function buildServicesJsonLd(): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Aurasoli digital services",
+    itemListElement: serviceCategories.map((category, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Service",
+        name: category.title,
+        description: category.description,
+        serviceType: category.title,
+        url: `${SITE_URL}/services#${category.slug}`,
+        provider: { "@id": ORGANIZATION_ID },
+      },
+    })),
+  };
+}
+
+function jsonLdTag(schema: Record<string, unknown>): HeadTag {
+  return {
+    kind: "script",
+    attrs: { type: "application/ld+json", "data-seo-jsonld": "" },
+    text: JSON.stringify(schema),
+  };
+}
+
 export function buildHeadTags(seo: PageSeo): HeadTag[] {
   const url = absoluteUrl(seo.path);
   const image = seo.image ?? DEFAULT_OG_IMAGE;
@@ -123,6 +185,17 @@ export function buildHeadTags(seo: PageSeo): HeadTag[] {
     },
     { kind: "meta", attrs: { name: "twitter:image", content: image } },
   );
+
+  if (!seo.noindex) {
+    tags.push(
+      jsonLdTag(buildOrganizationJsonLd()),
+      jsonLdTag(buildWebSiteJsonLd()),
+    );
+
+    if (seo.path === "/services") {
+      tags.push(jsonLdTag(buildServicesJsonLd()));
+    }
+  }
 
   return tags;
 }
