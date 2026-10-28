@@ -2,12 +2,13 @@ import { ArrowRight } from "lucide-react";
 import Container from "../../../components/layout/Container";
 import Button from "../../../components/ui/Button";
 import SectionHeader from "../../../components/ui/SectionHeader";
+import Reveal from "../../../components/motion/Reveal";
 
 export default function ProjectsClosingCta() {
   return (
     <section className="home-section" aria-labelledby="projects-cta-title">
       <Container>
-        <div className="cta-panel">
+        <Reveal className="cta-panel">
           <SectionHeader
             align="center"
             titleId="projects-cta-title"
@@ -23,7 +24,7 @@ export default function ProjectsClosingCta() {
               <ArrowRight size={18} aria-hidden="true" />
             </Button>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

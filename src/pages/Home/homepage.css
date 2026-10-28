@@ -73,6 +73,55 @@
 }
 
 /* --------------------------------------------------------------------------
+   Motion — hero entrance and ambient glow
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-glow-drift {
+    0%,
+    100% {
+      opacity: 0.85;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: translate3d(1.5%, -1%, 0) scale(1.03);
+    }
+  }
+
+  .hero__content > .eyebrow {
+    animation: hero-rise 600ms ease-out both;
+  }
+
+  .hero__title {
+    animation: hero-rise 650ms ease-out 90ms both;
+  }
+
+  .hero__lead {
+    animation: hero-rise 650ms ease-out 180ms both;
+  }
+
+  .hero__actions {
+    animation: hero-rise 650ms ease-out 270ms both;
+  }
+
+  .hv__glow,
+  .hero::before {
+    animation: hero-glow-drift 20s ease-in-out infinite;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Responsive — tablet and desktop
    -------------------------------------------------------------------------- */
 @media (min-width: 40rem) {

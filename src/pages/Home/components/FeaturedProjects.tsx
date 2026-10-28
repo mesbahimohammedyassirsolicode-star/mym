@@ -4,6 +4,7 @@ import Button from "../../../components/ui/Button";
 import ProjectCard from "../../../components/ui/ProjectCard";
 import { projects } from "../../../data/projects";
 import SectionHeader from "../../../components/ui/SectionHeader";
+import Reveal from "../../../components/motion/Reveal";
 
 export default function FeaturedProjects() {
   return (
@@ -12,22 +13,24 @@ export default function FeaturedProjects() {
       aria-labelledby="projects-title"
     >
       <Container>
-        <SectionHeader
-          eyebrow="Selected Work"
-          titleId="projects-title"
-          title={
-            <>
-              Ideas Into <span className="hl">Digital Experiences.</span>
-            </>
-          }
-          description="A look at the kind of digital products Aurasoli designs and builds for growing businesses."
-        />
+        <Reveal>
+          <SectionHeader
+            eyebrow="Selected Work"
+            titleId="projects-title"
+            title={
+              <>
+                Ideas Into <span className="hl">Digital Experiences.</span>
+              </>
+            }
+            description="A look at the kind of digital products Aurasoli designs and builds for growing businesses."
+          />
+        </Reveal>
 
         <ul className="projects-grid">
-          {projects.map((project) => (
-            <li key={project.id}>
+          {projects.map((project, index) => (
+            <Reveal as="li" key={project.id} delay={index * 60}>
               <ProjectCard {...project} />
-            </li>
+            </Reveal>
           ))}
         </ul>
 

@@ -2,6 +2,7 @@ import { Blocks, MonitorCheck, Palette, Workflow } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Container from "../../../components/layout/Container";
 import SectionHeader from "../../../components/ui/SectionHeader";
+import Reveal from "../../../components/motion/Reveal";
 
 interface MissionAim {
   icon: LucideIcon;
@@ -38,16 +39,18 @@ export default function MissionStatement() {
       <Container>
         <div className="mission">
           <div className="mission__copy">
-            <SectionHeader
-              eyebrow="Our Mission"
-              titleId="mission-title"
-              title={
-                <>
-                  Helping Businesses <span className="hl">Move Forward.</span>
-                </>
-              }
-              description="Aurasoli exists to help businesses develop useful digital products, improve how they operate, strengthen their online presence, and establish a consistent brand identity."
-            />
+            <Reveal>
+              <SectionHeader
+                eyebrow="Our Mission"
+                titleId="mission-title"
+                title={
+                  <>
+                    Helping Businesses <span className="hl">Move Forward.</span>
+                  </>
+                }
+                description="Aurasoli exists to help businesses develop useful digital products, improve how they operate, strengthen their online presence, and establish a consistent brand identity."
+              />
+            </Reveal>
             <p className="mission__text">
               Every engagement starts with the business behind it: the goals,
               the people, and the work that needs to get done. From there, Aurasoli
@@ -57,8 +60,13 @@ export default function MissionStatement() {
           </div>
 
           <ul className="mission-aims">
-            {missionAims.map(({ icon: Icon, title, text }) => (
-              <li className="mission-aim" key={title}>
+            {missionAims.map(({ icon: Icon, title, text }, index) => (
+              <Reveal
+                as="li"
+                className="mission-aim"
+                key={title}
+                delay={index * 60}
+              >
                 <span className="mission-aim__icon" aria-hidden="true">
                   <Icon size={20} strokeWidth={1.75} />
                 </span>
@@ -66,7 +74,7 @@ export default function MissionStatement() {
                   <h3 className="mission-aim__title">{title}</h3>
                   <p className="mission-aim__text">{text}</p>
                 </div>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>

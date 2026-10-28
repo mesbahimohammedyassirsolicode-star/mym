@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Aurasoli motion — scroll reveals
+   One-shot, transform/opacity only. Content stays visible in the server HTML.
+   ========================================================================== */
+
+.reveal {
+  transition:
+    opacity 600ms ease-out var(--reveal-delay, 0ms),
+    transform 600ms ease-out var(--reveal-delay, 0ms);
+}
+
+.reveal.is-armed {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-armed,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}

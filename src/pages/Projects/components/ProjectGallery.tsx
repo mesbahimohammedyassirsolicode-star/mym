@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import Container from "../../../components/layout/Container";
 import ProjectCard from "../../../components/ui/ProjectCard";
 import { projects } from "../../../data/projects";
+import Reveal from "../../../components/motion/Reveal";
 
 const ALL_FILTER = "All";
 
@@ -26,33 +27,37 @@ export default function ProjectGallery() {
         Project gallery
       </h2>
       <Container>
-        <div
-          className="filter-bar"
-          role="group"
-          aria-label="Filter projects by category"
-        >
-          {categories.map((category) => {
-            const isActive = category === activeFilter;
-            return (
-              <button
-                key={category}
-                type="button"
-                className={isActive ? "filter-button is-active" : "filter-button"}
-                aria-pressed={isActive}
-                onClick={() => setActiveFilter(category)}
-              >
-                {category}
-              </button>
-            );
-          })}
-        </div>
+        <Reveal>
+          <div
+            className="filter-bar"
+            role="group"
+            aria-label="Filter projects by category"
+          >
+            {categories.map((category) => {
+              const isActive = category === activeFilter;
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  className={
+                    isActive ? "filter-button is-active" : "filter-button"
+                  }
+                  aria-pressed={isActive}
+                  onClick={() => setActiveFilter(category)}
+                >
+                  {category}
+                </button>
+              );
+            })}
+          </div>
+        </Reveal>
 
         {filteredProjects.length > 0 ? (
           <ul className="projects-grid">
-            {filteredProjects.map((project) => (
-              <li key={project.id}>
+            {filteredProjects.map((project, index) => (
+              <Reveal as="li" key={project.id} delay={index * 60}>
                 <ProjectCard {...project} />
-              </li>
+              </Reveal>
             ))}
           </ul>
         ) : (

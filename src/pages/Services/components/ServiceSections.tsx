@@ -4,6 +4,7 @@ import Button from "../../../components/ui/Button";
 import { serviceIcons } from "../../../data/serviceIcons";
 import { serviceCategories } from "../../../data/services";
 import type { ServiceCategory } from "../../../types/service";
+import Reveal from "../../../components/motion/Reveal";
 
 interface ServiceDetailProps {
   category: ServiceCategory;
@@ -43,7 +44,7 @@ function ServiceDetail({ category, index }: ServiceDetailProps) {
       aria-labelledby={`${id}-title`}
     >
       <Container>
-        <div className="service-detail">
+        <Reveal className="service-detail">
           <header className="service-detail__header">
             <span className="service-detail__icon" aria-hidden="true">
               <Icon size={26} strokeWidth={1.75} />
@@ -78,7 +79,7 @@ function ServiceDetail({ category, index }: ServiceDetailProps) {
             Discuss this service
             <ArrowRight size={18} aria-hidden="true" />
           </Button>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

@@ -2,6 +2,7 @@ import { Gauge, Network, Target } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Container from "../../../components/layout/Container";
 import SectionHeader from "../../../components/ui/SectionHeader";
+import Reveal from "../../../components/motion/Reveal";
 
 interface ValueProp {
   icon: LucideIcon;
@@ -34,26 +35,33 @@ export default function WhyAurasoli() {
   return (
     <section className="home-section" aria-labelledby="why-title">
       <Container>
-        <SectionHeader
-          eyebrow="Why Aurasoli"
-          titleId="why-title"
-          title={
-            <>
-              Technology With a <span className="hl">Clear Purpose.</span>
-            </>
-          }
-          description="The goal is not technology for its own sake, but digital work that serves the business behind it."
-        />
+        <Reveal>
+          <SectionHeader
+            eyebrow="Why Aurasoli"
+            titleId="why-title"
+            title={
+              <>
+                Technology With a <span className="hl">Clear Purpose.</span>
+              </>
+            }
+            description="The goal is not technology for its own sake, but digital work that serves the business behind it."
+          />
+        </Reveal>
 
         <ul className="values-grid">
-          {valueProps.map(({ icon: Icon, title, description }) => (
-            <li className="value-card" key={title}>
+          {valueProps.map(({ icon: Icon, title, description }, index) => (
+            <Reveal
+              as="li"
+              className="value-card"
+              key={title}
+              delay={index * 60}
+            >
               <span className="value-card__icon" aria-hidden="true">
                 <Icon size={24} strokeWidth={1.75} />
               </span>
               <h3 className="value-card__title">{title}</h3>
               <p className="value-card__text">{description}</p>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </Container>

@@ -2,6 +2,7 @@ import Container from "../../components/layout/Container";
 import ContactHero from "./components/ContactHero";
 import ContactForm from "./components/ContactForm";
 import ContactAside from "./components/ContactAside";
+import Reveal from "../../components/motion/Reveal";
 import "./contact.css";
 
 export default function ContactPage() {
@@ -12,7 +13,7 @@ export default function ContactPage() {
       <section className="home-section" aria-labelledby="contact-form-title">
         <Container>
           <div className="contact-layout">
-            <div className="contact-form-card">
+            <Reveal className="contact-form-card">
               <h2 id="contact-form-title" className="contact-form-card__title">
                 Tell Us About Your Project.
               </h2>
@@ -23,8 +24,10 @@ export default function ContactPage() {
                 required.
               </p>
               <ContactForm />
-            </div>
-            <ContactAside />
+            </Reveal>
+            <Reveal delay={60}>
+              <ContactAside />
+            </Reveal>
           </div>
         </Container>
       </section>

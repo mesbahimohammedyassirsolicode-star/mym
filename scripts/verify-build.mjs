@@ -120,6 +120,22 @@ const groups = {
     const manifest = JSON.parse(await readFile("public/site.webmanifest", "utf8"));
     check("manifest icons", manifest.icons?.length === 2 && manifest.theme_color === "#0B0C0F");
   },
+  motion: async () => {
+    const home = await readFile("dist/index.html", "utf8");
+    check("no inline hidden content", !/style="[^"]*(opacity\s*:\s*0|visibility\s*:\s*hidden)/i.test(home));
+    const cssFiles = (await readdir("dist/assets")).filter((f) => f.endsWith(".css"));
+    const css = (await Promise.all(cssFiles.map((f) => readFile(`dist/assets/${f}`, "utf8")))).join("\n");
+    check("reveal base styles", css.includes(".reveal"));
+    check("reveal armed state", css.includes(".reveal.is-armed"));
+    check("reveal visible state", css.includes(".reveal.is-visible"));
+    check("reveal rise distance", css.includes("translateY(20px)"));
+    check("reduced motion guarded", /prefers-reduced-motion:\s*reduce/.test(css));
+    check("hero entrance keyframes", css.includes("@keyframes hero-rise"));
+    const pkg = JSON.parse(await readFile("package.json", "utf8"));
+    check("no animation runtime", !("framer-motion" in pkg.dependencies));
+    const reveal = await readFile("src/hooks/useInViewOnce.ts", "utf8");
+    check("observer disconnects", reveal.includes("disconnect()"));
+  },
 };
 
 const requested = process.argv.slice(2);

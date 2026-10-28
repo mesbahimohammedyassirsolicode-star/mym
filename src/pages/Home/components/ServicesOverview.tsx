@@ -6,12 +6,17 @@ import { serviceIcons } from "../../../data/serviceIcons";
 import { serviceCategories } from "../../../data/services";
 import type { ServiceCategory } from "../../../types/service";
 import SectionHeader from "../../../components/ui/SectionHeader";
+import Reveal from "../../../components/motion/Reveal";
 
-function ServiceCard({ title, slug, description }: ServiceCategory) {
+interface ServiceCardProps extends ServiceCategory {
+  delay: number;
+}
+
+function ServiceCard({ title, slug, description, delay }: ServiceCardProps) {
   const Icon = serviceIcons[slug] ?? Code2;
 
   return (
-    <li className="service-card">
+    <Reveal as="li" className="service-card" delay={delay}>
       <span className="service-card__icon" aria-hidden="true">
         <Icon size={22} strokeWidth={1.75} />
       </span>
@@ -21,7 +26,7 @@ function ServiceCard({ title, slug, description }: ServiceCategory) {
         Explore {title}
         <ArrowRight size={16} aria-hidden="true" />
       </Link>
-    </li>
+    </Reveal>
   );
 }
 
@@ -29,21 +34,27 @@ export default function ServicesOverview() {
   return (
     <section className="home-section" aria-labelledby="services-title">
       <Container>
-        <SectionHeader
-          eyebrow="What We Do"
-          titleId="services-title"
-          title={
-            <>
-              Digital Solutions Built to{" "}
-              <span className="hl">Move You Forward.</span>
-            </>
-          }
-          description="Aurasoli helps businesses build digital products, improve how they operate, and strengthen their online presence."
-        />
+        <Reveal>
+          <SectionHeader
+            eyebrow="What We Do"
+            titleId="services-title"
+            title={
+              <>
+                Digital Solutions Built to{" "}
+                <span className="hl">Move You Forward.</span>
+              </>
+            }
+            description="Aurasoli helps businesses build digital products, improve how they operate, and strengthen their online presence."
+          />
+        </Reveal>
 
         <ul className="services-grid">
-          {serviceCategories.map((category) => (
-            <ServiceCard key={category.id} {...category} />
+          {serviceCategories.map((category, index) => (
+            <ServiceCard
+              key={category.id}
+              {...category}
+              delay={index * 60}
+            />
           ))}
         </ul>
 

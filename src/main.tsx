@@ -10,6 +10,7 @@ import "./styles/global.css";
 import "./styles/utilities.css";
 import "./styles/components.css";
 import "./styles/sections.css";
+import "./styles/motion.css";
 
 const rootElement = document.getElementById("root");
 

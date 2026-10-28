@@ -2,6 +2,7 @@ import { Lightbulb, RefreshCcw, ShieldCheck, Users } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Container from "../../../components/layout/Container";
 import SectionHeader from "../../../components/ui/SectionHeader";
+import Reveal from "../../../components/motion/Reveal";
 
 interface ValueItem {
   icon: LucideIcon;
@@ -43,26 +44,33 @@ export default function AboutValues() {
       aria-labelledby="about-values-title"
     >
       <Container>
-        <SectionHeader
-          eyebrow="Our Values"
-          titleId="about-values-title"
-          title={
-            <>
-              What Guides <span className="hl">Every Project.</span>
-            </>
-          }
-          description="The principles behind how Aurasoli thinks about its work, its clients, and the products it builds."
-        />
+        <Reveal>
+          <SectionHeader
+            eyebrow="Our Values"
+            titleId="about-values-title"
+            title={
+              <>
+                What Guides <span className="hl">Every Project.</span>
+              </>
+            }
+            description="The principles behind how Aurasoli thinks about its work, its clients, and the products it builds."
+          />
+        </Reveal>
 
         <ul className="values-grid">
-          {values.map(({ icon: Icon, title, description }) => (
-            <li className="value-card" key={title}>
+          {values.map(({ icon: Icon, title, description }, index) => (
+            <Reveal
+              as="li"
+              className="value-card"
+              key={title}
+              delay={index * 60}
+            >
               <span className="value-card__icon" aria-hidden="true">
                 <Icon size={24} strokeWidth={1.75} />
               </span>
               <h3 className="value-card__title">{title}</h3>
               <p className="value-card__text">{description}</p>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </Container>
