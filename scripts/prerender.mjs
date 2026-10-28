@@ -14,9 +14,14 @@ const root = fileURLToPath(new URL("..", import.meta.url));
 const distDir = join(root, "dist");
 const template = await readFile(join(distDir, "index.html"), "utf8");
 const marker = '<div id="root"></div>';
+const headBlock = /<!--seo-head-start-->[\s\S]*?<!--seo-head-end-->/;
 
 if (!template.includes(marker)) {
   throw new Error(`Prerender marker not found in dist/index.html: ${marker}`);
+}
+
+if (!headBlock.test(template)) {
+  throw new Error("SEO head markers not found in dist/index.html");
 }
 
 const outputs = [
@@ -31,11 +36,13 @@ const outputs = [
 ];
 
 for (const { url, file } of outputs) {
-  const { appHtml } = await render(url);
-  const html = template.replace(
-    marker,
-    () => `<div id="root">${appHtml}</div>`,
-  );
+  const { appHtml, head } = await render(url);
+  const html = template
+    .replace(marker, () => `<div id="root">${appHtml}</div>`)
+    .replace(
+      headBlock,
+      () => `<!--seo-head-start-->${head}<!--seo-head-end-->`,
+    );
   await mkdir(dirname(file), { recursive: true });
   await writeFile(file, html, "utf8");
   console.log(`Prerendered ${url} -> ${file}`);

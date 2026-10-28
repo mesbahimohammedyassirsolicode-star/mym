@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../components/layout/Footer";
 import Navbar from "../components/navigation/Navbar";
+import Seo from "../components/seo/Seo";
 
 export default function MainLayout() {
   const location = useLocation();
@@ -26,6 +27,7 @@ export default function MainLayout() {
 
   return (
     <>
+      <Seo pathname={location.pathname} />
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>

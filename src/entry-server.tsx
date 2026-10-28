@@ -7,6 +7,7 @@ import {
   StaticRouterProvider,
 } from "react-router-dom";
 import { routes } from "./app/routes";
+import { getPageSeo, renderHead } from "./config/seo";
 import { SITE_URL } from "./config/site";
 
 export const PUBLIC_ROUTES = ["/", "/services", "/projects", "/about", "/contact"] as const;
@@ -25,5 +26,5 @@ export async function render(url: string) {
       <StaticRouterProvider router={router} context={context} hydrate={false} />
     </StrictMode>,
   );
-  return { appHtml, head: "" };
+  return { appHtml, head: renderHead(getPageSeo(normalized)) };
 }

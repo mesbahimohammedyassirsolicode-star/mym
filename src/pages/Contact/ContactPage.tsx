@@ -1,16 +1,10 @@
 import Container from "../../components/layout/Container";
-import usePageMeta from "../../hooks/usePageMeta";
 import ContactHero from "./components/ContactHero";
 import ContactForm from "./components/ContactForm";
 import ContactAside from "./components/ContactAside";
 import "./contact.css";
 
 export default function ContactPage() {
-  usePageMeta(
-    "Contact | Aurasoli",
-    "Tell Aurasoli what you're planning to build. Share your goals and requirements so we can understand how we may help your business move forward.",
-  );
-
   return (
     <>
       <ContactHero />

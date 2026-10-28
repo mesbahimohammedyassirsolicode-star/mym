@@ -1,13 +1,7 @@
 import Button from "../../components/ui/Button";
 import SectionHeading from "../../components/ui/SectionHeading";
-import usePageMeta from "../../hooks/usePageMeta";
 
 export default function NotFoundPage() {
-  usePageMeta(
-    "Page not found | Aurasoli",
-    "The page you requested does not exist.",
-  );
-
   return (
     <section className="page-section" aria-labelledby="page-title">
       <div className="page-stack">
