@@ -87,6 +87,39 @@ const groups = {
     check("sitemap changefreq", sitemap.includes("<changefreq>weekly</changefreq>"));
     check("sitemap priority", sitemap.includes("<priority>1.0</priority>"));
   },
+  assets: async () => {
+    const pngSize = (buf) => [buf.readUInt32BE(16), buf.readUInt32BE(20)];
+    const required = [
+      "public/assets/logo/Aurasoli-logo-352.avif",
+      "public/assets/logo/Aurasoli-logo-352.webp",
+      "public/assets/logo/Aurasoli-logo-352.png",
+      "public/assets/logo/Aurasoli-logo-704.avif",
+      "public/assets/logo/Aurasoli-logo-704.webp",
+      "public/assets/logo/Aurasoli-logo-704.png",
+      "public/favicon-32x32.png",
+      "public/apple-touch-icon.png",
+      "public/icon-192.png",
+      "public/icon-512.png",
+      "public/site.webmanifest",
+    ];
+    for (const file of required) check(`${file} exists`, existsSync(file));
+    const og = pngSize(await readFile("public/og-image.png"));
+    check("og image is 1200x630", og[0] === 1200 && og[1] === 630, og.join("x"));
+    check("favicon is 32", pngSize(await readFile("public/favicon-32x32.png")).join("x") === "32x32");
+    check("apple icon is 180", pngSize(await readFile("public/apple-touch-icon.png")).join("x") === "180x180");
+    check("logo 352 png", pngSize(await readFile("public/assets/logo/Aurasoli-logo-352.png")).join("x") === "352x102");
+    check("logo 704 png", pngSize(await readFile("public/assets/logo/Aurasoli-logo-704.png")).join("x") === "704x203");
+    const home = await readFile("dist/index.html", "utf8").catch(() => "");
+    check("logo picture", home.includes("Aurasoli-logo-352.avif") && home.includes("Aurasoli-logo-704.webp"));
+    check("logo alt", home.includes('alt="Aurasoli logo"'));
+    check("header logo high priority", /fetchpriority="high"/i.test(home));
+    check("logo dimensions", home.includes('width="704"') && home.includes('height="203"'));
+    check("logo preload", home.includes('rel="preload" as="image"') && home.includes("Aurasoli-logo-352.avif"));
+    check("apple touch icon link", home.includes('rel="apple-touch-icon"'));
+    check("manifest link", home.includes('rel="manifest"'));
+    const manifest = JSON.parse(await readFile("public/site.webmanifest", "utf8"));
+    check("manifest icons", manifest.icons?.length === 2 && manifest.theme_color === "#0B0C0F");
+  },
 };
 
 const requested = process.argv.slice(2);

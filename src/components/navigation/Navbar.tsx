@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { primaryNavigation } from "../../data/navigation";
 import Container from "../layout/Container";
 import Button from "../ui/Button";
+import BrandLogo from "../ui/BrandLogo";
 import MobileNavigation from "./MobileNavigation";
 
 const mobileNavId = "mobile-navigation";
@@ -56,13 +57,7 @@ export default function Navbar() {
             className="brand-link"
             aria-label="Aurasoli, home"
           >
-            <img
-              className="brand-logo"
-              src="/assets/logo/Aurasoli-logo.png"
-              alt="Aurasoli"
-              width="1400"
-              height="404"
-            />
+            <BrandLogo loading="eager" fetchPriority="high" />
           </Link>
 
           <nav className="primary-nav" aria-label="Main navigation">

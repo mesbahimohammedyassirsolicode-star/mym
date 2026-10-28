@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Container from "./Container";
 import Button from "../ui/Button";
+import BrandLogo from "../ui/BrandLogo";
 import { primaryNavigation } from "../../data/navigation";
 import { serviceCategories } from "../../data/services";
 
@@ -13,14 +14,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link to="/" className="brand-link" aria-label="Aurasoli, home">
-              <img
-                className="brand-logo"
-                src="/assets/logo/Aurasoli-logo.png"
-                alt="Aurasoli"
-                width="1400"
-                height="404"
-                loading="lazy"
-              />
+              <BrandLogo loading="lazy" />
             </Link>
             <p>
               Aurasoli provides digital solutions to help businesses and
