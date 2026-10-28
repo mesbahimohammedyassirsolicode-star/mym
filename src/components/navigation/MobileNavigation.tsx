@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { primaryNavigation } from "../../data/navigation";
 import Button from "../ui/Button";
@@ -14,6 +14,9 @@ const focusableSelector =
 
 const EXIT_DURATION = 220;
 
+const useIsomorphicLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
+
 export default function MobileNavigation({
   open,
   id,
@@ -24,7 +27,7 @@ export default function MobileNavigation({
   const closeTimerRef = useRef<number | null>(null);
   const [isClosing, setIsClosing] = useState(false);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (open) {
       wasOpenRef.current = true;
       if (closeTimerRef.current !== null) {
@@ -112,7 +115,7 @@ export default function MobileNavigation({
       className={isClosing ? "mobile-nav is-closing" : "mobile-nav"}
       id={id}
       role="dialog"
-      aria-modal="true"
+      aria-modal={open ? "true" : undefined}
       aria-label="Mobile navigation"
       hidden={!open && !isClosing}
     >

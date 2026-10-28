@@ -121,8 +121,21 @@ const groups = {
     check("manifest icons", manifest.icons?.length === 2 && manifest.theme_color === "#0B0C0F");
   },
   motion: async () => {
-    const home = await readFile("dist/index.html", "utf8");
-    check("no inline hidden content", !/style="[^"]*(opacity\s*:\s*0|visibility\s*:\s*hidden)/i.test(home));
+    const documents = [
+      "dist/index.html",
+      "dist/services/index.html",
+      "dist/projects/index.html",
+      "dist/about/index.html",
+      "dist/contact/index.html",
+      "dist/404.html",
+    ];
+    for (const file of documents) {
+      const html = await readFile(file, "utf8");
+      check(
+        `no inline hidden content in ${file}`,
+        !/style="[^"]*(opacity\s*:\s*0|visibility\s*:\s*hidden)/i.test(html),
+      );
+    }
     const cssFiles = (await readdir("dist/assets")).filter((f) => f.endsWith(".css"));
     const css = (await Promise.all(cssFiles.map((f) => readFile(`dist/assets/${f}`, "utf8")))).join("\n");
     check("reveal base styles", css.includes(".reveal"));
@@ -140,6 +153,12 @@ const groups = {
     check("no animation runtime", !("framer-motion" in pkg.dependencies));
     const reveal = await readFile("src/hooks/useInViewOnce.ts", "utf8");
     check("observer disconnects", reveal.includes("disconnect()"));
+    check(
+      "reveal arms only below viewport",
+      reveal.includes(
+        "getBoundingClientRect().top <= window.innerHeight",
+      ),
+    );
   },
 };
 
@@ -216,8 +235,30 @@ const deploy = async () => {
         header.value === "public, max-age=31536000, immutable",
     ),
   );
-  check("csp allows emailjs", (deployHeaders.get("Content-Security-Policy") ?? "").includes("https://api.emailjs.com"));
-  check("csp allows vercel analytics", (deployHeaders.get("Content-Security-Policy") ?? "").includes("https://va.vercel-scripts.com"));
+  const csp = deployHeaders.get("Content-Security-Policy") ?? "";
+  const cspDirectives = new Map(
+    csp
+      .split(";")
+      .map((part) => part.trim().split(/\s+/))
+      .filter(([name]) => name)
+      .map(([name, ...values]) => [name, values]),
+  );
+  check(
+    "csp connect-src allows emailjs",
+    (cspDirectives.get("connect-src") ?? []).includes(
+      "https://api.emailjs.com",
+    ),
+  );
+  check(
+    "csp script-src allows vercel analytics",
+    (cspDirectives.get("script-src") ?? []).includes(
+      "https://va.vercel-scripts.com",
+    ),
+  );
+  check(
+    "csp frame-ancestors none",
+    (cspDirectives.get("frame-ancestors") ?? []).includes("'none'"),
+  );
   check("404 file", existsSync("dist/404.html"));
   check("checklist exists", existsSync("docs/seo-launch-checklist.md"));
 };

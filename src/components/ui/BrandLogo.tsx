@@ -17,12 +17,12 @@ export default function BrandLogo({
       <source
         type="image/avif"
         srcSet="/assets/logo/Aurasoli-logo-352.avif 352w, /assets/logo/Aurasoli-logo-704.avif 704w"
-        sizes="132px"
+        sizes="140px"
       />
       <source
         type="image/webp"
         srcSet="/assets/logo/Aurasoli-logo-352.webp 352w, /assets/logo/Aurasoli-logo-704.webp 704w"
-        sizes="132px"
+        sizes="140px"
       />
       <img
         className={imageClassName}

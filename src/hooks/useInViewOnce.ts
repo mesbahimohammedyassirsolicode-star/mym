@@ -4,7 +4,6 @@ import type { RefObject } from "react";
 export type RevealPhase = "idle" | "armed" | "visible";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-const VIEWPORT_ARM_THRESHOLD = 0.9;
 
 export function useInViewOnce<T extends HTMLElement>(): {
   ref: RefObject<T | null>;
@@ -26,11 +25,9 @@ export function useInViewOnce<T extends HTMLElement>(): {
       return;
     }
 
-    // Already visible on first paint: leaving it idle avoids a flash.
-    if (
-      element.getBoundingClientRect().top <=
-      window.innerHeight * VIEWPORT_ARM_THRESHOLD
-    ) {
+    // Arm only elements that start below the viewport. Anything already on
+    // screen stays visible, so hydration cannot fade out visible content.
+    if (element.getBoundingClientRect().top <= window.innerHeight) {
       return;
     }
 

@@ -77,14 +77,14 @@ VITE_SITE_URL=https://www.aura-soli.online
 ```
 
 Setting it is optional for the current production domain; the fallback keeps
-canonical, Open Graph, JSON-LD, and sitemap URLs stable when the variable is
-absent. Override it for a different origin (for example a staging domain). The
-value is public by design — never place secrets in `VITE_`-prefixed variables.
+canonical, Open Graph, and JSON-LD URLs stable when the variable is absent.
+`VITE_SITE_URL` changes those rendered URLs only. `sitemap.xml` and `robots.txt`
+are always generated with the production origin, so a staging deployment must
+stay `noindex` and must not be submitted to Search Console. The value is public
+by design — never place secrets in `VITE_`-prefixed variables.
 
-`SITE_URL` is also used when prerendering, so the generated sitemap always uses
-the production origin. If the domain changes, update the fallback in
-`src/config/site.ts`, the matching constant in `scripts/prerender.mjs`, and
-`public/robots.txt`.
+If the domain changes, update the fallback in `src/config/site.ts`, the matching
+constant in `scripts/prerender.mjs`, and `public/robots.txt`.
 
 All `VITE_`-prefixed variables are inlined at build time, so they **must also be
 set in the hosting platform's environment** (for this project, the Vercel
@@ -183,8 +183,9 @@ npm run preview
   preview deployment.
 - Environment variables to configure on Vercel (Project → Settings →
   Environment Variables) before the production build:
-  - `VITE_SITE_URL` — optional override for the production origin (the code
-    falls back to `https://www.aura-soli.online`).
+  - `VITE_SITE_URL` — optional override for canonical, Open Graph, and JSON-LD
+    URLs only (the code falls back to `https://www.aura-soli.online`).
+    `sitemap.xml` and `robots.txt` always use the production origin.
   - `VITE_EMAILJS_PUBLIC_KEY` — EmailJS Public Key.
   - `VITE_EMAILJS_SERVICE_ID` — EmailJS Service ID.
   - `VITE_EMAILJS_TEMPLATE_ID` — EmailJS Template ID.
