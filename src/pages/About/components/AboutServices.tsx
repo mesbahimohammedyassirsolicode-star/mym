@@ -39,7 +39,7 @@ export default function AboutServices() {
               Seven Disciplines, One <span className="hl">Moving Business.</span>
             </>
           }
-          description="From development and automation to marketing and brand design, MYM works across the disciplines that help businesses plan, build, and grow."
+          description="From development and automation to marketing and brand design, Aurasoli works across the disciplines that help businesses plan, build, and grow."
         />
 
         <ul className="services-grid">

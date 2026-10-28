@@ -51,7 +51,7 @@ export default function AboutValues() {
               What Guides <span className="hl">Every Project.</span>
             </>
           }
-          description="The principles behind how MYM thinks about its work, its clients, and the products it builds."
+          description="The principles behind how Aurasoli thinks about its work, its clients, and the products it builds."
         />
 
         <ul className="values-grid">

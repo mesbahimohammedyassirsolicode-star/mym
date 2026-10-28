@@ -54,7 +54,7 @@ export default function Navbar() {
           <Link
             to="/"
             className="brand-link"
-            aria-label="MYM — Make Your Move, home"
+            aria-label="Aurasoli, home"
           >
             <img
               className="brand-logo"

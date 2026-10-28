@@ -38,7 +38,7 @@ export default function ServicesOverview() {
               <span className="hl">Move You Forward.</span>
             </>
           }
-          description="MYM helps businesses build digital products, improve how they operate, and strengthen their online presence."
+          description="Aurasoli helps businesses build digital products, improve how they operate, and strengthen their online presence."
         />
 
         <ul className="services-grid">

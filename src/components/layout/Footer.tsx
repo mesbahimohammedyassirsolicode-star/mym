@@ -12,7 +12,7 @@ export default function Footer() {
       <Container className="site-footer__inner">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link to="/" className="brand-link" aria-label="MYM — Make Your Move, home">
+            <Link to="/" className="brand-link" aria-label="Aurasoli, home">
               <img
                 className="brand-logo"
                 src="/assets/logo/Aurasoli-logo.png"
@@ -23,8 +23,8 @@ export default function Footer() {
               />
             </Link>
             <p>
-              MYM provides digital solutions to help businesses and entrepreneurs
-              make their move.
+              Aurasoli provides digital solutions to help businesses and
+              entrepreneurs make their move.
             </p>
             <p className="footer-tagline">
               Make Your <span className="hl">Move.</span>
@@ -62,7 +62,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {currentYear} MYM. All rights reserved.</p>
+          <p>&copy; {currentYear} Aurasoli. All rights reserved.</p>
           <p>Build. Automate. Grow. Forward.</p>
         </div>
       </Container>

@@ -1,6 +1,6 @@
-# MYM — Make Your Move
+# Aurasoli
 
-Architecture foundation for the official MYM website, built with React,
+Architecture foundation for the official Aurasoli website, built with React,
 TypeScript, Vite, and React Router. Inter is bundled locally as a variable font.
 
 ## Requirements
@@ -32,7 +32,7 @@ provides SPA fallback so each route can be opened or refreshed directly.
 Copy `.env.example` to `.env` and set the public site origin:
 
 ```sh
-VITE_SITE_URL=https://mym-dusky.vercel.app
+VITE_SITE_URL=https://www.aura-soli.online
 ```
 
 `VITE_SITE_URL` is only used to build canonical and Open Graph URLs. When it is
@@ -54,7 +54,7 @@ project settings). See the deployment section for the full list.
   Update `SITE_URL` in both files if the domain changes.
 - An Open Graph preview image is intentionally not set yet: no approved raster
   (for example 1200×630 PNG) asset exists. Social platforms do not reliably use
-  SVG, so this waits on an approved export of the MYM mark.
+  SVG, so this waits on an approved export of the Aurasoli mark.
 - The supplied Aurasoli monogram at `public/assets/logo/Aurasoli-icon.png` is
   used as the site favicon.
 
@@ -115,7 +115,7 @@ npm run preview
 - Environment variables to configure on Vercel (Project → Settings →
   Environment Variables) before the production build:
   - `VITE_SITE_URL` — the production origin (e.g.
-    `https://mym-dusky.vercel.app`).
+    `https://www.aura-soli.online`).
   - `VITE_EMAILJS_PUBLIC_KEY` — EmailJS Public Key.
   - `VITE_EMAILJS_SERVICE_ID` — EmailJS Service ID.
   - `VITE_EMAILJS_TEMPLATE_ID` — EmailJS Template ID.

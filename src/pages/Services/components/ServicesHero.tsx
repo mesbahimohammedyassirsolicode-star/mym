@@ -18,7 +18,7 @@ export default function ServicesHero() {
             <span className="hl">Your Business.</span>
           </SectionHeading>
           <p className="page-hero__lead">
-            MYM helps businesses build digital products, improve operations,
+            Aurasoli helps businesses build digital products, improve operations,
             strengthen their online presence, and develop their brand identity.
           </p>
           <div className="page-hero__actions">

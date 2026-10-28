@@ -6,7 +6,7 @@ export default function ContactHero() {
     <section className="page-hero" aria-labelledby="contact-hero-title">
       <Container>
         <div className="page-hero__inner">
-          <p className="eyebrow">Contact MYM</p>
+          <p className="eyebrow">Contact Aurasoli</p>
           <SectionHeading
             as="h1"
             id="contact-hero-title"
@@ -16,7 +16,7 @@ export default function ContactHero() {
           </SectionHeading>
           <p className="page-hero__lead">
             Tell us what you're planning to build. Share your goals and
-            requirements so we can understand how MYM may help.
+            requirements so we can understand how Aurasoli may help.
           </p>
         </div>
       </Container>

@@ -8,7 +8,7 @@ export default function AboutHero() {
     <section className="page-hero" aria-labelledby="about-hero-title">
       <Container>
         <div className="page-hero__inner">
-          <p className="eyebrow">About MYM</p>
+          <p className="eyebrow">About Aurasoli</p>
           <SectionHeading
             as="h1"
             id="about-hero-title"
@@ -17,7 +17,7 @@ export default function AboutHero() {
             Technology With a <span className="hl">Purpose.</span>
           </SectionHeading>
           <p className="page-hero__lead">
-            MYM helps businesses turn ideas into digital solutions through
+            Aurasoli helps businesses turn ideas into digital solutions through
             software development, automation, marketing, and brand design.
           </p>
           <div className="page-hero__actions">

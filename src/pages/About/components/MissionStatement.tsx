@@ -46,11 +46,11 @@ export default function MissionStatement() {
                   Helping Businesses <span className="hl">Move Forward.</span>
                 </>
               }
-              description="MYM exists to help businesses develop useful digital products, improve how they operate, strengthen their online presence, and establish a consistent brand identity."
+              description="Aurasoli exists to help businesses develop useful digital products, improve how they operate, strengthen their online presence, and establish a consistent brand identity."
             />
             <p className="mission__text">
               Every engagement starts with the business behind it: the goals,
-              the people, and the work that needs to get done. From there, MYM
+              the people, and the work that needs to get done. From there, Aurasoli
               brings the right mix of development, automation, marketing, and
               design — so the technology earns its place in the business.
             </p>

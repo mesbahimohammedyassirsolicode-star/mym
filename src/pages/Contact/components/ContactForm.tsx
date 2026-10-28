@@ -59,7 +59,7 @@ const budgetOptions = [
 const serviceHint =
   "Not sure? Pick the closest match — there's an 'Other' option if none fit.";
 const budgetHint =
-  "Indicative ranges for planning only — not a quote or MYM pricing list.";
+  "Indicative ranges for planning only — not a quote or Aurasoli pricing list.";
 const detailsHint =
   "Try 2–4 sentences: what you're building, its goals, and anything time-sensitive.";
 
@@ -462,7 +462,7 @@ export default function ContactForm() {
           )}
         </Button>
         <p className="form-disclosure">
-          Your message is sent securely to the MYM team via EmailJS.
+          Your message is sent securely to the Aurasoli team via EmailJS.
         </p>
       </div>
     </form>

@@ -20,7 +20,7 @@ export default function FeaturedProjects() {
               Ideas Into <span className="hl">Digital Experiences.</span>
             </>
           }
-          description="A look at the kind of digital products MYM designs and builds for growing businesses."
+          description="A look at the kind of digital products Aurasoli designs and builds for growing businesses."
         />
 
         <ul className="projects-grid">

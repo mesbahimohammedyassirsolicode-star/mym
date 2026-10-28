@@ -2,7 +2,7 @@ import usePageMeta from "../../hooks/usePageMeta";
 import Hero from "./components/Hero";
 import ServicesOverview from "./components/ServicesOverview";
 import Approach from "./components/Approach";
-import WhyMym from "./components/WhyMym";
+import WhyAurasoli from "./components/WhyAurasoli";
 import FeaturedProjects from "./components/FeaturedProjects";
 import FinalCta from "./components/FinalCta";
 import "./homepage.css";
@@ -18,7 +18,7 @@ export default function HomePage() {
       <Hero />
       <ServicesOverview />
       <Approach />
-      <WhyMym />
+      <WhyAurasoli />
       <FeaturedProjects />
       <FinalCta />
     </>

@@ -15,7 +15,7 @@ export default function ProjectsHero() {
             Ideas Into <span className="hl">Digital Experiences.</span>
           </SectionHeading>
           <p className="page-hero__lead">
-            MYM turns needs into digital products, applications, and business
+            Aurasoli turns needs into digital products, applications, and business
             solutions — from the first idea to a working, maintained system.
           </p>
         </div>

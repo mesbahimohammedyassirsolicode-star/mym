@@ -30,12 +30,12 @@ const valueProps: ValueProp[] = [
   },
 ];
 
-export default function WhyMym() {
+export default function WhyAurasoli() {
   return (
     <section className="home-section" aria-labelledby="why-title">
       <Container>
         <SectionHeader
-          eyebrow="Why MYM"
+          eyebrow="Why Aurasoli"
           titleId="why-title"
           title={
             <>
