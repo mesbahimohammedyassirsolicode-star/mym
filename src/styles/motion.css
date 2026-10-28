@@ -31,3 +31,38 @@
     will-change: auto;
   }
 }
+
+/* Cards that are also reveal targets keep their own hover transitions. The
+   reveal rules above load after sections.css and would otherwise win the
+   transform and replace the cards' hover transitions. */
+@media (prefers-reduced-motion: no-preference) {
+  .service-card.reveal:not(.is-visible),
+  .value-card.reveal:not(.is-visible) {
+    transition:
+      border-color var(--transition-base),
+      background-color var(--transition-base),
+      box-shadow var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  .service-card.reveal.is-visible,
+  .value-card.reveal.is-visible {
+    transition:
+      border-color var(--transition-base),
+      background-color var(--transition-base),
+      box-shadow var(--transition-base),
+      opacity 600ms ease-out var(--reveal-delay, 0ms),
+      transform 600ms ease-out var(--reveal-delay, 0ms);
+  }
+
+  .service-card.reveal.is-visible:hover,
+  .value-card.reveal.is-visible:hover {
+    transform: translateY(-0.25rem);
+    transition:
+      border-color var(--transition-base),
+      background-color var(--transition-base),
+      box-shadow var(--transition-base),
+      opacity 600ms ease-out var(--reveal-delay, 0ms),
+      transform var(--transition-base);
+  }
+}

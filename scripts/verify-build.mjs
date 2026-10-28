@@ -131,6 +131,11 @@ const groups = {
     check("reveal rise distance", css.includes("translateY(20px)"));
     check("reduced motion guarded", /prefers-reduced-motion:\s*reduce/.test(css));
     check("hero entrance keyframes", css.includes("@keyframes hero-rise"));
+    check(
+      "card hover survives reveal",
+      css.includes(".service-card.reveal.is-visible:hover") &&
+        css.includes(".value-card.reveal.is-visible:hover"),
+    );
     const pkg = JSON.parse(await readFile("package.json", "utf8"));
     check("no animation runtime", !("framer-motion" in pkg.dependencies));
     const reveal = await readFile("src/hooks/useInViewOnce.ts", "utf8");
