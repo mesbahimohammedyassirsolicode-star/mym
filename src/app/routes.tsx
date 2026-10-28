@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import type { RouteObject } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import AboutPage from "../pages/About/AboutPage";
 import ContactPage from "../pages/Contact/ContactPage";
@@ -7,7 +7,7 @@ import NotFoundPage from "../pages/NotFound/NotFoundPage";
 import ProjectsPage from "../pages/Projects/ProjectsPage";
 import ServicesPage from "../pages/Services/ServicesPage";
 
-export const router = createBrowserRouter([
+export const routes: RouteObject[] = [
   {
     element: <MainLayout />,
     children: [
@@ -19,4 +19,4 @@ export const router = createBrowserRouter([
       { path: "*", element: <NotFoundPage /> },
     ],
   },
-]);
+];

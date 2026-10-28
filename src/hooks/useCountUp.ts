@@ -14,9 +14,7 @@ export default function useCountUp(
   delay = 0,
   duration = 1000,
 ): number {
-  const [value, setValue] = useState(() =>
-    prefersReducedMotion() ? target : 0,
-  );
+  const [value, setValue] = useState(0);
   const frameRef = useRef<number | null>(null);
   const timeoutRef = useRef<number | null>(null);
 

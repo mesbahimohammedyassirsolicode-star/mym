@@ -62,7 +62,9 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {currentYear} Aurasoli. All rights reserved.</p>
+          <p suppressHydrationWarning>
+            &copy; {currentYear} Aurasoli. All rights reserved.
+          </p>
           <p>Build. Automate. Grow. Forward.</p>
         </div>
       </Container>
