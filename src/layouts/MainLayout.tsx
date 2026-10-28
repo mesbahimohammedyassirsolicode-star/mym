@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../components/layout/Footer";
 import Navbar from "../components/navigation/Navbar";
@@ -10,6 +10,7 @@ const useIsomorphicLayoutEffect =
 export default function MainLayout() {
   const location = useLocation();
   const [routeKey, setRouteKey] = useState(0);
+  const previousPathname = useRef(location.pathname);
 
   useEffect(() => {
     if (location.hash) {
@@ -30,6 +31,11 @@ export default function MainLayout() {
   }, [location]);
 
   useIsomorphicLayoutEffect(() => {
+    if (previousPathname.current === location.pathname) {
+      return;
+    }
+
+    previousPathname.current = location.pathname;
     if (!("startViewTransition" in document)) {
       setRouteKey((key) => key + 1);
     }

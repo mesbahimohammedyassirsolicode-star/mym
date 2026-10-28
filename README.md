@@ -101,7 +101,9 @@ project settings). See the deployment section for the full list.
   `noindex, nofollow`.
 - `public/robots.txt` allows all crawlers and points to
   `https://www.aura-soli.online/sitemap.xml`. The sitemap is generated during
-  the build and lists the five public routes.
+  the build and lists the five public routes. `public/sitemap.xml` is a legacy
+  copy that the build overwrites in `dist`; change `scripts/prerender.mjs`, not
+  the public file.
 - `public/og-image.png` is a 1200×630 PNG used for Open Graph and Twitter
   previews.
 - Generated favicon, Apple touch icon, and PWA icons live in `public/` along

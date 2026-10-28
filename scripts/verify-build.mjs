@@ -189,12 +189,35 @@ const deploy = async () => {
   const redirect = config.redirects?.find((r) => r.has?.some((h) => h.type === "host" && h.value === "aura-soli.online"));
   check("apex 301", redirect?.statusCode === 301 && redirect.destination === "https://www.aura-soli.online/:path*");
   check("no spa catch-all", !JSON.stringify(config.rewrites ?? []).includes("index.html"));
-  const headerText = JSON.stringify(config.headers ?? []);
-  check("immutable assets", headerText.includes("public, max-age=31536000, immutable"));
-  for (const name of ["Content-Security-Policy", "Strict-Transport-Security", "X-Content-Type-Options", "Referrer-Policy", "X-Frame-Options", "Permissions-Policy"]) {
-    check(`header ${name}`, headerText.includes(name));
+  const deployHeaders = new Map(
+    (config.headers ?? []).flatMap((group) =>
+      (group.headers ?? []).map((header) => [header.key, header.value]),
+    ),
+  );
+  const expectedHeaders = {
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "X-Frame-Options": "DENY",
+    "Permissions-Policy":
+      "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+  };
+  for (const [name, value] of Object.entries(expectedHeaders)) {
+    check(`header ${name}`, deployHeaders.get(name) === value);
   }
-  check("csp allows emailjs", headerText.includes("https://api.emailjs.com"));
+  const assetsGroup = (config.headers ?? []).find(
+    (group) => group.source === "/assets/(.*)",
+  );
+  check(
+    "immutable assets",
+    (assetsGroup?.headers ?? []).some(
+      (header) =>
+        header.key === "Cache-Control" &&
+        header.value === "public, max-age=31536000, immutable",
+    ),
+  );
+  check("csp allows emailjs", (deployHeaders.get("Content-Security-Policy") ?? "").includes("https://api.emailjs.com"));
+  check("csp allows vercel analytics", (deployHeaders.get("Content-Security-Policy") ?? "").includes("https://va.vercel-scripts.com"));
   check("404 file", existsSync("dist/404.html"));
   check("checklist exists", existsSync("docs/seo-launch-checklist.md"));
 };
