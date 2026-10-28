@@ -4,7 +4,6 @@ import Approach from "./components/Approach";
 import WhyAurasoli from "./components/WhyAurasoli";
 import FeaturedProjects from "./components/FeaturedProjects";
 import FinalCta from "./components/FinalCta";
-import "./homepage.css";
 
 export default function HomePage() {
   return (

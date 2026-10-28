@@ -16,7 +16,6 @@ import RightPanel from "./RightPanel";
 import Sidebar from "./Sidebar";
 import StatCard from "./StatCard";
 import Topbar from "./Topbar";
-import "./heroVisual.css";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const POINTER_QUERY = "(hover: hover) and (pointer: fine)";

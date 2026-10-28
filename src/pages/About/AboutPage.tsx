@@ -4,7 +4,6 @@ import AboutServices from "./components/AboutServices";
 import AboutApproach from "./components/AboutApproach";
 import AboutValues from "./components/AboutValues";
 import AboutClosingCta from "./components/AboutClosingCta";
-import "./about.css";
 
 export default function AboutPage() {
   return (

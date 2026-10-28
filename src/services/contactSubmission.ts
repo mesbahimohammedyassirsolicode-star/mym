@@ -1,4 +1,3 @@
-import emailjs from "@emailjs/browser";
 import { serviceCategories } from "../data/services";
 
 export interface ContactFormData {
@@ -60,6 +59,7 @@ export async function submitContactForm(
   };
 
   try {
+    const { default: emailjs } = await import("@emailjs/browser");
     const response = await emailjs.send(serviceId, templateId, templateParams, {
       publicKey,
     });

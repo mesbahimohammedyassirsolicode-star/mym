@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -12,16 +12,50 @@ const SITE_URL = "https://www.aura-soli.online";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const distDir = join(root, "dist");
-const template = await readFile(join(distDir, "index.html"), "utf8");
+const rawTemplate = await readFile(join(distDir, "index.html"), "utf8");
 const marker = '<div id="root"></div>';
 const headBlock = /<!--seo-head-start-->[\s\S]*?<!--seo-head-end-->/;
 
-if (!template.includes(marker)) {
+if (!rawTemplate.includes(marker)) {
   throw new Error(`Prerender marker not found in dist/index.html: ${marker}`);
 }
 
-if (!headBlock.test(template)) {
+if (!headBlock.test(rawTemplate)) {
   throw new Error("SEO head markers not found in dist/index.html");
+}
+
+const assetNames = await readdir(join(distDir, "assets"));
+const interFonts = assetNames.filter(
+  (name) => name.endsWith(".woff2") && name.includes("inter-latin-wght-normal"),
+);
+if (interFonts.length !== 1) {
+  throw new Error(
+    `Expected exactly one Latin Inter woff2 in dist/assets, found ${interFonts.length}`,
+  );
+}
+const fontPreload = `<link rel="preload" as="font" type="font/woff2" href="/assets/${interFonts[0]}" crossorigin>`;
+const template = rawTemplate.replace("</head>", () => `${fontPreload}\n</head>`);
+
+const manifest = JSON.parse(
+  await readFile(join(distDir, ".vite", "manifest.json"), "utf8"),
+);
+const ROUTE_MODULES = {
+  "/": "src/pages/Home/HomePage.tsx",
+  "/services": "src/pages/Services/ServicesPage.tsx",
+  "/projects": "src/pages/Projects/ProjectsPage.tsx",
+  "/about": "src/pages/About/AboutPage.tsx",
+  "/contact": "src/pages/Contact/ContactPage.tsx",
+  [NOT_FOUND_ROUTE]: "src/pages/NotFound/NotFoundPage.tsx",
+};
+const routePreloads = new Map();
+for (const [url, source] of Object.entries(ROUTE_MODULES)) {
+  const entry = manifest[source];
+  if (!entry) {
+    throw new Error(
+      `Route ${url} module ${source} is missing from dist/.vite/manifest.json`,
+    );
+  }
+  routePreloads.set(url, `<link rel="modulepreload" href="/${entry.file}">`);
 }
 
 const outputs = [
@@ -36,13 +70,18 @@ const outputs = [
 ];
 
 for (const { url, file } of outputs) {
+  const preload = routePreloads.get(url);
+  if (!preload) {
+    throw new Error(`No modulepreload configured for route ${url}`);
+  }
   const { appHtml, head } = await render(url);
   const html = template
     .replace(marker, () => `<div id="root">${appHtml}</div>`)
     .replace(
       headBlock,
       () => `<!--seo-head-start-->${head}<!--seo-head-end-->`,
-    );
+    )
+    .replace("</head>", () => `${preload}\n</head>`);
   await mkdir(dirname(file), { recursive: true });
   await writeFile(file, html, "utf8");
   console.log(`Prerendered ${url} -> ${file}`);

@@ -3,7 +3,6 @@ import ContactHero from "./components/ContactHero";
 import ContactForm from "./components/ContactForm";
 import ContactAside from "./components/ContactAside";
 import Reveal from "../../components/motion/Reveal";
-import "./contact.css";
 
 export default function ContactPage() {
   return (

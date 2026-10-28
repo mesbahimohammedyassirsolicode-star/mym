@@ -160,6 +160,28 @@ const ui = async () => {
 };
 groups.ui = ui;
 
+const perf = async () => {
+  const manifest = JSON.parse(await readFile("dist/.vite/manifest.json", "utf8"));
+  const dynamicPages = Object.values(manifest).filter((entry) => entry.isDynamicEntry && /src\/pages\//.test(entry.src));
+  check("five dynamic page chunks", dynamicPages.length >= 5, `${dynamicPages.length}`);
+  const framework = Object.values(manifest).some((e) => e.file.includes("framework"));
+  check("framework chunk", framework);
+  const home = await readFile("dist/index.html", "utf8");
+  const styles = [...home.matchAll(/<link rel="stylesheet"[^>]+href="\/([^"]+\.css)"/g)].map((m) => m[1]);
+  check("initial stylesheet linked", styles.length > 0);
+  const css = (await Promise.all(styles.map((f) => readFile(`dist/${f}`, "utf8")))).join("\n");
+  for (const selector of [".hero__title", ".hv-laptop", ".service-detail", ".contact-form-card", ".mission-aim", ".project-card"]) {
+    check(`initial css has ${selector}`, css.includes(selector));
+  }
+  check("font preload", /rel="preload"[^>]+as="font"[^>]+inter-latin-wght-normal[^>]+\.woff2/.test(home));
+  const services = await readFile("dist/services/index.html", "utf8");
+  check("route chunk preload", /rel="modulepreload"[^>]+ServicesPage-[^"]+\.js/.test(services));
+  const contact = await readFile("src/services/contactSubmission.ts", "utf8");
+  check("emailjs dynamic", contact.includes('import("@emailjs/browser")'));
+  check("emailjs not static", !/^import emailjs from/m.test(contact));
+};
+groups.perf = perf;
+
 const requested = process.argv.slice(2);
 const active = requested.length ? requested : Object.keys(groups);
 for (const name of active) {
