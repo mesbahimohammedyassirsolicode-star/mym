@@ -61,6 +61,7 @@ export default function Button({
     return (
       <Link
         to={to}
+        viewTransition
         className={classes}
         onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
         aria-label={ariaLabel}

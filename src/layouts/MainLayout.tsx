@@ -1,11 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../components/layout/Footer";
 import Navbar from "../components/navigation/Navbar";
 import Seo from "../components/seo/Seo";
 
+const useIsomorphicLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
+
 export default function MainLayout() {
   const location = useLocation();
+  const [routeKey, setRouteKey] = useState(0);
 
   useEffect(() => {
     if (location.hash) {
@@ -25,6 +29,12 @@ export default function MainLayout() {
     }
   }, [location]);
 
+  useIsomorphicLayoutEffect(() => {
+    if (!("startViewTransition" in document)) {
+      setRouteKey((key) => key + 1);
+    }
+  }, [location.pathname]);
+
   return (
     <>
       <Seo pathname={location.pathname} />
@@ -33,7 +43,14 @@ export default function MainLayout() {
       </a>
       <Navbar />
       <main id="main-content" tabIndex={-1}>
-        <Outlet />
+        <div
+          key={routeKey}
+          className={
+            routeKey > 0 ? "route-view route-view--enter" : "route-view"
+          }
+        >
+          <Outlet />
+        </div>
       </main>
       <Footer />
     </>

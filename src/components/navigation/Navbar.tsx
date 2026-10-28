@@ -11,6 +11,7 @@ const mobileNavId = "mobile-navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { pathname } = useLocation();
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -26,6 +27,32 @@ export default function Navbar() {
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      setIsScrolled(window.scrollY > 8);
+    };
+
+    const handleScroll = () => {
+      if (frame !== 0) {
+        return;
+      }
+      frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frame !== 0) {
+        window.cancelAnimationFrame(frame);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -50,10 +77,11 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="site-header">
+      <header className={isScrolled ? "site-header is-scrolled" : "site-header"}>
         <Container className="site-header__inner">
           <Link
             to="/"
+            viewTransition
             className="brand-link"
             aria-label="Aurasoli, home"
           >
@@ -67,6 +95,7 @@ export default function Navbar() {
                   <NavLink
                     to={to}
                     end={to === "/"}
+                    viewTransition
                     className={({ isActive }) =>
                       isActive ? "nav-link is-active" : "nav-link"
                     }

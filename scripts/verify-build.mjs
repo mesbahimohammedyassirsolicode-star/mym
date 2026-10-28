@@ -143,6 +143,23 @@ const groups = {
   },
 };
 
+const ui = async () => {
+  const cssFiles = (await readdir("dist/assets")).filter((f) => f.endsWith(".css"));
+  const css = (await Promise.all(cssFiles.map((f) => readFile(`dist/assets/${f}`, "utf8")))).join("\n");
+  check("scrolled navbar style", css.includes(".site-header.is-scrolled"));
+  check("menu exit animation", css.includes("mobile-nav-exit"));
+  check("scoped view transition", css.includes("::view-transition-old(main-content)"));
+  check("route fallback", css.includes(".route-view--enter"));
+  check("button hover lift", css.includes(".btn:hover") && css.includes("translateY(-2px)"));
+  check("hover-capable guard", /\(hover:\s*hover\)\s*and\s*\(pointer:\s*fine\)/.test(css));
+  const button = await readFile("src/components/ui/Button.tsx", "utf8");
+  check("buttons request view transitions", button.includes("viewTransition"));
+  const layout = await readFile("src/layouts/MainLayout.tsx", "utf8");
+  check("layout uses view transitions fallback", layout.includes("startViewTransition"));
+  check("layout keeps scroll handling", layout.includes("scrollIntoView"));
+};
+groups.ui = ui;
+
 const requested = process.argv.slice(2);
 const active = requested.length ? requested : Object.keys(groups);
 for (const name of active) {

@@ -22,7 +22,7 @@ function ServiceCard({ title, slug, description, delay }: ServiceCardProps) {
       </span>
       <h3 className="service-card__title">{title}</h3>
       <p className="service-card__text">{description}</p>
-      <Link className="service-card__link" to={`/services#${slug}`}>
+      <Link className="service-card__link" to={`/services#${slug}`} viewTransition>
         Explore {title}
         <ArrowRight size={16} aria-hidden="true" />
       </Link>

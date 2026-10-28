@@ -54,15 +54,108 @@
       opacity 600ms ease-out var(--reveal-delay, 0ms),
       transform 600ms ease-out var(--reveal-delay, 0ms);
   }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    box-shadow: var(--glow-clay);
+    transform: translateY(-2px);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    box-shadow: none;
+    transform: none;
+  }
+
+  .project-card:hover,
+  .service-card:hover,
+  .value-card:hover {
+    box-shadow: var(--glow-clay), var(--shadow-md);
+    transform: translateY(-3px);
+  }
 
   .service-card.reveal.is-visible:hover,
   .value-card.reveal.is-visible:hover {
-    transform: translateY(-0.25rem);
+    transform: translateY(-3px);
     transition:
       border-color var(--transition-base),
       background-color var(--transition-base),
       box-shadow var(--transition-base),
       opacity 600ms ease-out var(--reveal-delay, 0ms),
       transform var(--transition-base);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Route transitions
+   -------------------------------------------------------------------------- */
+main {
+  view-transition-name: main-content;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-old(main-content) {
+  animation: 120ms ease-in both route-fade-out;
+}
+
+::view-transition-new(main-content) {
+  animation: 200ms ease-out both route-fade-in;
+}
+
+.route-view--enter {
+  animation: route-enter 200ms ease-out both;
+}
+
+@keyframes route-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes route-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes route-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-old(main-content),
+  ::view-transition-new(main-content) {
+    animation: none;
+  }
+
+  .route-view--enter {
+    animation: none;
   }
 }

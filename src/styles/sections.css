@@ -157,8 +157,6 @@
 
 .project-card:hover {
   border-color: var(--border-accent);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-0.25rem);
 }
 
 .project-card__visual {
@@ -614,8 +612,6 @@
 .service-card:hover {
   border-color: var(--border-accent);
   background: var(--surface-dark-2);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-0.25rem);
 }
 
 .service-card__icon,
@@ -744,8 +740,6 @@
 
 .value-card:hover {
   border-color: var(--border-accent);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-0.25rem);
 }
 
 /* --------------------------------------------------------------------------

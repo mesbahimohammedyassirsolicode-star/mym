@@ -13,7 +13,12 @@ export default function Footer() {
       <Container className="site-footer__inner">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link to="/" className="brand-link" aria-label="Aurasoli, home">
+            <Link
+              to="/"
+              viewTransition
+              className="brand-link"
+              aria-label="Aurasoli, home"
+            >
               <BrandLogo loading="lazy" />
             </Link>
             <p>
@@ -33,7 +38,7 @@ export default function Footer() {
             <ul className="footer-list">
               {primaryNavigation.map(({ label, to }) => (
                 <li key={to}>
-                  <Link className="footer-link" to={to}>
+                  <Link className="footer-link" to={to} viewTransition>
                     {label}
                   </Link>
                 </li>
@@ -46,7 +51,7 @@ export default function Footer() {
             <ul className="footer-list">
               {serviceCategories.map(({ id, slug, title }) => (
                 <li key={id}>
-                  <Link className="footer-link" to={`/services#${slug}`}>
+                  <Link className="footer-link" to={`/services#${slug}`} viewTransition>
                     {title}
                   </Link>
                 </li>

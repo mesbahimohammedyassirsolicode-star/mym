@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { primaryNavigation } from "../../data/navigation";
 import Button from "../ui/Button";
@@ -12,12 +12,59 @@ interface MobileNavigationProps {
 const focusableSelector =
   'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
+const EXIT_DURATION = 220;
+
 export default function MobileNavigation({
   open,
   id,
   onClose,
 }: MobileNavigationProps) {
   const panelRef = useRef<HTMLDivElement>(null);
+  const wasOpenRef = useRef(false);
+  const closeTimerRef = useRef<number | null>(null);
+  const [isClosing, setIsClosing] = useState(false);
+
+  useEffect(() => {
+    if (open) {
+      wasOpenRef.current = true;
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+        closeTimerRef.current = null;
+      }
+      setIsClosing(false);
+      return;
+    }
+
+    if (!wasOpenRef.current) {
+      return;
+    }
+
+    wasOpenRef.current = false;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reduceMotion) {
+      setIsClosing(false);
+      return;
+    }
+
+    setIsClosing(true);
+    closeTimerRef.current = window.setTimeout(() => {
+      closeTimerRef.current = null;
+      setIsClosing(false);
+    }, EXIT_DURATION);
+  }, [open]);
+
+  useEffect(
+    () => () => {
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     if (!open) {
@@ -62,12 +109,12 @@ export default function MobileNavigation({
 
   return (
     <div
-      className="mobile-nav"
+      className={isClosing ? "mobile-nav is-closing" : "mobile-nav"}
       id={id}
       role="dialog"
       aria-modal="true"
       aria-label="Mobile navigation"
-      hidden={!open}
+      hidden={!open && !isClosing}
     >
       <div className="mobile-nav__panel" ref={panelRef}>
         <nav aria-label="Mobile main navigation">
@@ -77,6 +124,7 @@ export default function MobileNavigation({
                 <NavLink
                   to={to}
                   end={to === "/"}
+                  viewTransition
                   onClick={onClose}
                   className={({ isActive }) =>
                     isActive
