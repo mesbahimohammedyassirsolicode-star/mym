@@ -1,0 +1,61 @@
+---
+import { Gauge, Network, Target } from "@lucide/astro";
+import type { AstroComponent } from "@lucide/astro";
+import Container from "../../layout/Container.astro";
+import SectionHeader from "../../ui/SectionHeader.astro";
+
+interface ValueProp {
+  icon: AstroComponent;
+  title: string;
+  description: string;
+}
+
+const valueProps: ValueProp[] = [
+  {
+    icon: Target,
+    title: "Tailored Solutions",
+    description:
+      "Solutions designed around actual business needs, not one-size-fits-all templates.",
+  },
+  {
+    icon: Network,
+    title: "Connected Thinking",
+    description:
+      "Development, automation, and digital presence considered together as one system.",
+  },
+  {
+    icon: Gauge,
+    title: "Thoughtful Execution",
+    description:
+      "A steady emphasis on usability, maintainability, and clear communication.",
+  },
+];
+---
+
+<section class="home-section" aria-labelledby="why-title">
+  <Container>
+    <SectionHeader eyebrow="Why Aurasoli" titleId="why-title">
+      <Fragment slot="title">
+        Technology With a <span class="hl">Clear Purpose.</span>
+      </Fragment>
+      <Fragment slot="description">
+        The goal is not technology for its own sake, but digital work that
+        serves the business behind it.
+      </Fragment>
+    </SectionHeader>
+
+    <ul class="values-grid">
+      {
+        valueProps.map(({ icon: Icon, title, description }) => (
+          <li class="value-card">
+            <span class="value-card__icon" aria-hidden="true">
+              <Icon size={24} stroke-width={1.75} />
+            </span>
+            <h3 class="value-card__title">{title}</h3>
+            <p class="value-card__text">{description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</section>

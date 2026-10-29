@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Aurasoli homepage — section components
+   Shared section scaffolding (services grid, approach, values) lives in
+   src/styles/sections.css
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(2.5rem, 4vw, 4rem) clamp(3rem, 5vw, 5rem);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      42rem 30rem at 88% 12%,
+      var(--color-clay-tint),
+      transparent 68%
+    ),
+    radial-gradient(
+      36rem 28rem at 8% 95%,
+      var(--color-ochre-tint),
+      transparent 72%
+    );
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative;
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.hero__content {
+  display: grid;
+  gap: clamp(0.875rem, 1.25vw, 1.25rem);
+  max-width: 40rem;
+  justify-items: start;
+}
+
+.hero__title {
+  margin-bottom: 0;
+  font-size: clamp(2.5rem, 6vw + 1rem, 4.5rem);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.hero__title-line {
+  display: block;
+}
+
+.hero__lead {
+  max-width: 34rem;
+  margin-bottom: 0;
+  color: var(--text-on-dark-muted);
+  font-size: clamp(1.125rem, 0.8vw + 0.95rem, 1.3125rem);
+  line-height: 1.7;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive — tablet and desktop
+   -------------------------------------------------------------------------- */
+@media (min-width: 40rem) {
+  .hero__inner {
+    gap: clamp(3rem, 6vw, 5.5rem);
+  }
+}
+
+@media (min-width: 64rem) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+  }
+
+  .hero {
+    display: grid;
+    min-height: min(46rem, calc(100svh - var(--header-height)));
+    align-items: center;
+  }
+}

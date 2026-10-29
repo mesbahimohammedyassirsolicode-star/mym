@@ -80,7 +80,7 @@ export const projects: Project[] = [
     description:
       "A digital experience for SOLIWAYS 2027, a four-day IT event and hackathon in Tangier, with programme, themes, team, practical information, and partner sections.",
     seoDescription:
-      "SOLIWAYS 2027 event website case study: programme, themes, team, practical information, and registration status for a four-day IT event and hackathon in Tangier.",
+      "SOLIWAYS 2027 event site case study: programme, themes, team, practical information, and registration status for a four-day IT event and hackathon in Tangier.",
     category: "Event Website",
     tags: ["Event Platform", "Hackathon", "Bilingual", "Countdown"],
     status: "live",

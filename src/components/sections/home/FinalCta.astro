@@ -1,0 +1,31 @@
+---
+import { ArrowRight } from "@lucide/astro";
+import Container from "../../layout/Container.astro";
+import Button from "../../ui/Button.astro";
+import SectionHeader from "../../ui/SectionHeader.astro";
+---
+
+<section class="home-section" aria-labelledby="cta-title">
+  <Container>
+    <div class="cta-panel">
+      <SectionHeader align="center" titleId="cta-title">
+        <Fragment slot="title">
+          Ready to Make Your <span class="hl">Move?</span>
+        </Fragment>
+        <Fragment slot="description">
+          Tell us what you're building. Let's explore the right digital solution
+          for your business.
+        </Fragment>
+      </SectionHeader>
+      <div class="cta-panel__actions">
+        <Button to="/contact" variant="primary" size="lg">
+          Start a Project
+          <ArrowRight size={18} aria-hidden="true" />
+        </Button>
+        <Button to="/services" variant="secondary" size="lg">
+          Explore Services
+        </Button>
+      </div>
+    </div>
+  </Container>
+</section>

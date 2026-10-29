@@ -1,0 +1,15 @@
+---
+interface Props {
+  as?: "h1" | "h2" | "h3";
+  id?: string;
+  class?: string;
+}
+
+const { as: Tag = "h1", id, class: className } = Astro.props;
+const resolvedId = id ?? (Tag === "h1" ? "page-title" : undefined);
+const resolvedClass = className ?? "page-heading";
+---
+
+<Tag id={resolvedId} class={resolvedClass}>
+  <slot />
+</Tag>

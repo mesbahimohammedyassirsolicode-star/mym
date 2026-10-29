@@ -1,0 +1,32 @@
+---
+import { ArrowRight } from "@lucide/astro";
+import Container from "../../layout/Container.astro";
+import Button from "../../ui/Button.astro";
+import SectionHeading from "../../ui/SectionHeading.astro";
+---
+
+<section class="page-hero" aria-labelledby="services-hero-title">
+  <Container>
+    <div class="page-hero__inner">
+      <p class="eyebrow">Our Services</p>
+      <SectionHeading
+        as="h1"
+        id="services-hero-title"
+        class="page-hero__title"
+      >
+        Digital Solutions Built Around{" "}
+        <span class="hl">Your Business.</span>
+      </SectionHeading>
+      <p class="page-hero__lead">
+        Aurasoli helps businesses build digital products, improve operations,
+        strengthen their online presence, and develop their brand identity.
+      </p>
+      <div class="page-hero__actions">
+        <Button to="/contact" variant="primary" size="lg">
+          Start a Project
+          <ArrowRight size={18} aria-hidden="true" />
+        </Button>
+      </div>
+    </div>
+  </Container>
+</section>

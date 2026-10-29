@@ -1,0 +1,37 @@
+---
+import { FolderKanban, Inbox, LayoutDashboard, Settings2, Users } from "@lucide/astro";
+import type { AstroComponent } from "@lucide/astro";
+import { heroNav } from "../../data/heroVisual";
+import type { NavIcon } from "../../types/heroVisual";
+
+const navIcons: Record<NavIcon, AstroComponent> = {
+  overview: LayoutDashboard,
+  projects: FolderKanban,
+  requests: Inbox,
+  clients: Users,
+  settings: Settings2,
+};
+---
+
+<aside class="hv-ui__side">
+  <span class="hv-ui__mark" aria-hidden="true">M</span>
+  <nav class="hv-ui__nav">
+    {
+      heroNav.map((item) => {
+        const Icon = navIcons[item.icon];
+        return (
+          <span
+            class={
+              item.active
+                ? "hv-ui__nav-item hv-ui__nav-item--active"
+                : "hv-ui__nav-item"
+            }
+          >
+            <Icon aria-hidden="true" />
+            <span class="hv-ui__nav-label">{item.label}</span>
+          </span>
+        );
+      })
+    }
+  </nav>
+</aside>

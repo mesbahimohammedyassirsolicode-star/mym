@@ -91,8 +91,13 @@
   top: 0;
   border-bottom: 1px solid var(--border-dark);
   background: var(--nav-bg);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .site-header {
+    backdrop-filter: blur(12px);
+  }
 }
 
 .site-header__inner {
@@ -195,6 +200,22 @@
 .nav-toggle:hover {
   border-color: var(--border-accent);
   background: rgb(245 245 247 / 6%);
+}
+
+/* Menu / close glyph swap driven by the aria-expanded state */
+.nav-toggle__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-toggle__icon--close,
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon--open {
+  display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon--close {
+  display: inline-flex;
 }
 
 /* --------------------------------------------------------------------------

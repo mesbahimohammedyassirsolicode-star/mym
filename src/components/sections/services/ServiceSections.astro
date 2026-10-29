@@ -1,0 +1,86 @@
+---
+import { ArrowRight, Check, CodeXml } from "@lucide/astro";
+import Container from "../../layout/Container.astro";
+import Button from "../../ui/Button.astro";
+import { serviceIcons } from "../../../data/serviceIcons";
+import { serviceCategories } from "../../../data/services";
+---
+
+{
+  serviceCategories.map((category, index) => {
+    const Icon = serviceIcons[category.slug] ?? CodeXml;
+    const sectionIndex = String(index + 1).padStart(2, "0");
+    const alternate = index % 2 !== 0;
+
+    return (
+      <section
+        id={category.id}
+        class={alternate ? "home-section home-section--alt" : "home-section"}
+        aria-labelledby={`${category.id}-title`}
+      >
+        <Container>
+          <div class="service-detail">
+            <header class="service-detail__header">
+              <span class="service-detail__icon" aria-hidden="true">
+                <Icon size={26} stroke-width={1.75} />
+              </span>
+              <div class="service-detail__intro">
+                <p class="service-detail__index" aria-hidden="true">
+                  {sectionIndex}
+                </p>
+                <h2 id={`${category.id}-title`} class="service-detail__title">
+                  {category.title}
+                </h2>
+                <p class="service-detail__lead">{category.description}</p>
+              </div>
+            </header>
+
+            <div class="service-detail__lists">
+              <div class="service-detail__list">
+                <h3 class="service-detail__subtitle">Capabilities</h3>
+                <ul class="check-list">
+                  {category.capabilities.map((item) => (
+                    <li class="check-list__item">
+                      <Check
+                        class="check-list__icon"
+                        size={16}
+                        stroke-width={2.5}
+                        aria-hidden="true"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="service-detail__list">
+                <h3 class="service-detail__subtitle">Common use cases</h3>
+                <ul class="check-list">
+                  {category.useCases.map((item) => (
+                    <li class="check-list__item">
+                      <Check
+                        class="check-list__icon"
+                        size={16}
+                        stroke-width={2.5}
+                        aria-hidden="true"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <Button
+              to="/contact"
+              variant="secondary"
+              aria-label={`Discuss ${category.title}`}
+            >
+              Discuss this service
+              <ArrowRight size={18} aria-hidden="true" />
+            </Button>
+          </div>
+        </Container>
+      </section>
+    );
+  })
+}

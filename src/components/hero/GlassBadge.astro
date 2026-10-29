@@ -1,0 +1,31 @@
+---
+import { ArrowUpRight } from "@lucide/astro";
+
+interface Props {
+  lines: string[];
+  accentLine: string;
+}
+
+const { lines, accentLine } = Astro.props;
+---
+
+<div class="hv-badge">
+  <span class="hv-badge__copy">
+    {
+      lines.map((line) => (
+        <span
+          class={
+            line === accentLine
+              ? "hv-badge__line hv-badge__line--accent"
+              : "hv-badge__line"
+          }
+        >
+          {line}
+        </span>
+      ))
+    }
+  </span>
+  <span class="hv-badge__arrow" aria-hidden="true">
+    <ArrowUpRight />
+  </span>
+</div>

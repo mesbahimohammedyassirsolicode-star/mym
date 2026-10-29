@@ -1,0 +1,106 @@
+---
+import Container from "../../layout/Container.astro";
+import ProjectCard from "../../ui/ProjectCard.astro";
+import { projects } from "../../../data/projects";
+
+const ALL_FILTER = "All";
+
+const categories = [
+  ALL_FILTER,
+  ...Array.from(new Set(projects.map((project) => project.category))),
+];
+---
+
+<section class="home-section" aria-labelledby="gallery-title">
+  <h2 id="gallery-title" class="visually-hidden">Project gallery</h2>
+  <Container>
+    <div
+      class="filter-bar"
+      role="group"
+      aria-label="Filter projects by category"
+      data-project-filter
+    >
+      {
+        categories.map((category) => (
+          <button
+            type="button"
+            class={category === ALL_FILTER ? "filter-button is-active" : "filter-button"}
+            aria-pressed={category === ALL_FILTER ? "true" : "false"}
+            data-filter={category}
+          >
+            {category}
+          </button>
+        ))
+      }
+    </div>
+
+    <ul class="projects-grid projects-grid--showcase" data-project-gallery>
+      {
+        projects.map((project) => (
+          <li data-project-category={project.category}>
+            <ProjectCard project={project} />
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="empty-state" role="status" data-project-empty hidden>
+      <p class="empty-state__title">No projects in this category yet.</p>
+      <p class="empty-state__text">
+        Try another filter to see available examples.
+      </p>
+    </div>
+
+    <p class="projects-note">
+      Websites are shown as captured from their public homepages. Each case
+      study separates verified details from editorial interpretation, and the
+      automation project is documented as a workflow rather than a public demo.
+    </p>
+  </Container>
+</section>
+
+<script>
+  const ALL_FILTER = "All";
+
+  const filterBar = document.querySelector<HTMLElement>("[data-project-filter]");
+  const gallery = document.querySelector<HTMLElement>("[data-project-gallery]");
+  const emptyState = document.querySelector<HTMLElement>("[data-project-empty]");
+
+  if (filterBar && gallery) {
+    const buttons = Array.from(
+      filterBar.querySelectorAll<HTMLButtonElement>("[data-filter]"),
+    );
+    const items = Array.from(
+      gallery.querySelectorAll<HTMLElement>("[data-project-category]"),
+    );
+
+    const applyFilter = (filter: string) => {
+      let visibleCount = 0;
+
+      items.forEach((item) => {
+        const matches =
+          filter === ALL_FILTER || item.dataset.projectCategory === filter;
+        item.hidden = !matches;
+        if (matches) {
+          visibleCount += 1;
+        }
+      });
+
+      buttons.forEach((button) => {
+        const isActive = button.dataset.filter === filter;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      if (emptyState) {
+        emptyState.hidden = visibleCount > 0;
+      }
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        applyFilter(button.dataset.filter ?? ALL_FILTER);
+      });
+    });
+  }
+</script>

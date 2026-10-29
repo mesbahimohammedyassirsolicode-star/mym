@@ -1,0 +1,24 @@
+---
+interface Props {
+  children: unknown;
+}
+---
+
+<div class="hv-laptop" aria-hidden="true">
+  <div class="hv-laptop__lid">
+    <span class="hv-laptop__camera"></span>
+  </div>
+
+  <div class="hv-laptop__screen">
+    <div class="hv-laptop__ui">
+      <slot />
+    </div>
+    <span class="hv-laptop__glass"></span>
+  </div>
+
+  <div class="hv-laptop__base">
+    <span class="hv-laptop__notch"></span>
+  </div>
+
+  <span class="hv-laptop__shadow"></span>
+</div>

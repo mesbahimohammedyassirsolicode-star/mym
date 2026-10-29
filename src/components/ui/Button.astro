@@ -1,0 +1,68 @@
+---
+interface Props {
+  /** Internal path (renders an anchor). */
+  to?: string;
+  /** Explicit href, used for in-page anchors and external links. */
+  href?: string;
+  external?: boolean;
+  variant?: "primary" | "secondary";
+  size?: "md" | "lg";
+  fullWidth?: boolean;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  class?: string;
+  "aria-label"?: string;
+  "aria-busy"?: boolean;
+}
+
+const {
+  to,
+  href,
+  external = false,
+  variant = "primary",
+  size = "md",
+  fullWidth = false,
+  type = "button",
+  disabled = false,
+  class: className,
+  "aria-label": ariaLabel,
+  "aria-busy": ariaBusy,
+} = Astro.props;
+
+const classes = [
+  "btn",
+  `btn--${variant}`,
+  size === "lg" && "btn--lg",
+  fullWidth && "btn--full",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const url = to ?? href;
+---
+
+{
+  url ? (
+    <a
+      href={url}
+      class={classes}
+      aria-label={ariaLabel}
+      aria-busy={ariaBusy}
+      aria-disabled={disabled ? true : undefined}
+      {...external ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type}
+      class={classes}
+      disabled={disabled}
+      aria-label={ariaLabel}
+      aria-busy={ariaBusy}
+    >
+      <slot />
+    </button>
+  )
+}

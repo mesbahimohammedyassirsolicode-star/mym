@@ -1,0 +1,76 @@
+---
+import { Blocks, MonitorCheck, Palette, Workflow } from "@lucide/astro";
+import type { AstroComponent } from "@lucide/astro";
+import Container from "../../layout/Container.astro";
+import SectionHeader from "../../ui/SectionHeader.astro";
+
+interface MissionAim {
+  icon: AstroComponent;
+  title: string;
+  text: string;
+}
+
+const missionAims: MissionAim[] = [
+  {
+    icon: Blocks,
+    title: "Useful digital products",
+    text: "Software that solves a real problem and remains simple to use and maintain.",
+  },
+  {
+    icon: MonitorCheck,
+    title: "Improved operations",
+    text: "Systems and automation that remove repetitive work and keep teams aligned.",
+  },
+  {
+    icon: Workflow,
+    title: "A stronger online presence",
+    text: "Websites, content, and SEO that make a business easier to find and understand.",
+  },
+  {
+    icon: Palette,
+    title: "Consistent brand identity",
+    text: "A clear, coherent identity that makes a business recognisable across every touchpoint.",
+  },
+];
+---
+
+<section class="home-section" aria-labelledby="mission-title">
+  <Container>
+    <div class="mission">
+      <div class="mission__copy">
+        <SectionHeader eyebrow="Our Mission" titleId="mission-title">
+          <Fragment slot="title">
+            Helping Businesses <span class="hl">Move Forward.</span>
+          </Fragment>
+          <Fragment slot="description">
+            Aurasoli exists to help businesses develop useful digital products,
+            improve how they operate, strengthen their online presence, and
+            establish a consistent brand identity.
+          </Fragment>
+        </SectionHeader>
+        <p class="mission__text">
+          Every engagement starts with the business behind it: the goals, the
+          people, and the work that needs to get done. From there, Aurasoli
+          brings the right mix of development, automation, marketing, and design
+          — so the technology earns its place in the business.
+        </p>
+      </div>
+
+      <ul class="mission-aims">
+        {
+          missionAims.map(({ icon: Icon, title, text }) => (
+            <li class="mission-aim">
+              <span class="mission-aim__icon" aria-hidden="true">
+                <Icon size={20} stroke-width={1.75} />
+              </span>
+              <div class="mission-aim__body">
+                <h3 class="mission-aim__title">{title}</h3>
+                <p class="mission-aim__text">{text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Container>
+</section>

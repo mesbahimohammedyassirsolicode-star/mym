@@ -1,0 +1,20 @@
+---
+import type { Stat } from "../../types/heroVisual";
+
+interface Props {
+  stat: Stat;
+  badge?: string;
+}
+
+const { stat, badge = "Sample" } = Astro.props;
+---
+
+<div class="hv-stat">
+  <div class="hv-stat__head">
+    <span class="hv-stat__label">{stat.label}</span>
+    <span class="hv-stat__badge">{badge}</span>
+  </div>
+  <span class="hv-stat__value" data-count-to={stat.value} data-count-duration="260">
+    {stat.value}
+  </span>
+</div>

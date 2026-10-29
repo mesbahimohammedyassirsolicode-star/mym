@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import { getProjectImage } from "../../data/projectImages";
+
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  loading?: "lazy" | "eager";
+  sizes?: string;
+  widths?: number[];
+}
+
+const {
+  src,
+  alt,
+  class: className,
+  loading = "lazy",
+  sizes = "(min-width: 1280px) 560px, (min-width: 1024px) 45vw, (min-width: 640px) 45vw, 92vw",
+  widths = [480, 720, 1080, 1440],
+} = Astro.props;
+
+const image = getProjectImage(src);
+---
+
+{
+  image && image.format !== "svg" ? (
+    <Image
+      src={image}
+      alt={alt}
+      class={className}
+      widths={widths}
+      sizes={sizes}
+      format="webp"
+      quality={80}
+      loading={loading}
+      decoding="async"
+    />
+  ) : image ? (
+    <img
+      src={image.src}
+      alt={alt}
+      width={image.width}
+      height={image.height}
+      class={className}
+      loading={loading}
+      decoding="async"
+    />
+  ) : (
+    <img
+      src={src}
+      alt={alt}
+      width={1440}
+      height={900}
+      class={className}
+      loading={loading}
+      decoding="async"
+    />
+  )
+}

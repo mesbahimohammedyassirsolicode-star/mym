@@ -1,0 +1,67 @@
+---
+import { Lightbulb, RefreshCcw, ShieldCheck, Users } from "@lucide/astro";
+import type { AstroComponent } from "@lucide/astro";
+import Container from "../../layout/Container.astro";
+import SectionHeader from "../../ui/SectionHeader.astro";
+
+interface ValueItem {
+  icon: AstroComponent;
+  title: string;
+  description: string;
+}
+
+const values: ValueItem[] = [
+  {
+    icon: Lightbulb,
+    title: "Innovation",
+    description:
+      "New tools and ideas are only worth pursuing when they serve a real business need.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Quality",
+    description:
+      "Careful, tested work that stays maintainable long after it first launches.",
+  },
+  {
+    icon: Users,
+    title: "Collaboration",
+    description:
+      "Close communication with clients throughout the project, so the result matches expectations.",
+  },
+  {
+    icon: RefreshCcw,
+    title: "Continuous Improvement",
+    description:
+      "Solutions grow with the business, refined through feedback and real-world usage.",
+  },
+];
+---
+
+<section class="home-section home-section--alt" aria-labelledby="about-values-title">
+  <Container>
+    <SectionHeader eyebrow="Our Values" titleId="about-values-title">
+      <Fragment slot="title">
+        What Guides <span class="hl">Every Project.</span>
+      </Fragment>
+      <Fragment slot="description">
+        The principles behind how Aurasoli thinks about its work, its clients,
+        and the products it builds.
+      </Fragment>
+    </SectionHeader>
+
+    <ul class="values-grid">
+      {
+        values.map(({ icon: Icon, title, description }) => (
+          <li class="value-card">
+            <span class="value-card__icon" aria-hidden="true">
+              <Icon size={24} stroke-width={1.75} />
+            </span>
+            <h3 class="value-card__title">{title}</h3>
+            <p class="value-card__text">{description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</section>

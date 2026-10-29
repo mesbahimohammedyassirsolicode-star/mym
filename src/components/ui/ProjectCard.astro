@@ -1,0 +1,73 @@
+---
+import { ArrowRight, ArrowUpRight } from "@lucide/astro";
+import type { Project } from "../../types/project";
+import ProjectImage from "./ProjectImage.astro";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { thumbnail } = project;
+const caseStudyPath = `/projects/${project.id}`;
+
+const statusLabels: Record<Project["status"], string> = {
+  live: "Live project",
+  workflow: "Automation",
+};
+---
+
+<article class="project-card" data-project-category={project.category}>
+  <div class="project-card__visual">
+    <ProjectImage
+      src={thumbnail.src}
+      alt={thumbnail.alt}
+      class="project-card__image"
+    />
+    <span
+      class={`project-card__badge project-card__badge--${project.status}`}
+    >
+      <span class="project-card__badge-dot" aria-hidden="true"></span>
+      {statusLabels[project.status]}
+    </span>
+  </div>
+
+  <div class="project-card__body">
+    <p class="project-card__category">{project.category}</p>
+    <h3 class="project-card__title">
+      <a href={caseStudyPath}>{project.title}</a>
+    </h3>
+    <p class="project-card__text">{project.description}</p>
+
+    <ul class="tag-list" aria-label={`Topics for ${project.title}`}>
+      {project.tags.map((tag) => <li class="tag">{tag}</li>)}
+    </ul>
+
+    <div class="project-card__actions">
+      <a
+        class="project-card__action project-card__action--primary"
+        href={caseStudyPath}
+      >
+        {project.status === "workflow"
+          ? "Explore automation"
+          : "Read case study"}
+        <ArrowRight size={16} aria-hidden="true" />
+      </a>
+
+      {
+        project.url ? (
+          <a
+            class="project-card__action project-card__action--external"
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {project.ctaLabel}
+            <ArrowUpRight size={16} aria-hidden="true" />
+            <span class="visually-hidden"> (opens in a new tab)</span>
+          </a>
+        ) : null
+      }
+    </div>
+  </div>
+</article>

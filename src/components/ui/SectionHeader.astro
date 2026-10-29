@@ -1,0 +1,41 @@
+---
+interface Props {
+  eyebrow?: string;
+  titleId?: string;
+  align?: "start" | "center";
+  class?: string;
+  as?: "h1" | "h2" | "h3";
+}
+
+const {
+  eyebrow,
+  titleId,
+  align = "start",
+  class: className,
+  as: Tag = "h2",
+} = Astro.props;
+
+const classes = [
+  "section-header",
+  align === "center" && "section-header--center",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const hasDescription = Astro.slots.has("description");
+---
+
+<div class={classes}>
+  {eyebrow ? <p class="eyebrow">{eyebrow}</p> : null}
+  <Tag id={titleId} class="section-title">
+    <slot name="title" />
+  </Tag>
+  {
+    hasDescription ? (
+      <p class="section-lead">
+        <slot name="description" />
+      </p>
+    ) : null
+  }
+</div>

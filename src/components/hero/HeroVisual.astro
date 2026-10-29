@@ -1,0 +1,145 @@
+---
+import {
+  activityBars,
+  badgeAccentLine,
+  badgeLines,
+  heroProgress,
+  heroStat,
+  panelItems,
+  panelLink,
+} from "../../data/heroVisual";
+import ActivityChart from "./ActivityChart.astro";
+import GlassBadge from "./GlassBadge.astro";
+import Laptop from "./Laptop.astro";
+import ProgressCard from "./ProgressCard.astro";
+import RightPanel from "./RightPanel.astro";
+import Sidebar from "./Sidebar.astro";
+import StatCard from "./StatCard.astro";
+import Topbar from "./Topbar.astro";
+import "./heroVisual.css";
+---
+
+<div class="hv" data-hero-visual>
+  <div class="hv__glow" aria-hidden="true"></div>
+  <div class="hv__grid" aria-hidden="true"></div>
+  <div class="hv__streaks" aria-hidden="true">
+    <span class="hv__streak hv__streak--1"></span>
+    <span class="hv__streak hv__streak--2"></span>
+    <span class="hv__streak hv__streak--3"></span>
+  </div>
+
+  <div class="hv__stage">
+    <div class="hv__reflection" aria-hidden="true"></div>
+    <Laptop>
+      <div class="hv-ui">
+        <Sidebar />
+
+        <div class="hv-ui__workspace">
+          <Topbar />
+
+          <div class="hv-ui__body">
+            <div class="hv-ui__main">
+              <StatCard stat={heroStat} />
+              <ProgressCard progress={heroProgress} />
+              <ActivityChart bars={activityBars} />
+            </div>
+
+            <RightPanel status="Active" items={panelItems} link={panelLink} />
+          </div>
+        </div>
+      </div>
+    </Laptop>
+  </div>
+
+  <GlassBadge lines={badgeLines} accentLine={badgeAccentLine} />
+</div>
+
+<script>
+  const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+  const POINTER_QUERY = "(hover: hover) and (pointer: fine)";
+  const MAX_TILT_DEG = 3;
+
+  const root = document.querySelector<HTMLElement>("[data-hero-visual]");
+
+  if (root) {
+    const reducedMotion = window.matchMedia(REDUCED_MOTION_QUERY);
+
+    const countUpTargets = root.querySelectorAll<HTMLElement>(
+      "[data-count-to]",
+    );
+
+    if (!reducedMotion.matches) {
+      countUpTargets.forEach((element) => {
+        const target = Number(element.dataset.countTo);
+        if (!Number.isFinite(target)) {
+          return;
+        }
+
+        const duration = Number(element.dataset.countDuration ?? 1000);
+        const delay = Number(element.dataset.countDelay ?? 0);
+        const suffix = element.dataset.countSuffix ?? "";
+
+        let start: number | null = null;
+
+        element.textContent = `0${suffix}`;
+
+        window.setTimeout(() => {
+          const step = (now: number) => {
+            if (start === null) {
+              start = now;
+            }
+
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+
+            element.textContent = `${Math.round(eased * target)}${suffix}`;
+
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            }
+          };
+
+          requestAnimationFrame(step);
+        }, delay);
+      });
+    }
+
+    const finePointer = window.matchMedia(POINTER_QUERY);
+
+    if (!reducedMotion.matches && finePointer.matches) {
+      let frame = 0;
+
+      const handleMove = (event: MouseEvent) => {
+        if (frame) {
+          cancelAnimationFrame(frame);
+        }
+
+        frame = requestAnimationFrame(() => {
+          const rect = root.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+          root.style.setProperty(
+            "--hv-tilt-y",
+            `${(x * MAX_TILT_DEG).toFixed(2)}deg`,
+          );
+          root.style.setProperty(
+            "--hv-tilt-x",
+            `${(-y * MAX_TILT_DEG).toFixed(2)}deg`,
+          );
+        });
+      };
+
+      const handleLeave = () => {
+        if (frame) {
+          cancelAnimationFrame(frame);
+        }
+        root.style.setProperty("--hv-tilt-x", "0deg");
+        root.style.setProperty("--hv-tilt-y", "0deg");
+      };
+
+      root.addEventListener("mousemove", handleMove);
+      root.addEventListener("mouseleave", handleLeave);
+    }
+  }
+</script>

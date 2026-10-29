@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+import logoImage from "../../assets/logo/Aurasoli-logo.png";
+import { primaryNavigation } from "../../data/navigation";
+import { serviceCategories } from "../../data/services";
+import Button from "../ui/Button.astro";
+import Container from "./Container.astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <Container class="site-footer__inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="brand-link" aria-label="Aurasoli, home">
+          <Image
+            class="brand-logo"
+            src={logoImage}
+            alt="Aurasoli"
+            width={140}
+            densities={[1, 2]}
+            loading="lazy"
+          />
+        </a>
+        <p>
+          Aurasoli provides digital solutions to help businesses and
+          entrepreneurs make their move.
+        </p>
+        <p class="footer-tagline">
+          Make Your <span class="hl">Move.</span>
+        </p>
+        <Button to="/contact" variant="primary">Start a Project</Button>
+      </div>
+
+      <nav aria-label="Footer navigation">
+        <h2 class="footer-heading">Explore</h2>
+        <ul class="footer-list">
+          {
+            primaryNavigation.map(({ label, to }) => (
+              <li>
+                <a class="footer-link" href={to}>
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label="Service categories">
+        <h2 class="footer-heading">Services</h2>
+        <ul class="footer-list">
+          {
+            serviceCategories.map(({ slug, title }) => (
+              <li>
+                <a class="footer-link" href={`/services#${slug}`}>
+                  {title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {currentYear} Aurasoli. All rights reserved.</p>
+      <p>Build. Automate. Grow. Forward.</p>
+    </div>
+  </Container>
+</footer>

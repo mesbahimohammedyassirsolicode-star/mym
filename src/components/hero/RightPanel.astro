@@ -1,0 +1,26 @@
+---
+import type { PanelItem } from "../../types/heroVisual";
+
+interface Props {
+  status: string;
+  items: PanelItem[];
+  link: string;
+}
+
+const { status, items, link } = Astro.props;
+---
+
+<aside class="hv-panel">
+  <span class="hv-panel__pill">{status}</span>
+  <ul class="hv-panel__list">
+    {
+      items.map((item) => (
+        <li class="hv-panel__item">
+          <span class="hv-panel__dot" aria-hidden="true" />
+          <span class="hv-panel__title">{item.title}</span>
+        </li>
+      ))
+    }
+  </ul>
+  <span class="hv-panel__link">{link}</span>
+</aside>

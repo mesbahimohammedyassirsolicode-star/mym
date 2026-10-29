@@ -1,0 +1,43 @@
+---
+import { ArrowRight, CodeXml } from "@lucide/astro";
+import Container from "../../layout/Container.astro";
+import SectionHeader from "../../ui/SectionHeader.astro";
+import { serviceIcons } from "../../../data/serviceIcons";
+import { serviceCategories } from "../../../data/services";
+---
+
+<section class="home-section home-section--alt" aria-labelledby="about-services-title">
+  <Container>
+    <SectionHeader eyebrow="What We Do" titleId="about-services-title">
+      <Fragment slot="title">
+        Seven Disciplines, One <span class="hl">Moving Business.</span>
+      </Fragment>
+      <Fragment slot="description">
+        From development and automation to marketing and brand design, Aurasoli
+        works across the disciplines that help businesses plan, build, and grow.
+      </Fragment>
+    </SectionHeader>
+
+    <ul class="services-grid">
+      {
+        serviceCategories.map((category) => {
+          const Icon = serviceIcons[category.slug] ?? CodeXml;
+
+          return (
+            <li class="service-card">
+              <span class="service-card__icon" aria-hidden="true">
+                <Icon size={22} stroke-width={1.75} />
+              </span>
+              <h3 class="service-card__title">{category.title}</h3>
+              <p class="service-card__text">{category.description}</p>
+              <a class="service-card__link" href={`/services#${category.slug}`}>
+                Explore {category.title}
+                <ArrowRight size={16} aria-hidden="true" />
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </Container>
+</section>

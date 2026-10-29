@@ -1,0 +1,37 @@
+---
+import { Check } from "@lucide/astro";
+
+const nextSteps = [
+  "We review your message and the details you share.",
+  "We reply with clarifying questions or a proposal.",
+  "We shape the scope together before anything is built.",
+];
+---
+
+<aside class="contact-aside" aria-labelledby="next-steps-title">
+  <div class="contact-aside__card">
+    <h2 class="contact-aside__title" id="next-steps-title">
+      What Happens Next
+    </h2>
+    <ol class="contact-aside__steps">
+      {
+        nextSteps.map((step) => (
+          <li class="contact-aside__step">
+            <span class="contact-aside__check" aria-hidden="true">
+              <Check size={16} stroke-width={2.5} />
+            </span>
+            <span>{step}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+
+  <div class="contact-aside__card">
+    <h2 class="contact-aside__title">Make the First Reply Count</h2>
+    <p class="contact-aside__text">
+      The more you share about your goals, your audience, and your timeline, the
+      more useful our first response can be.
+    </p>
+  </div>
+</aside>

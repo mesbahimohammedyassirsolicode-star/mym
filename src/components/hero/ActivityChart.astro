@@ -1,0 +1,70 @@
+---
+import type { BarDatum } from "../../types/heroVisual";
+
+interface Props {
+  bars: BarDatum[];
+}
+
+const { bars } = Astro.props;
+
+const BAR_STAGGER = 30;
+const BAR_DURATION = 640;
+const LABEL_INDICES = new Set([0, 4, 8, 12, 17]);
+
+const max = Math.max(...bars.map((bar) => bar.value));
+const peakIndex = bars.findIndex((bar) => bar.value === max);
+const peakDelay = (bars.length - 1) * BAR_STAGGER + BAR_DURATION + 240;
+---
+
+<div class="hv-chart">
+  <div class="hv-chart__head">
+    <span class="hv-chart__title">Daily requests</span>
+    <span class="hv-chart__scale">18 days</span>
+  </div>
+
+  <div class="hv-chart__body">
+    <div class="hv-chart__axis" aria-hidden="true">
+      <span>{max}</span>
+      <span>{Math.round(max / 2)}</span>
+      <span>0</span>
+    </div>
+
+    <div class="hv-chart__main">
+      <div class="hv-chart__bars">
+        <span class="hv-chart__gridlines" aria-hidden="true"></span>
+        {
+          bars.map((bar, index) => {
+            const isPeak = index === peakIndex;
+            const barStyle = [
+              `--hv-bar:${Math.round((bar.value / max) * 100)}%`,
+              `--hv-bar-delay:${index * BAR_STAGGER}ms`,
+              ...(isPeak ? [`--hv-pulse-delay:${peakDelay}ms`] : []),
+            ].join(";");
+
+            return (
+              <div class="hv-chart__col" style={barStyle}>
+                <span
+                  class={
+                    isPeak
+                      ? "hv-chart__bar hv-chart__bar--peak"
+                      : "hv-chart__bar"
+                  }
+                />
+              </div>
+            );
+          })
+        }
+      </div>
+
+      <div class="hv-chart__labels" aria-hidden="true">
+        {
+          bars.map((bar, index) => (
+            <span class="hv-chart__label">
+              {LABEL_INDICES.has(index) ? bar.label : ""}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>

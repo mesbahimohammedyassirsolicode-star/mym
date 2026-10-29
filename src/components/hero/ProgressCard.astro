@@ -1,0 +1,28 @@
+---
+import type { ProgressDatum } from "../../types/heroVisual";
+
+interface Props {
+  progress: ProgressDatum;
+}
+
+const { progress } = Astro.props;
+---
+
+<div
+  class="hv-progress"
+  style={`--hv-progress:${progress.value}%`}
+>
+  <div class="hv-progress__head">
+    <span class="hv-progress__label">{progress.label}</span>
+    <span
+      class="hv-progress__value"
+      data-count-to={progress.value}
+      data-count-duration="520"
+      data-count-delay="900"
+      data-count-suffix="%">{progress.value}%</span
+    >
+  </div>
+  <span class="hv-progress__track">
+    <span class="hv-progress__fill"></span>
+  </span>
+</div>

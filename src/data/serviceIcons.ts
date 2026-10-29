@@ -1,16 +1,16 @@
 import {
   Cloud,
-  Code2,
+  CodeXml,
   LayoutDashboard,
   Palette,
   Search,
   Smartphone,
   Workflow,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+} from "@lucide/astro";
+import type { AstroComponent } from "@lucide/astro";
 
-export const serviceIcons: Record<string, LucideIcon> = {
-  "web-development": Code2,
+export const serviceIcons: Record<string, AstroComponent> = {
+  "web-development": CodeXml,
   "saas-platforms": Cloud,
   "mobile-applications": Smartphone,
   "management-systems": LayoutDashboard,

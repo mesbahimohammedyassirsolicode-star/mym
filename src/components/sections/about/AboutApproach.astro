@@ -1,0 +1,66 @@
+---
+import Container from "../../layout/Container.astro";
+import SectionHeader from "../../ui/SectionHeader.astro";
+
+interface ApproachStep {
+  index: string;
+  title: string;
+  description: string;
+}
+
+const approachSteps: ApproachStep[] = [
+  {
+    index: "01",
+    title: "Discover",
+    description: "Understand business goals, requirements, and constraints.",
+  },
+  {
+    index: "02",
+    title: "Design",
+    description: "Plan a clear, usable solution before anything is built.",
+  },
+  {
+    index: "03",
+    title: "Build",
+    description: "Develop a maintainable digital product, tested as it grows.",
+  },
+  {
+    index: "04",
+    title: "Improve",
+    description: "Refine the solution according to actual needs and usage.",
+  },
+];
+---
+
+<section class="home-section" aria-labelledby="about-approach-title">
+  <Container>
+    <SectionHeader eyebrow="Our Approach" titleId="about-approach-title">
+      <Fragment slot="title">
+        A Simple, Purposeful <span class="hl">Process.</span>
+      </Fragment>
+      <Fragment slot="description">
+        Four steps keep the work focused on the outcome, from first conversation
+        to ongoing improvement.
+      </Fragment>
+    </SectionHeader>
+
+    <ol class="approach-list">
+      {
+        approachSteps.map((step) => (
+          <li class="approach-step">
+            <span class="approach-step__index" aria-hidden="true">
+              {step.index}
+            </span>
+            <h3 class="approach-step__title">{step.title}</h3>
+            <p class="approach-step__text">{step.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="approach-note">
+      Scope, timelines, and any ongoing support are agreed for each project
+      individually.
+    </p>
+  </Container>
+</section>
