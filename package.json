@@ -4,31 +4,35 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "astro dev",
+    "build": "astro check && astro build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "astro preview",
+    "verify": "node scripts/verify-build.mjs",
+    "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^7.0.1",
+    "@astrojs/sitemap": "^3.7.4",
     "@emailjs/browser": "^5.0.3",
     "@fontsource-variable/inter": "^5.2.6",
+    "@lucide/astro": "^1.64.0",
     "@vercel/analytics": "^2.0.1",
+    "astro": "^7.3.8",
     "lucide-react": "^0.468.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.2"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.12",
     "@eslint/js": "^9.25.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.25.1",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
     "typescript": "~5.8.3",
-    "typescript-eslint": "^8.29.1",
-    "vite": "^6.3.5"
+    "typescript-eslint": "^8.29.1"
   }
 }
