@@ -42,9 +42,9 @@ function readEnv(value: string | undefined): string {
 export async function submitContactForm(
   data: ContactFormData,
 ): Promise<ContactSubmissionResult> {
-  const publicKey = readEnv(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
-  const serviceId = readEnv(import.meta.env.VITE_EMAILJS_SERVICE_ID);
-  const templateId = readEnv(import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
+  const publicKey = readEnv(import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY);
+  const serviceId = readEnv(import.meta.env.PUBLIC_EMAILJS_SERVICE_ID);
+  const templateId = readEnv(import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID);
 
   if (!publicKey || !serviceId || !templateId) {
     return { delivered: false, reason: "missing-config" };
