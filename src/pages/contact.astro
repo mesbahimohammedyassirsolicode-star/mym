@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/layout/Container.astro";
+import ContactHero from "../components/sections/contact/ContactHero.astro";
+import ContactAside from "../components/sections/contact/ContactAside.astro";
+import ContactForm from "../components/islands/ContactForm";
+import "../components/sections/contact/contact.css";
+---
+
+<BaseLayout
+  title="Contact Aurasoli | Start Your Digital Solutions Project"
+  description="Tell Aurasoli what you're planning to build. Share your goals and requirements so we can understand how we may help your business move forward."
+>
+  <ContactHero />
+
+  <section class="home-section" aria-labelledby="contact-form-title">
+    <Container>
+      <div class="contact-layout">
+        <div class="contact-form-card">
+          <h2 id="contact-form-title" class="contact-form-card__title">
+            Tell Us About Your Project.
+          </h2>
+          <p class="contact-form-card__lead">
+            The short form below covers the essentials. Fields marked with{" "}
+            <span aria-hidden="true">*</span>
+            <span class="visually-hidden">(asterisk)</span> are required.
+          </p>
+          <ContactForm client:load />
+        </div>
+        <ContactAside />
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

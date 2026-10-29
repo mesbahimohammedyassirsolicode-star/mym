@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/sections/home/Hero.astro";
+import ServicesOverview from "../components/sections/home/ServicesOverview.astro";
+import Approach from "../components/sections/home/Approach.astro";
+import WhyAurasoli from "../components/sections/home/WhyAurasoli.astro";
+import FeaturedProjects from "../components/sections/home/FeaturedProjects.astro";
+import FinalCta from "../components/sections/home/FinalCta.astro";
+import "../components/sections/home/homepage.css";
+---
+
+<BaseLayout
+  title="Aurasoli | Digital Solutions, Web Development & Automation"
+  description="Aurasoli builds digital solutions that help businesses develop their ideas, automate operations, and grow their digital presence, from websites to automation."
+>
+  <Hero />
+  <ServicesOverview />
+  <Approach />
+  <WhyAurasoli />
+  <FeaturedProjects />
+  <FinalCta />
+</BaseLayout>

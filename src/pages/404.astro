@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/ui/Button.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+---
+
+<BaseLayout
+  title="Page Not Found | Aurasoli Digital Solutions Partner"
+  description="The page you requested does not exist or may have moved. Browse the Aurasoli services and projects pages, or get in touch to start a project."
+  noindex
+>
+  <section class="page-section" aria-labelledby="page-title">
+    <div class="page-stack">
+      <p class="eyebrow">404</p>
+      <SectionHeading>Page not found</SectionHeading>
+      <p>The page you requested does not exist or may have moved.</p>
+      <Button to="/" variant="primary" size="lg">Return home</Button>
+    </div>
+  </section>
+</BaseLayout>

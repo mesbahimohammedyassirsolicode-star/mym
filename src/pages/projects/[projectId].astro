@@ -1,0 +1,262 @@
+---
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "@lucide/astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/layout/Container.astro";
+import Button from "../../components/ui/Button.astro";
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import ProjectImage from "../../components/ui/ProjectImage.astro";
+import { projects } from "../../data/projects";
+import type { Project } from "../../types/project";
+import "../../components/sections/projects/projects.css";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { projectId: project.id },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+const index = projects.findIndex((item) => item.id === project.id);
+const previous = projects[(index - 1 + projects.length) % projects.length];
+const next = projects[(index + 1) % projects.length];
+
+const { caseStudy } = project;
+const isLive = project.status === "live";
+
+const baseTitle = `${project.title} Case Study | ${project.category} | Aurasoli`;
+const metaTitle =
+  project.title.length >= 30
+    ? `${project.title} | Aurasoli`
+    : baseTitle.length < 50
+      ? `Project: ${baseTitle}`
+      : baseTitle;
+---
+
+<BaseLayout title={metaTitle} description={project.seoDescription}>
+  <article>
+    <header class="project-detail">
+      <Container>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb__list">
+            <li>
+              <a href="/projects">Projects</a>
+            </li>
+            <li aria-current="page">{project.title}</li>
+          </ol>
+        </nav>
+
+        <div class="project-detail__hero">
+          <div class="project-detail__intro">
+            <p class="eyebrow">{project.category}</p>
+            <SectionHeading
+              as="h1"
+              id="project-title"
+              class="project-detail__title"
+            >
+              {project.title}
+            </SectionHeading>
+            <p class="project-detail__lead">{project.description}</p>
+
+            <div class="project-detail__actions">
+              {
+                project.url ? (
+                  <Button href={project.url} external variant="primary" size="lg">
+                    {project.ctaLabel}
+                    <ArrowUpRight size={18} aria-hidden="true" />
+                    <span class="visually-hidden"> (opens in a new tab)</span>
+                  </Button>
+                ) : (
+                  <Button href="#workflow" variant="primary" size="lg">
+                    View workflow
+                    <ArrowRight size={18} aria-hidden="true" />
+                  </Button>
+                )
+              }
+
+              <Button to="/projects" variant="secondary" size="lg">
+                <ArrowLeft size={18} aria-hidden="true" />
+                All projects
+              </Button>
+            </div>
+          </div>
+
+          <aside class="project-facts" aria-labelledby="facts-title">
+            <h2 class="project-facts__title" id="facts-title">Project facts</h2>
+            <dl class="project-facts__list">
+              <div class="project-facts__row">
+                <dt>Category</dt>
+                <dd>{project.category}</dd>
+              </div>
+              <div class="project-facts__row">
+                <dt>Format</dt>
+                <dd>{isLive ? "Live website" : "Automation workflow"}</dd>
+              </div>
+              {
+                caseStudy.technologies.length > 0 ? (
+                  <div class="project-facts__row">
+                    <dt>Platforms</dt>
+                    <dd>{caseStudy.technologies.join(", ")}</dd>
+                  </div>
+                ) : null
+              }
+              <div class="project-facts__row">
+                <dt>Status</dt>
+                <dd class="project-facts__status">
+                  <span
+                    class={`status-dot status-dot--${project.status}`}
+                    aria-hidden="true"
+                  />
+                  {isLive ? "Live" : "Documented workflow"}
+                </dd>
+              </div>
+            </dl>
+
+            {
+              project.url ? (
+                <a
+                  class="project-facts__link"
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit the live project
+                  <ArrowUpRight size={16} aria-hidden="true" />
+                  <span class="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              ) : null
+            }
+          </aside>
+        </div>
+      </Container>
+    </header>
+
+    <div class="project-media">
+      <Container>
+        {
+          caseStudy.screenshots.map((screenshot) => (
+            <figure class="project-shot">
+              <ProjectImage
+                src={screenshot.src}
+                alt={screenshot.alt}
+                class="project-shot__image"
+                sizes="(min-width: 1280px) 1180px, 92vw"
+                widths={[640, 960, 1280, 1440]}
+              />
+              {screenshot.caption ? (
+                <figcaption class="project-shot__caption">
+                  {screenshot.caption}
+                </figcaption>
+              ) : null}
+            </figure>
+          ))
+        }
+      </Container>
+    </div>
+
+    <div class="project-body">
+      <Container>
+        <div class="case-study">
+          <section class="case-block" aria-labelledby="overview-title">
+            <h2 id="overview-title">Overview</h2>
+            {caseStudy.overview.map((paragraph) => <p>{paragraph}</p>)}
+          </section>
+
+          <section class="case-block" aria-labelledby="objective-title">
+            <h2 id="objective-title">Project objective</h2>
+            <p>{caseStudy.objective}</p>
+          </section>
+
+          <section class="case-block" aria-labelledby="problem-title">
+            <h2 id="problem-title">The problem addressed</h2>
+            <p>{caseStudy.problem}</p>
+          </section>
+
+          <section class="case-block" aria-labelledby="solution-title">
+            <h2 id="solution-title">Solution and implementation</h2>
+            <ul class="case-points">
+              {caseStudy.solution.map((point) => <li>{point}</li>)}
+            </ul>
+          </section>
+
+          <section class="case-block" aria-labelledby="features-title">
+            <h2 id="features-title">Key features</h2>
+            <ul class="case-features">
+              {
+                caseStudy.features.map((feature, featureIndex) => (
+                  <li class="case-feature">
+                    <span class="case-feature__index" aria-hidden="true">
+                      {String(featureIndex + 1).padStart(2, "0")}
+                    </span>
+                    <h3>{feature.title}</h3>
+                    <p>{feature.description}</p>
+                  </li>
+                ))
+              }
+            </ul>
+          </section>
+
+          {
+            caseStudy.workflow ? (
+              <section class="case-block" id="workflow" aria-labelledby="workflow-title">
+                <h2 id="workflow-title">Workflow steps</h2>
+                <p>
+                  The pipeline runs in a fixed order so every lead is handled the
+                  same way and the output stays consistent.
+                </p>
+                <ol class="workflow-list">
+                  {caseStudy.workflow.map((step, stepIndex) => (
+                    <li class="workflow-step">
+                      <span class="workflow-step__index" aria-hidden="true">
+                        {String(stepIndex + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h3>{step.label}</h3>
+                        <p>{step.description}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            ) : null
+          }
+
+          <aside class="verified-note" aria-labelledby="verified-title">
+            <h2 class="verified-note__title" id="verified-title">
+              What is verified
+            </h2>
+            <p>{caseStudy.verifiedNote}</p>
+          </aside>
+        </div>
+      </Container>
+    </div>
+
+    <nav class="project-pager" aria-label="More projects">
+      <Container class="project-pager__inner">
+        <a class="project-pager__item" href={`/projects/${previous.id}`} rel="prev">
+          <span class="project-pager__label">
+            <ArrowLeft size={16} aria-hidden="true" />
+            Previous project
+          </span>
+          <span class="project-pager__title">{previous.title}</span>
+        </a>
+        <a
+          class="project-pager__item project-pager__item--next"
+          href={`/projects/${next.id}`}
+          rel="next"
+        >
+          <span class="project-pager__label">
+            Next project
+            <ArrowRight size={16} aria-hidden="true" />
+          </span>
+          <span class="project-pager__title">{next.title}</span>
+        </a>
+      </Container>
+    </nav>
+  </article>
+</BaseLayout>
