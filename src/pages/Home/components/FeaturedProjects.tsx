@@ -20,20 +20,20 @@ export default function FeaturedProjects() {
               Ideas Into <span className="hl">Digital Experiences.</span>
             </>
           }
-          description="A look at the kind of digital products Aurasoli designs and builds for growing businesses."
+          description="Websites, an online store, an event experience, and an AI workflow — selected work that solves a clear, specific need."
         />
 
-        <ul className="projects-grid">
+        <ul className="projects-grid projects-grid--showcase">
           {projects.map((project) => (
             <li key={project.id}>
-              <ProjectCard {...project} />
+              <ProjectCard project={project} />
             </li>
           ))}
         </ul>
 
         <p className="projects-note">
-          The examples above are neutral conceptual illustrations, not completed
-          client work.
+          Live sites are shown as captured from their public homepages. Case
+          studies state only what is publicly verifiable.
         </p>
 
         <div className="section-actions">

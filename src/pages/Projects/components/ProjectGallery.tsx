@@ -48,10 +48,10 @@ export default function ProjectGallery() {
         </div>
 
         {filteredProjects.length > 0 ? (
-          <ul className="projects-grid">
+          <ul className="projects-grid projects-grid--showcase">
             {filteredProjects.map((project) => (
               <li key={project.id}>
-                <ProjectCard {...project} />
+                <ProjectCard project={project} />
               </li>
             ))}
           </ul>
@@ -67,8 +67,10 @@ export default function ProjectGallery() {
         )}
 
         <p className="projects-note">
-          All examples on this page are neutral conceptual illustrations, not
-          completed client work.
+          Websites are shown as captured from their public homepages. Each case
+          study separates verified details from editorial interpretation, and
+          the automation project is documented as a workflow rather than a
+          public demo.
         </p>
       </Container>
     </section>

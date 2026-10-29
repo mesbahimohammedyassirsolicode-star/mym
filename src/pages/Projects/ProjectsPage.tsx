@@ -6,8 +6,8 @@ import "./projects.css";
 
 export default function ProjectsPage() {
   usePageMeta(
-    "Projects | Aurasoli",
-    "A look at the digital products, applications, and business solutions Aurasoli designs and builds — currently shown as neutral conceptual examples.",
+    "Websites, E-commerce & AI Automation Projects | Aurasoli",
+    "Explore Aurasoli projects: web platforms, e-commerce, event websites, and AI automation — with verified case studies, screenshots, and live links.",
   );
 
   return (

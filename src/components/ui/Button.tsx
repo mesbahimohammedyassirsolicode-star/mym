@@ -17,6 +17,7 @@ interface ButtonBaseProps {
   className?: string;
   to?: string;
   href?: string;
+  external?: boolean;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLElement>;
@@ -49,6 +50,7 @@ export default function Button({
   className,
   to,
   href,
+  external = false,
   type = "button",
   disabled,
   onClick,
@@ -79,6 +81,9 @@ export default function Button({
       onClick,
       "aria-label": ariaLabel,
       "aria-busy": ariaBusy,
+      ...(external
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {}),
     };
 
     return <a {...anchorProps}>{children}</a>;

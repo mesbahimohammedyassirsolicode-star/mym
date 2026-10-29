@@ -15,8 +15,9 @@ export default function ProjectsHero() {
             Ideas Into <span className="hl">Digital Experiences.</span>
           </SectionHeading>
           <p className="page-hero__lead">
-            Aurasoli turns needs into digital products, applications, and business
-            solutions — from the first idea to a working, maintained system.
+            Websites, online stores, event platforms, and AI workflows — a
+            closer look at the work, the thinking behind it, and what each
+            project sets out to do.
           </p>
         </div>
       </Container>
