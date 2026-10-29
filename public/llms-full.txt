@@ -1,0 +1,989 @@
+# Aurasoli — full site text
+
+Plain-text content of every page on https://www.aura-soli.online, generated from the built HTML on 2026-10-29.
+Curated index: https://www.aura-soli.online/llms.txt
+
+---
+
+## Home
+URL: https://www.aura-soli.online/
+
+Digital Solutions for Modern Businesses
+
+## Make Your Move.
+
+We build digital solutions that help businesses develop their ideas, automate operations, and grow their digital presence.
+
+Start a Project
+
+Explore Services
+
+Aurasoli is a digital solutions partner for businesses and entrepreneurs. We build websites, web applications, SaaS platforms and mobile applications, create management systems, automate workflows, improve search visibility, and design consistent brand identities. Tell us what you're building through the contact form and we reply with clarifying questions or a proposal.
+
+What We Do
+
+### Digital Solutions Built to Move You Forward.
+
+Aurasoli helps businesses build digital products, improve how they
+operate, and strengthen their online presence.
+
+#### Web Development
+
+Fast, responsive websites and web applications built on modern, maintainable foundations.
+
+Explore Web Development
+
+#### SaaS Platforms
+
+Product platforms with accounts, subscriptions, and the features your users rely on.
+
+Explore SaaS Platforms
+
+#### Mobile Applications
+
+Mobile experiences that keep your service in your customers' hands, wherever they are.
+
+Explore Mobile Applications
+
+#### Management Systems
+
+Internal tools and systems that organise operations and reduce repetitive manual work.
+
+Explore Management Systems
+
+#### Digital Marketing & SEO
+
+Technical SEO and clear content structure that help the right people find your business.
+
+Explore Digital Marketing & SEO
+
+#### Automation & Integrations
+
+Connected workflows that link your tools together and remove repetitive steps.
+
+Explore Automation & Integrations
+
+#### Brand Identity & Branding
+
+A consistent visual identity that makes your business recognisable, clear, and credible.
+
+Explore Brand Identity & Branding
+
+Explore all services
+
+How We Work
+
+### From Idea to Digital Solution.
+
+A straightforward process that keeps the work focused on the outcome,
+from first conversation to launch.
+
+#### Discover
+
+Understand the client's goals, challenges, and requirements.
+
+#### Design
+
+Plan a clear, user-focused digital experience.
+
+#### Build
+
+Develop the solution using appropriate technologies and maintainable code.
+
+#### Improve
+
+Support ongoing improvements based on actual project needs.
+
+Scope, timelines, and any ongoing support are agreed for each project individually.
+
+Why Aurasoli
+
+### Technology With a Clear Purpose.
+
+The goal is not technology for its own sake, but digital work that
+serves the business behind it.
+
+#### Tailored Solutions
+
+Solutions designed around actual business needs, not one-size-fits-all templates.
+
+#### Connected Thinking
+
+Development, automation, and digital presence considered together as one system.
+
+#### Thoughtful Execution
+
+A steady emphasis on usability, maintainability, and clear communication.
+
+Selected Work
+
+### Ideas Into Digital Experiences.
+
+Websites, an online store, an event experience, and an AI workflow —
+selected work that solves a clear, specific need.
+
+- Live project
+
+Web Development
+
+#### ITI Info
+
+An informational web platform for Institut Trans Informatique that brings professional IT and management training, enrolment steps, and contact routes into one clear, bilingual experience.
+
+- Informational Platform
+- Bilingual
+- Responsive
+
+Read case studyView Live Project (opens in a new tab)
+
+- Live project
+
+Event Website
+
+#### SOLIWAYS 2027
+
+A digital experience for SOLIWAYS 2027, a four-day IT event and hackathon in Tangier, with programme, themes, team, practical information, and partner sections.
+
+- Event Platform
+- Hackathon
+- Bilingual
+- Countdown
+
+Read case studyExplore Website (opens in a new tab)
+
+- Live project
+
+E-commerce
+
+#### AREACH
+
+A modern online fashion store for elegant women's fashion, pairing editorial imagery with a multilingual storefront and direct product discovery.
+
+- Fashion Store
+- Product Discovery
+- Multilingual
+
+Read case studyVisit Store (opens in a new tab)
+
+- Automation
+
+AI Automation
+
+#### AI Lead Generation & Website Audit Automation
+
+An automated lead-research pipeline that detects whether a prospect has a website, cleans its content, generates an AI-assisted website audit, and stores qualified results in Google Sheets.
+
+- n8n
+- Google Gemini
+- Google Sheets
+- Workflow Engineering
+
+Explore automation
+
+Live sites are shown as captured from their public homepages. Case studies state only what is publicly verifiable.
+
+View all projects
+
+Questions
+
+### Answers Before You Start.
+
+What Aurasoli does, how a project runs, and how to get in touch.
+
+#### What does Aurasoli do?
+
+Aurasoli builds and improves digital work for businesses: websites and web applications, SaaS platforms, mobile applications, management systems, digital marketing and SEO, automation and integrations, and brand identity.
+
+#### Who does Aurasoli work with?
+
+Aurasoli works with businesses and entrepreneurs that want to develop their ideas, automate operations, and grow their digital presence.
+
+#### How does a project start?
+
+Projects start with the form on the contact page. We review the message and the details you share, reply with clarifying questions or a proposal, and shape the scope together before anything is built.
+
+#### How does Aurasoli work through a project?
+
+The work moves through four steps: Discover (understand the goals, challenges, and requirements), Design (plan a clear, user-focused digital experience), Build (develop with appropriate technologies and maintainable code), and Improve (support ongoing improvements based on actual project needs).
+
+#### How long does a project take?
+
+Timelines are agreed for each project individually, alongside the scope. Aurasoli does not publish fixed delivery times, because the work is tailored to the business rather than taken from a template.
+
+#### How is a project priced?
+
+Scope, timelines, and any ongoing support are agreed for each project individually. The project form asks for an indicative budget range for planning only — it is not a quote or a price list.
+
+#### What happens after launch?
+
+The Improve step continues after delivery: ongoing improvements are based on actual project needs, and any ongoing support is agreed per project.
+
+#### How do I get in touch with Aurasoli?
+
+Use the contact form on the contact page. It asks for your name, email, company, the service you need, an indicative budget range, and a short description of the project.
+
+### Ready to Make Your Move?
+
+Tell us what you're building. Let's explore the right digital solution
+for your business.
+
+Start a Project
+
+Explore Services
+
+---
+
+## Services
+URL: https://www.aura-soli.online/services
+
+Our Services
+
+## Digital Solutions Built Around Your Business.
+
+Aurasoli helps businesses build digital products, improve operations, strengthen their online presence, and develop their brand identity.
+
+Start a Project
+
+### Web Development
+
+Fast, responsive websites and web applications built on modern, maintainable foundations.
+
+#### Capabilities
+
+- Marketing and corporate websites
+- Web applications and client portals
+- E-commerce storefronts
+- CMS-backed content platforms
+- Performance, accessibility, and SEO tuning
+
+#### Common use cases
+
+- A business website that turns visitors into enquiries
+- A client area with documents and self-service options
+- An online store with payments and order tracking
+
+Discuss this service
+
+### SaaS Platforms
+
+Product platforms with accounts, subscriptions, and the features your users rely on.
+
+#### Capabilities
+
+- Account and workspace management
+- Subscription and billing flows
+- Dashboards and reporting views
+- Roles, permissions, and multi-user access
+- Payment and third-party integrations
+
+#### Common use cases
+
+- A tool customers subscribe to and renew each month
+- A platform where teams collaborate on shared projects
+- A product with usage limits and upgrade paths
+
+Discuss this service
+
+### Mobile Applications
+
+Mobile experiences that keep your service in your customers' hands, wherever they are.
+
+#### Capabilities
+
+- iOS and Android applications
+- Cross-platform delivery
+- Offline-capable experiences
+- Push notifications
+- Device features such as camera, location, and mapping
+
+#### Common use cases
+
+- A booking app customers use on the go
+- A field application that works without a connection
+- An app that keeps customers updated in real time
+
+Discuss this service
+
+### Management Systems
+
+Internal tools and systems that organise operations and reduce repetitive manual work.
+
+#### Capabilities
+
+- Custom dashboards and reporting
+- Inventory, orders, and operations tracking
+- Team roles and approval workflows
+- Legacy data migration
+- Alerts that surface what needs attention
+
+#### Common use cases
+
+- Replacing spreadsheets with one shared workspace
+- Tracking jobs, stock, and invoices from a single view
+- Giving managers a live picture of daily operations
+
+Discuss this service
+
+### Digital Marketing & SEO
+
+Technical SEO and clear content structure that help the right people find your business.
+
+#### Capabilities
+
+- Technical SEO audits
+- Site structure and page optimisation
+- Analytics setup and reporting
+- Landing pages and campaign support
+- Content structure that supports organic growth
+
+#### Common use cases
+
+- Helping the right customers find a website
+- Improving page speed and mobile experience
+- Measuring what drives enquiries and sign-ups
+
+Discuss this service
+
+### Automation & Integrations
+
+Connected workflows that link your tools together and remove repetitive steps.
+
+#### Capabilities
+
+- Workflow automation
+- Integration between business tools
+- Forms, notifications, and data routing
+- File and record synchronisation
+- Custom scripts for repeated processes
+
+#### Common use cases
+
+- Removing manual entry between systems
+- Keeping a shared view of leads and projects
+- Automating confirmations and follow-ups
+
+Discuss this service
+
+### Brand Identity & Branding
+
+A consistent visual identity that makes your business recognisable, clear, and credible.
+
+#### Capabilities
+
+- Logo and visual identity
+- Brand guidelines and usage rules
+- Tone of voice and messaging
+- Templates for marketing materials
+- A consistent look across web and print
+
+#### Common use cases
+
+- A new identity that feels professional and consistent
+- Guidelines that keep a growing team on brand
+- A rollout that unifies your online presence
+
+Discuss this service
+
+### Let's Build Something That Moves Your Business Forward.
+
+Discuss Your Project
+
+---
+
+## Projects
+URL: https://www.aura-soli.online/projects
+
+Our Work
+
+## Ideas Into Digital Experiences.
+
+Websites, online stores, event platforms, and AI workflows — a closer look at the work, the thinking behind it, and what each project sets out to do.
+
+### Project gallery
+
+AllWeb DevelopmentEvent WebsiteE-commerceAI Automation
+
+- Live project
+
+Web Development
+
+#### ITI Info
+
+An informational web platform for Institut Trans Informatique that brings professional IT and management training, enrolment steps, and contact routes into one clear, bilingual experience.
+
+- Informational Platform
+- Bilingual
+- Responsive
+
+Read case studyView Live Project (opens in a new tab)
+
+- Live project
+
+Event Website
+
+#### SOLIWAYS 2027
+
+A digital experience for SOLIWAYS 2027, a four-day IT event and hackathon in Tangier, with programme, themes, team, practical information, and partner sections.
+
+- Event Platform
+- Hackathon
+- Bilingual
+- Countdown
+
+Read case studyExplore Website (opens in a new tab)
+
+- Live project
+
+E-commerce
+
+#### AREACH
+
+A modern online fashion store for elegant women's fashion, pairing editorial imagery with a multilingual storefront and direct product discovery.
+
+- Fashion Store
+- Product Discovery
+- Multilingual
+
+Read case studyVisit Store (opens in a new tab)
+
+- Automation
+
+AI Automation
+
+#### AI Lead Generation & Website Audit Automation
+
+An automated lead-research pipeline that detects whether a prospect has a website, cleans its content, generates an AI-assisted website audit, and stores qualified results in Google Sheets.
+
+- n8n
+- Google Gemini
+- Google Sheets
+- Workflow Engineering
+
+Explore automation
+
+No projects in this category yet.
+
+Try another filter to see available examples.
+
+Websites are shown as captured from their public homepages. Each case study separates verified details from editorial interpretation, and the automation project is documented as a workflow rather than a public demo.
+
+### Have a Project in Mind?
+
+Start a Project
+
+---
+
+## AI Lead Generation & Website Audit Automation
+URL: https://www.aura-soli.online/projects/ai-lead-generation-automation
+
+AI Automation
+
+## AI Lead Generation & Website Audit Automation
+
+An automated lead-research pipeline that detects whether a prospect has a website, cleans its content, generates an AI-assisted website audit, and stores qualified results in Google Sheets.
+
+View workflow
+
+All projects
+
+### Project facts
+
+CategoryAI Automation
+
+FormatAutomation workflow
+
+Platformsn8n, Google Gemini, Google Sheets
+
+StatusDocumented workflow
+
+The twelve-step pipeline. This is a diagram of the workflow structure, not a public demo capture.
+
+### Overview
+
+A twelve-step n8n workflow that turns a list of prospects into structured, AI-assisted website audit notes. It runs on demand, checks which leads have a website, removes duplicates, fetches and cleans site content, asks Gemini for an audit, parses and qualifies the output, then writes the result back to Google Sheets.
+
+The workflow is designed to streamline prospect research and audit preparation. It is documented here as a workflow, not as a public demo, and no business outcomes are claimed.
+
+### Project objective
+
+Streamline prospect research and first-pass website audit preparation by replacing repetitive manual checks and drafting with a repeatable, reviewable pipeline.
+
+### The problem addressed
+
+Researching prospects one by one is repetitive: confirming a website exists, copying its content, cleaning it up, drafting observations, and recording the result consistently. Manual passes are slow and hard to compare.
+
+### Solution and implementation
+
+- Start from a controlled manual trigger so each run is intentional and observable.
+- Gate leads before enrichment: detect a website and remove duplicates so only unique, relevant prospects are fetched.
+- Clean the fetched page content and build a focused prompt before sending it to Gemini.
+- Parse and qualify the model output, then write only qualified results to Google Sheets for review.
+
+### Key features
+
+#### Controlled runs
+
+A manual trigger and a configuration step keep each execution deliberate and easy to inspect.
+
+#### Clean lead intake
+
+Website detection and duplicate removal stop incomplete or repeated prospects from moving forward.
+
+#### Focused AI input
+
+Website content is fetched, cleaned, and shaped into a prompt before Gemini processes it.
+
+#### Review-ready output
+
+Responses are parsed and qualified before Google Sheets storage, so the sheet holds structured results.
+
+### Workflow steps
+
+The pipeline runs in a fixed order so every lead is handled the same way and the output stays consistent.
+
+#### Manual Trigger
+
+Start the workflow on demand so every run is intentional and observable.
+
+#### Configuration
+
+Load the settings the run needs, such as audit parameters.
+
+#### Lead Retrieval
+
+Read the prospect rows that will be researched.
+
+#### Website Detection
+
+Check each prospect for a website before any content is requested.
+
+#### Duplicate Removal
+
+Remove repeated leads so the same prospect is not audited twice.
+
+#### Website Fetching
+
+Request the website content for every remaining lead.
+
+#### Content Cleaning
+
+Strip and normalise the fetched content to keep the model input focused.
+
+#### AI Prompt Construction
+
+Assemble the cleaned content into a consistent website-audit prompt.
+
+#### Gemini Processing
+
+Send the prompt to Google Gemini to generate the audit response.
+
+#### Output Parsing
+
+Parse the model response into a structured result the workflow can evaluate.
+
+#### Qualification
+
+Keep only the results that meet the workflow's qualification criteria.
+
+#### Google Sheets Storage
+
+Write the qualified audit results back to Google Sheets for review.
+
+### What is verified
+
+Workflow steps and platforms are taken from the supplied workflow specification: n8n, Google Gemini, and Google Sheets. Prompt wording, qualification thresholds, and runtime configuration are not shown. This page makes no claims about revenue, conversion, time saved, or other business outcomes.
+
+Previous projectAREACHNext projectITI Info
+
+---
+
+## AREACH
+URL: https://www.aura-soli.online/projects/areach
+
+E-commerce
+
+## AREACH
+
+A modern online fashion store for elegant women's fashion, pairing editorial imagery with a multilingual storefront and direct product discovery.
+
+Visit Store (opens in a new tab)
+All projects
+
+### Project facts
+
+CategoryE-commerce
+
+FormatLive website
+
+StatusLive
+
+Visit the live project (opens in a new tab)
+
+Homepage, captured from the live site.
+
+### Overview
+
+AREACH is an online fashion store focused on elegant women's fashion, presenting its collections under the line 'Elegant Luxury Defined'. The storefront leads with editorial photography and a restrained, warm visual language.
+
+Shop, promotions, cart, and language options stay within reach from the top of every page, so the brand story and product discovery support each other.
+
+### Project objective
+
+Translate a refined, editorial brand into an online storefront where visitors can browse collections, spot promotions, and move into the shop quickly.
+
+### The problem addressed
+
+Fashion shoppers judge quality visually and expect immediate access to the shop, current promotions, the cart, and their preferred language. A storefront has to carry the brand mood without hiding those routes.
+
+### Solution and implementation
+
+- A full-bleed editorial hero with rotating collection messaging — 'Feminine Elegance' and 'Exclusive Collection' — anchored by direct shop and new-arrivals actions.
+- A minimal top navigation with Home, Shop, and Promotions, plus a persistent cart and language switcher.
+- A warm, neutral art direction that lets the product photography carry the page rather than competing UI elements.
+
+### Key features
+
+#### Editorial hero
+
+Full-width fashion imagery and rotating collection headlines set the brand tone immediately.
+
+#### Shop and promotions
+
+Dedicated routes keep the catalogue and current promotions one click from the homepage.
+
+#### Cart access
+
+A persistent cart icon keeps the purchase path visible while browsing.
+
+#### Four languages
+
+English, French, Arabic, and Dutch options widen the storefront's reach.
+
+### What is verified
+
+Verified on the live site: Home, Shop, and Promotions navigation, the cart icon, the EN/FR/AR/NL language options, and the rotating 'Feminine Elegance' / 'Exclusive Collection' hero messages. Checkout, payment, shipping, and catalogue size are not publicly verified and are not claimed here.
+
+Previous projectSOLIWAYS 2027Next projectAI Lead Generation & Website Audit Automation
+
+---
+
+## ITI Info
+URL: https://www.aura-soli.online/projects/iti-info
+
+Web Development
+
+## ITI Info
+
+An informational web platform for Institut Trans Informatique that brings professional IT and management training, enrolment steps, and contact routes into one clear, bilingual experience.
+
+View Live Project (opens in a new tab)
+All projects
+
+### Project facts
+
+CategoryWeb Development
+
+FormatLive website
+
+StatusLive
+
+Visit the live project (opens in a new tab)
+
+Homepage, captured from the live site.
+
+### Overview
+
+ITI Info is the public website for Institut Trans Informatique in Tangier, an institute that trains professionals in IT and management. The platform introduces the institute, presents its programmes, explains how to enrol, and keeps contact routes easy to find.
+
+The experience is built around a persistent top navigation and a prominent enrolment call to action, with a French/English switch for visitors who prefer either language.
+
+### Project objective
+
+Give prospective students one clear place to understand the institute's offer, review training options, and begin an enrolment enquiry.
+
+### The problem addressed
+
+Prospective students need to compare programmes, understand the enrolment steps, and confirm the institute's credentials without a phone call or campus visit. ITI Info consolidates that information into a single navigable platform.
+
+### Solution and implementation
+
+- A structured informational site with a fixed navigation covering Accueil, Formations, Inscription, and Contact.
+- A homepage hero that introduces the institute's history — founded in 1986, with recognised diplomas since 1992 — and routes visitors to applications or programme details.
+- A bilingual FR/EN switch and visible 2026 enrolment messaging so the site serves both local and international audiences.
+
+### Key features
+
+#### Programme catalogue
+
+A dedicated Formations route where visitors can explore the institute's training offer.
+
+#### Enrolment journey
+
+An Inscription route and repeated application calls to action keep the next step visible.
+
+#### Contact access
+
+A direct Contact route for questions before or during enrolment.
+
+#### Bilingual interface
+
+A FR/EN switch lets visitors read the site in French or English.
+
+### What is verified
+
+Verified on the live site: navigation labels, programme, enrolment and contact routes, the FR/EN switch, and the 2026 enrolment messaging. The objective and problem statements are editorial framing of what the site does, not a client-supplied brief. Implementation details and business results are not publicly verified and are not claimed here.
+
+Previous projectAI Lead Generation & Website Audit AutomationNext projectSOLIWAYS 2027
+
+---
+
+## SOLIWAYS 2027
+URL: https://www.aura-soli.online/projects/soliways-2027
+
+Event Website
+
+## SOLIWAYS 2027
+
+A digital experience for SOLIWAYS 2027, a four-day IT event and hackathon in Tangier, with programme, themes, team, practical information, and partner sections.
+
+Explore Website (opens in a new tab)
+All projects
+
+### Project facts
+
+CategoryEvent Website
+
+FormatLive website
+
+StatusLive
+
+Visit the live project (opens in a new tab)
+
+Homepage, captured from the live site.
+
+### Overview
+
+SOLIWAYS 2027 is a digital experience for a four-day IT event and hackathon taking place at Solicode Tanger, Morocco, from 13 to 16 April 2027. The site frames the event around the line 'Apprendre. Échanger. Créer.' and builds anticipation with a live countdown.
+
+Visitors can move through the programme, themes, team, practical information, and partners from a single navigation, in French or English.
+
+### Project objective
+
+Establish the event's identity, build anticipation before registrations open, and give attendees one place to explore the programme and practical details.
+
+### The problem addressed
+
+Multi-day events tend to spread information across announcements and social posts. SOLIWAYS 2027 consolidates the programme, themes, venue, team, partners, and registration status into one destination.
+
+### Solution and implementation
+
+- A dark, technology-led visual direction with a live countdown to the event and a clear primary call to action for the programme.
+- A bilingual FR/EN navigation covering Accueil, À propos, Programme, Thématiques, Équipe, Infos pratiques, and Partenaires.
+- An honest registration state — 'Inscriptions bientôt disponibles' — keeps the next step clear while registrations are closed.
+
+### Key features
+
+#### Live countdown
+
+A countdown to the opening day gives the event a sense of momentum on the homepage.
+
+#### Programme and themes
+
+Dedicated routes organise the schedule and the topics the event explores.
+
+#### Team and partners
+
+Separate sections introduce the people and organisations behind the event.
+
+#### Practical information
+
+Venue and attendance details sit alongside the programme, so visitors do not have to hunt for logistics.
+
+#### Bilingual navigation
+
+A FR/EN switch keeps the event accessible to local and international participants.
+
+### What is verified
+
+Verified on the live site: the event dates and venue, countdown, navigation sections, FR/EN switch, and the 'Inscriptions bientôt disponibles' registration state. The objective and problem statements are editorial framing. Attendance, conversion, and business outcomes are not publicly verified and are not claimed here.
+
+Previous projectITI InfoNext projectAREACH
+
+---
+
+## About
+URL: https://www.aura-soli.online/about
+
+About Aurasoli
+
+## Technology With a Purpose.
+
+Aurasoli helps businesses turn ideas into digital solutions through software development, automation, marketing, and brand design.
+
+Explore Our Services
+
+Our Mission
+
+### Helping Businesses Move Forward.
+
+Aurasoli exists to help businesses develop useful digital products,
+improve how they operate, strengthen their online presence, and
+establish a consistent brand identity.
+
+Every engagement starts with the business behind it: the goals, the people, and the work that needs to get done. From there, Aurasoli brings the right mix of development, automation, marketing, and design — so the technology earns its place in the business.
+
+#### Useful digital products
+
+Software that solves a real problem and remains simple to use and maintain.
+
+#### Improved operations
+
+Systems and automation that remove repetitive work and keep teams aligned.
+
+#### A stronger online presence
+
+Websites, content, and SEO that make a business easier to find and understand.
+
+#### Consistent brand identity
+
+A clear, coherent identity that makes a business recognisable across every touchpoint.
+
+What We Do
+
+### Seven Disciplines, One Moving Business.
+
+From development and automation to marketing and brand design, Aurasoli
+works across the disciplines that help businesses plan, build, and grow.
+
+#### Web Development
+
+Fast, responsive websites and web applications built on modern, maintainable foundations.
+
+Explore Web Development
+
+#### SaaS Platforms
+
+Product platforms with accounts, subscriptions, and the features your users rely on.
+
+Explore SaaS Platforms
+
+#### Mobile Applications
+
+Mobile experiences that keep your service in your customers' hands, wherever they are.
+
+Explore Mobile Applications
+
+#### Management Systems
+
+Internal tools and systems that organise operations and reduce repetitive manual work.
+
+Explore Management Systems
+
+#### Digital Marketing & SEO
+
+Technical SEO and clear content structure that help the right people find your business.
+
+Explore Digital Marketing & SEO
+
+#### Automation & Integrations
+
+Connected workflows that link your tools together and remove repetitive steps.
+
+Explore Automation & Integrations
+
+#### Brand Identity & Branding
+
+A consistent visual identity that makes your business recognisable, clear, and credible.
+
+Explore Brand Identity & Branding
+
+Our Approach
+
+### A Simple, Purposeful Process.
+
+Four steps keep the work focused on the outcome, from first conversation
+to ongoing improvement.
+
+#### Discover
+
+Understand business goals, requirements, and constraints.
+
+#### Design
+
+Plan a clear, usable solution before anything is built.
+
+#### Build
+
+Develop a maintainable digital product, tested as it grows.
+
+#### Improve
+
+Refine the solution according to actual needs and usage.
+
+Scope, timelines, and any ongoing support are agreed for each project individually.
+
+Our Values
+
+### What Guides Every Project.
+
+The principles behind how Aurasoli thinks about its work, its clients,
+and the products it builds.
+
+#### Innovation
+
+New tools and ideas are only worth pursuing when they serve a real business need.
+
+#### Quality
+
+Careful, tested work that stays maintainable long after it first launches.
+
+#### Collaboration
+
+Close communication with clients throughout the project, so the result matches expectations.
+
+#### Continuous Improvement
+
+Solutions grow with the business, refined through feedback and real-world usage.
+
+### Have an Idea to Build?
+
+Start a Project
+
+---
+
+## Contact
+URL: https://www.aura-soli.online/contact
+
+Contact Aurasoli
+
+## Let's Talk About Your Project.
+
+Tell us what you're planning to build. Share your goals and requirements so we can understand how Aurasoli may help.
+
+### Tell Us About Your Project.
+
+The short form below covers the essentials. Fields marked with (asterisk) are required.
+
+Full Name (required)
+
+Email Address (required)
+
+Company Name
+
+Service Interested In (required)Select a serviceWeb DevelopmentSaaS PlatformsMobile ApplicationsManagement SystemsDigital Marketing & SEOAutomation & IntegrationsBrand Identity & BrandingOtherNot sure? Pick the closest match — there's an 'Other' option if none fit.
+
+Project BudgetSelect a range (optional)Under $5,000$5,000 – $20,000$20,000 – $50,000$50,000+Not sure yetIndicative ranges for planning only — not a quote or Aurasoli pricing list.
+
+Project Details (required)Try 2–4 sentences: what you're building, its goals, and anything time-sensitive.
+
+Send MessageYour message is sent securely to the Aurasoli team via EmailJS.
+
+### What Happens Next
+
+- We review your message and the details you share.
+- We reply with clarifying questions or a proposal.
+- We shape the scope together before anything is built.
+
+### Make the First Reply Count
+
+The more you share about your goals, your audience, and your timeline, the more useful our first response can be.

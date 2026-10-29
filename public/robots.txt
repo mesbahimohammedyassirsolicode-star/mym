@@ -1,4 +1,36 @@
+# Aurasoli — https://www.aura-soli.online
+# Every page is pre-rendered HTML, so all crawlers, search engines and AI
+# answer engines are welcome. See /llms.txt for a curated summary of the site.
+
 User-agent: *
+Allow: /
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google, Apple and Common Crawl
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://www.aura-soli.online/sitemap-index.xml

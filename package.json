@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build && node scripts/generate-llms-full.mjs",
     "lint": "eslint .",
     "preview": "astro preview",
-    "verify": "node scripts/verify-build.mjs",
+    "verify": "node scripts/verify-build.mjs && node scripts/verify-ai-readability.mjs",
+    "favicons": "node scripts/generate-favicons.mjs",
+    "llms": "node scripts/generate-llms-full.mjs",
     "astro": "astro"
   },
   "dependencies": {

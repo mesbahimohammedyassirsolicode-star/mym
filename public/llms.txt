@@ -1,0 +1,33 @@
+# Aurasoli
+
+> Aurasoli is a digital solutions partner for businesses and entrepreneurs. It builds websites and web applications, SaaS platforms, mobile applications, and management systems; automates workflows and integrations; improves search visibility through technical SEO and digital marketing; and designs consistent brand identities.
+
+Work runs in four steps — Discover, Design, Build, Improve — and scope, timelines, and any ongoing support are agreed for each project individually. Project enquiries go through the contact form. Aurasoli publishes no fixed pricing and no fixed delivery times.
+
+## Pages
+
+- [Services](https://www.aura-soli.online/services): Seven service categories, each with capabilities and real use cases, from web development and SaaS platforms to automation and brand identity.
+- [Projects](https://www.aura-soli.online/projects): Case studies for a corporate web platform, an event website, an online fashion store, and an AI lead-generation automation, with screenshots and live links.
+- [About](https://www.aura-soli.online/about): What Aurasoli does, its mission, the service areas it covers, its four-step approach, and the principles behind the work.
+- [Contact](https://www.aura-soli.online/contact): Project enquiry form (name, email, company, service, indicative budget, project details) and what happens after you send it.
+
+## Services
+
+- [Web Development](https://www.aura-soli.online/services#web-development): Fast, responsive websites and web applications built on modern, maintainable foundations — marketing sites, client portals, e-commerce, CMS platforms, and performance, accessibility and SEO tuning.
+- [SaaS Platforms](https://www.aura-soli.online/services#saas-platforms): Product platforms with accounts, subscriptions, dashboards, roles and permissions, and third-party integrations.
+- [Mobile Applications](https://www.aura-soli.online/services#mobile-applications): iOS and Android apps, cross-platform delivery, offline capability, push notifications, and device features.
+- [Management Systems](https://www.aura-soli.online/services#management-systems): Internal tools and systems that organise operations and reduce manual work — dashboards, inventory and order tracking, approval workflows, and legacy data migration.
+- [Digital Marketing & SEO](https://www.aura-soli.online/services#digital-marketing-seo): Technical SEO audits, site structure and page optimisation, analytics setup, landing pages, and content structure for organic growth.
+- [Automation & Integrations](https://www.aura-soli.online/services#automation-integrations): Connected workflows between business tools — forms, notifications, data routing, record synchronisation, and custom scripts.
+- [Brand Identity & Branding](https://www.aura-soli.online/services#brand-identity-branding): Logo and visual identity, brand guidelines, tone of voice, marketing templates, and a consistent look across web and print.
+
+## Case studies
+
+- [ITI Info](https://www.aura-soli.online/projects/iti-info): Web Development — an informational platform for Institut Trans Informatique covering professional IT and management training, enrolment steps, and contact routes in a bilingual interface.
+- [SOLIWAYS 2027](https://www.aura-soli.online/projects/soliways-2027): Event Website — the digital experience for a four-day IT event and hackathon in Tangier, with programme, themes, team, practical information, and partner sections.
+- [AREACH](https://www.aura-soli.online/projects/areach): E-commerce — an editorial online fashion store for elegant women's fashion with a multilingual storefront, shop, promotions, and product discovery.
+- [AI Lead Generation & Website Audit Automation](https://www.aura-soli.online/projects/ai-lead-generation-automation): AI Automation — an n8n and Google Gemini workflow that researches prospects, cleans website content, generates AI-assisted audits, and stores qualified results in Google Sheets.
+
+## Optional
+
+- [Full site text](https://www.aura-soli.online/llms-full.txt): Complete plain-text content of every page above, generated from the built HTML.
