@@ -150,7 +150,6 @@ function htmlToText(html) {
 }
 
 const pages = [...staticPages, ...caseStudyPages(), ...trailingPages];
-const generatedOn = new Date().toISOString().slice(0, 10);
 
 const sections = pages.map((page) => {
   const html = readFileSync(join(DIST, page.file), "utf8");
@@ -161,7 +160,7 @@ const sections = pages.map((page) => {
 const document = [
   "# Aurasoli — full site text",
   "",
-  `Plain-text content of every page on ${SITE}, generated from the built HTML on ${generatedOn}.`,
+  `Plain-text content of every page on ${SITE}, generated from the built HTML.`,
   `Curated index: ${SITE}/llms.txt`,
   "",
   "---",

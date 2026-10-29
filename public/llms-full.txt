@@ -1,6 +1,6 @@
 # Aurasoli — full site text
 
-Plain-text content of every page on https://www.aura-soli.online, generated from the built HTML on 2026-10-29.
+Plain-text content of every page on https://www.aura-soli.online, generated from the built HTML.
 Curated index: https://www.aura-soli.online/llms.txt
 
 ---
