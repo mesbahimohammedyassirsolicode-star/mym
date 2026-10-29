@@ -1,7 +1,10 @@
 # Aurasoli
 
-Architecture foundation for the official Aurasoli website, built with React,
-TypeScript, Vite, and React Router. Inter is bundled locally as a variable font.
+Official Aurasoli website, built with Astro and TypeScript. Every route is
+pre-rendered to static HTML at build time, so crawlers, link previews and AI
+tools see the real headings and copy without executing JavaScript. React is
+shipped only for the contact form island; all other interactivity runs from a
+few kilobytes of vanilla script. Inter is bundled locally as a variable font.
 
 ## Requirements
 
@@ -15,79 +18,116 @@ npm install
 npm run dev
 ```
 
-Vite prints the local development URL after startup. Its development server
-provides SPA fallback so each route can be opened or refreshed directly.
+Astro prints the local development URL after startup.
+
+## Scripts
+
+- `npm run dev` — Astro development server with HMR.
+- `npm run build` — `astro check` (type and template validation) followed by
+  `astro build`; writes the static site to `dist/`.
+- `npm run preview` — serve the built `dist/` output locally.
+- `npm run lint` — ESLint over the JavaScript/TypeScript sources.
+- `npm run verify` — sanity-check a finished build (see below).
 
 ## Routes
 
-- `/` — Home
-- `/services` — Services
-- `/projects` — Projects
-- `/about` — About
-- `/contact` — Contact
-- Unknown paths — Not Found
+Each route is a file under `src/pages` and is emitted as
+`dist/<route>/index.html`:
+
+- `/` — Home (`src/pages/index.astro`)
+- `/services` — Services (`src/pages/services.astro`)
+- `/projects` — Projects index with the category filter
+  (`src/pages/projects/index.astro`)
+- `/projects/<projectId>` — One case study per entry in
+  `src/data/projects.ts`, generated with `getStaticPaths`
+  (`src/pages/projects/[projectId].astro`)
+- `/about` — About (`src/pages/about.astro`)
+- `/contact` — Contact (`src/pages/contact.astro`)
+- Unknown paths — Not Found, emitted as `dist/404.html`
+  (`src/pages/404.astro`)
+
+## Rendering model
+
+- `src/layouts/BaseLayout.astro` owns the document shell: `<html lang>`, meta
+  tags, canonical link, Open Graph and Twitter tags, favicon, theme color,
+  font preload, JSON-LD and the shared `Navbar` / `Footer` with the
+  `#main-content` landmark.
+- `src/components/sections/<page>/` holds one presentational `.astro` component
+  per page section, with that page's CSS next to it. These ship no JavaScript.
+- `src/components/hero/` holds the hero mockup (dashboard preview) as `.astro`
+  components. The dashboard numbers count up and the mockup tilts with the
+  pointer; both effects run from one small bundled script that respects
+  `prefers-reduced-motion` and coarse pointers.
+- The mobile navigation is Astro markup plus a small vanilla script. It lives
+  outside `<header>` on purpose: the header's `backdrop-filter` makes it a
+  containing block for `position: fixed` descendants.
+- `src/components/islands/ContactForm.tsx` is the only React island and is
+  hydrated with `client:load` on `/contact`.
+- Icons come from `@lucide/astro` in static components and from `lucide-react`
+  inside the React island.
 
 ## Environment
 
-Copy `.env.example` to `.env` and set the public site origin:
+Copy `.env.example` to `.env`. Only `PUBLIC_`-prefixed variables reach the
+browser, and they are inlined at build time, so they **must also be set in the
+Vercel project settings** before a production build.
 
 ```sh
-VITE_SITE_URL=https://www.aura-soli.online
+PUBLIC_SITE_URL=https://www.aura-soli.online
+PUBLIC_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
+PUBLIC_EMAILJS_SERVICE_ID=your_emailjs_service_id
+PUBLIC_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
 ```
 
-`VITE_SITE_URL` is only used to build canonical and Open Graph URLs. When it is
-empty, no canonical or `og:url` tags are emitted, so no domain is assumed. This
-value is public by design — never place secrets in `VITE_`-prefixed variables.
-
-All `VITE_`-prefixed variables are inlined at build time, so they **must also be
-set in the hosting platform's environment** (for this project, the Vercel
-project settings). See the deployment section for the full list.
+`PUBLIC_SITE_URL` only overrides the origin used for canonical and Open Graph
+URLs; when it is empty the site falls back to the `site` value in
+`astro.config.mjs` (`https://www.aura-soli.online`). Never place secrets in a
+`PUBLIC_` variable.
 
 ## Metadata and SEO
 
-- Every route sets its own document title, meta description, and matching
-  `og:title` / `og:description` / `twitter:title` / `twitter:description`.
-- Canonical and `og:url` tags are emitted per route only when `VITE_SITE_URL`
-  is set.
-- `public/robots.txt` allows all crawlers and points to
-  `public/sitemap.xml`, which lists the five routes under the production origin.
-  Update `SITE_URL` in both files if the domain changes.
-- An Open Graph preview image is intentionally not set yet: no approved raster
-  (for example 1200×630 PNG) asset exists. Social platforms do not reliably use
-  SVG, so this waits on an approved export of the Aurasoli mark.
-- The supplied Aurasoli monogram at `public/assets/logo/Aurasoli-icon.png` is
-  used as the site favicon.
+- Every page passes a unique `title` (50–60 characters) and `description`
+  (140–160 characters) to `BaseLayout`, which renders the canonical URL from
+  `Astro.site` plus `og:title`/`og:description`/`og:url`/`og:image` and the
+  matching Twitter tags.
+- One `<h1>` per page, semantic `header`/`main`/`footer` landmarks, descriptive
+  alternative text on every image, and a skip link to `#main-content`.
+- JSON-LD in `BaseLayout` describes the business as `ProfessionalService`
+  together with a `WebSite` node.
+- `@astrojs/sitemap` writes `dist/sitemap-index.xml` and `dist/sitemap-0.xml`
+  from the `site` origin. `public/robots.txt` allows all crawlers and points to
+  the sitemap index.
+- `public/og-image.png` is a 1200×630 placeholder generated by
+  `scripts/generate-og-image.mjs` (`node scripts/generate-og-image.mjs`).
+  Replace it with the final branded artwork, keeping the same path and size.
+- Screenshots are served through `astro:assets` as responsive WebP; the
+  automation workflow diagram stays an SVG and is passed through unchanged.
 
 ## Contact form
 
-The contact form performs full client-side validation and accessible focus and
+The contact form performs full client-side validation with accessible focus and
 error handling, and delivers messages through
-[EmailJS](https://www.emailjs.com/) using the official `@emailjs/browser`
-package. Delivery runs in the browser with the EmailJS **Public Key** only — the
+[EmailJS](https://www.emailjs.com/) using `@emailjs/browser` from a React
+island. Delivery runs in the browser with the EmailJS **Public Key** only — the
 EmailJS **Private Key** is never used, bundled, or stored in this project.
 
-`src/services/contactSubmission.ts` reads its configuration from Vite env vars:
-
-```sh
-VITE_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
-VITE_EMAILJS_SERVICE_ID=your_emailjs_service_id
-VITE_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
-```
-
-It validates that all three are present before sending. When any is missing it
-returns a typed `{ delivered: false, reason: "missing-config" }` result and the
-UI shows an honest, retryable error (values are preserved; nothing is claimed as
-delivered). The UI only reports success after EmailJS confirms the send.
+`src/services/contactSubmission.ts` reads its configuration from
+`PUBLIC_EMAILJS_*` variables. It validates that all three are present before
+sending; when any is missing it returns a typed
+`{ delivered: false, reason: "missing-config" }` result and the UI shows an
+honest, retryable error (values are preserved; nothing is claimed as delivered).
+The UI only reports success after EmailJS confirms the send.
 
 Dashboard setup (owner steps):
 
-1. Create/select an Email Service under **EmailJS → Email Services** and copy its
-   **Service ID** into `VITE_EMAILJS_SERVICE_ID`.
+1. Create/select an Email Service under **EmailJS → Email Services** and copy
+   its **Service ID** into `PUBLIC_EMAILJS_SERVICE_ID`.
 2. Copy the **Public Key** (EmailJS → Account → General) into
-   `VITE_EMAILJS_PUBLIC_KEY`.
+   `PUBLIC_EMAILJS_PUBLIC_KEY`.
 3. Create a template using the variables `from_name`, `reply_to`, `company`,
    `service`, `budget`, and `project_details`, set **Reply-To** to
-   `{{reply_to}}`, and copy the **Template ID** into `VITE_EMAILJS_TEMPLATE_ID`.
+   `{{reply_to}}`, and copy the **Template ID** into
+   `PUBLIC_EMAILJS_TEMPLATE_ID`.
 4. The recipient is whatever address is configured on the EmailJS account for
    that service; it is not set (and must not be guessed) in this code.
 
@@ -96,53 +136,68 @@ delivery remains unverified.
 
 ## Deployment
 
-The build is a static single-page application:
+The build is a fully static site, so no Astro adapter is needed:
 
 ```sh
 npm run build
 npm run preview
 ```
 
-- Output directory: `dist`.
-- Hosting must rewrite unknown paths to `/index.html` (SPA fallback), otherwise
-  deep links such as `/services` or `/about` return 404 on refresh. This project
-  ships a `vercel.json` that provides the rewrite for Vercel.
-- Vercel Web Analytics is mounted from the React entry point. Enable Web
-  Analytics in the Vercel project dashboard to view production traffic.
-- Serve over HTTPS. Set security headers at the host/CDN (for example
-  `Content-Security-Policy`, `X-Content-Type-Options`, `Referrer-Policy`, and
-  HSTS); they are not configured in the repository.
+- Output directory: `dist`, deployed to Vercel as static files.
+- `vercel.json` enables clean URLs (`/services` instead of `/services/`),
+  disables trailing slashes to match `trailingSlash: "never"`, and sets
+  immutable cache headers for `/_astro/*` plus long-lived headers for
+  `/assets/*`.
+- Because each route is a real directory with an `index.html`, deep links such
+  as `/projects/areach` resolve without any catch-all rewrite.
+- Vercel Web Analytics is mounted with `@vercel/analytics/astro` inside
+  `BaseLayout`; enable Web Analytics in the Vercel project dashboard. The
+  insights script is only served on Vercel, so a 404 for
+  `/_vercel/insights/script.js` in local preview is expected.
 - Environment variables to configure on Vercel (Project → Settings →
   Environment Variables) before the production build:
-  - `VITE_SITE_URL` — the production origin (e.g.
+  - `PUBLIC_SITE_URL` — the production origin (e.g.
     `https://www.aura-soli.online`).
-  - `VITE_EMAILJS_PUBLIC_KEY` — EmailJS Public Key.
-  - `VITE_EMAILJS_SERVICE_ID` — EmailJS Service ID.
-  - `VITE_EMAILJS_TEMPLATE_ID` — EmailJS Template ID.
+  - `PUBLIC_EMAILJS_PUBLIC_KEY` — EmailJS Public Key.
+  - `PUBLIC_EMAILJS_SERVICE_ID` — EmailJS Service ID.
+  - `PUBLIC_EMAILJS_TEMPLATE_ID` — EmailJS Template ID.
+- Serve over HTTPS. Security headers (for example `Content-Security-Policy`,
+  `X-Content-Type-Options`, `Referrer-Policy`, and HSTS) belong at the
+  host/CDN and are not configured in this repository.
 
 ## Validation and production build
 
 ```sh
 npm run lint
-npx tsc -b
 npm run build
+npm run verify
 ```
 
-Use `npm run preview` to serve the production build locally.
+`npm run verify` reads the emitted HTML and fails if a page is missing its
+visible copy, has more than one `<h1>`, lacks a canonical/Open Graph/JSON-LD
+tag, or if `sitemap-index.xml`, `robots.txt` or `og-image.png` are absent. Use
+`npm run preview` to click through the built site locally.
 
 ## Project structure
 
-- `src/app` — application entry and route configuration
-- `src/layouts` — shared page layouts
-- `src/components` — reusable layout, navigation, and UI foundations
-- `src/pages` — route-level pages
+- `src/pages` — routes (`.astro`), including `404.astro` and the dynamic
+  project case studies
+- `src/layouts/BaseLayout.astro` — document shell and SEO
+- `src/components/sections` — page sections with their CSS
+- `src/components/hero` — dashboard hero mockup
+- `src/components/ui` — `Button`, `SectionHeader`, `ProjectCard`,
+  `ProjectImage`, `SectionHeading`
+- `src/components/layout`, `src/components/navigation` — footer and navbar
+- `src/components/islands/ContactForm.tsx` — the only React island
 - `src/data` and `src/types` — typed content data and models
-- `src/styles` — design tokens, global styles, and utilities
-- `public` — static assets and site metadata files
+- `src/config/site.ts` — site name, tagline, description and default origin
+- `src/styles` — design tokens, global styles, utilities, shared components and
+  section styles
+- `src/assets` — images processed by `astro:assets`
+- `public` — passthrough assets (`og-image.png`, logo files, `robots.txt`)
+- `scripts` — `generate-og-image.mjs` and `verify-build.mjs`
 
 Design tokens are centralized in `src/styles/tokens.css` and implement the
-Aurasoli palette. The supplied Aurasoli wordmark is used in the header and
-footer at `public/assets/logo/Aurasoli-logo.png`. The transparent PNG web
-version renders the supplied dark lettering in Cloud for legibility on the
-site's dark surfaces while preserving the Clay/Ochre mark. The matching
-monogram at `public/assets/logo/Aurasoli-icon.png` is used as the site favicon.
+Aurasoli palette. The Aurasoli wordmark (`src/assets/logo/Aurasoli-logo.png`) is
+used in the header and footer and optimized by `astro:assets`; the monogram at
+`public/assets/logo/Aurasoli-icon.png` is used as the favicon.
