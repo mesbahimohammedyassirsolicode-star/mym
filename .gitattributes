@@ -1,0 +1,5 @@
+# Generated plain-text artifacts are written with LF line endings by
+# scripts/generate-llms-full.mjs. Keep the working copy in LF too, so a local
+# build does not leave the tree looking modified on Windows.
+public/llms-full.txt eol=lf
+public/llms.txt eol=lf
