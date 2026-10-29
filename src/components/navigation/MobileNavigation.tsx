@@ -1,6 +1,10 @@
+import type { ElementType } from "react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { m } from "motion/react";
 import { primaryNavigation } from "../../data/navigation";
+import { useHydrated } from "../../hooks/useHydrated";
+import { springMenu } from "../motion/motionPresets";
 import Button from "../ui/Button";
 
 interface MobileNavigationProps {
@@ -14,6 +18,18 @@ const focusableSelector =
 
 const EXIT_DURATION = 220;
 
+const listVariants = {
+  closed: {},
+  open: {
+    transition: { staggerChildren: 0.055, delayChildren: 0.03 },
+  },
+};
+
+const itemVariants = {
+  closed: { opacity: 0, y: 12 },
+  open: { opacity: 1, y: 0, transition: springMenu },
+};
+
 const useIsomorphicLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect;
 
@@ -26,6 +42,9 @@ export default function MobileNavigation({
   const wasOpenRef = useRef(false);
   const closeTimerRef = useRef<number | null>(null);
   const [isClosing, setIsClosing] = useState(false);
+  const hydrated = useHydrated();
+  const List = (hydrated ? m.ul : "ul") as ElementType;
+  const Item = (hydrated ? m.li : "li") as ElementType;
 
   useIsomorphicLayoutEffect(() => {
     if (open) {
@@ -121,9 +140,14 @@ export default function MobileNavigation({
     >
       <div className="mobile-nav__panel" ref={panelRef}>
         <nav aria-label="Mobile main navigation">
-          <ul className="mobile-nav__list">
+          <List
+            className="mobile-nav__list"
+            initial={hydrated ? "closed" : undefined}
+            animate={hydrated ? (open ? "open" : "closed") : undefined}
+            variants={hydrated ? listVariants : undefined}
+          >
             {primaryNavigation.map(({ label, to }) => (
-              <li key={to}>
+              <Item key={to} variants={hydrated ? itemVariants : undefined}>
                 <NavLink
                   to={to}
                   end={to === "/"}
@@ -137,9 +161,9 @@ export default function MobileNavigation({
                 >
                   {label}
                 </NavLink>
-              </li>
+              </Item>
             ))}
-          </ul>
+          </List>
         </nav>
         <Button
           to="/contact"

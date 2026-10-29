@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { m } from "motion/react";
 import { primaryNavigation } from "../../data/navigation";
+import { springLayout } from "../motion/motionPresets";
 import Container from "../layout/Container";
 import Button from "../ui/Button";
 import BrandLogo from "../ui/BrandLogo";
@@ -100,7 +102,19 @@ export default function Navbar() {
                       isActive ? "nav-link is-active" : "nav-link"
                     }
                   >
-                    {label}
+                    {({ isActive }) => (
+                      <>
+                        {label}
+                        {isActive && (
+                          <m.span
+                            layoutId="nav-active-indicator"
+                            className="nav-link__indicator"
+                            aria-hidden="true"
+                            transition={springLayout}
+                          />
+                        )}
+                      </>
+                    )}
                   </NavLink>
                 </li>
               ))}

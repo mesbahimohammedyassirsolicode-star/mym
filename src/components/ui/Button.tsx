@@ -1,10 +1,9 @@
-import type {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-  MouseEventHandler,
-  ReactNode,
-} from "react";
+import type { MouseEventHandler, ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { m, type HTMLMotionProps } from "motion/react";
+import { springSnappy } from "../motion/motionPresets";
+
+const MotionLink = m.create(Link);
 
 type ButtonVariant = "primary" | "secondary";
 type ButtonSize = "md" | "lg";
@@ -56,10 +55,17 @@ export default function Button({
   "aria-busy": ariaBusy,
 }: ButtonBaseProps) {
   const classes = getButtonClassName({ variant, size, fullWidth, className });
+  const interaction = disabled
+    ? {}
+    : {
+        whileHover: { y: -2 },
+        whileTap: { y: 0, scale: 0.98 },
+        transition: springSnappy,
+      };
 
   if (to) {
     return (
-      <Link
+      <MotionLink
         to={to}
         viewTransition
         className={classes}
@@ -67,32 +73,41 @@ export default function Button({
         aria-label={ariaLabel}
         aria-busy={ariaBusy}
         aria-disabled={disabled}
+        {...interaction}
       >
         {children}
-      </Link>
+      </MotionLink>
     );
   }
 
   if (href) {
-    const anchorProps: AnchorHTMLAttributes<HTMLAnchorElement> = {
+    const anchorProps: HTMLMotionProps<"a"> = {
       href,
       className: classes,
-      onClick,
+      onClick: onClick as MouseEventHandler<HTMLAnchorElement>,
       "aria-label": ariaLabel,
       "aria-busy": ariaBusy,
     };
 
-    return <a {...anchorProps}>{children}</a>;
+    return (
+      <m.a {...anchorProps} {...interaction}>
+        {children}
+      </m.a>
+    );
   }
 
-  const buttonProps: ButtonHTMLAttributes<HTMLButtonElement> = {
+  const buttonProps: HTMLMotionProps<"button"> = {
     type,
     className: classes,
     disabled,
-    onClick,
+    onClick: onClick as MouseEventHandler<HTMLButtonElement>,
     "aria-label": ariaLabel,
     "aria-busy": ariaBusy,
   };
 
-  return <button {...buttonProps}>{children}</button>;
+  return (
+    <m.button {...buttonProps} {...interaction}>
+      {children}
+    </m.button>
+  );
 }

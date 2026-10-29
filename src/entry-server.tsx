@@ -7,6 +7,7 @@ import {
   StaticRouterProvider,
 } from "react-router-dom";
 import { routes } from "./app/routes";
+import MotionProvider from "./components/motion/MotionProvider";
 import { getPageSeo, renderHead } from "./config/seo";
 import { SITE_URL } from "./config/site";
 
@@ -23,7 +24,9 @@ export async function render(url: string) {
   const router = createStaticRouter(routes, context);
   const appHtml = renderToString(
     <StrictMode>
-      <StaticRouterProvider router={router} context={context} hydrate={false} />
+      <MotionProvider>
+        <StaticRouterProvider router={router} context={context} hydrate={false} />
+      </MotionProvider>
     </StrictMode>,
   );
   return { appHtml, head: renderHead(getPageSeo(normalized)) };

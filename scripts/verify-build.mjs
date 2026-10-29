@@ -150,12 +150,73 @@ const groups = {
         css.includes(".value-card.reveal.is-visible:hover"),
     );
     const pkg = JSON.parse(await readFile("package.json", "utf8"));
-    check("no animation runtime", !("framer-motion" in pkg.dependencies));
-    const reveal = await readFile("src/hooks/useInViewOnce.ts", "utf8");
-    check("observer disconnects", reveal.includes("disconnect()"));
+    check("motion dependency", "motion" in pkg.dependencies);
+    check("no legacy framer-motion", !("framer-motion" in pkg.dependencies));
+
+    const readSource = (file) => readFile(file, "utf8").catch(() => "");
+    const provider = await readSource("src/components/motion/MotionProvider.tsx");
+    check(
+      "motion provider lazy loads features",
+      provider.includes("LazyMotion") &&
+        provider.includes('import("./motionFeatures")'),
+    );
+    check(
+      "motion config respects reduced motion",
+      provider.includes('reducedMotion="user"'),
+    );
+    const features = await readSource("src/components/motion/motionFeatures.ts");
+    check("motion features export layout bundle", features.includes("domMax"));
+    const main = await readSource("src/main.tsx");
+    check("client app wrapped in motion provider", main.includes("<MotionProvider>"));
+    const server = await readSource("src/entry-server.tsx");
+    check("server render wrapped in motion provider", server.includes("<MotionProvider>"));
+
+    const hero = await readSource("src/components/hero/HeroVisual.tsx");
+    check(
+      "hero scroll parallax",
+      hero.includes("useScroll") && hero.includes("useTransform"),
+    );
+    check("hero parallax stays under 24px", /\[\s*0\s*,\s*-?24\s*\]/.test(hero));
+    const navbar = await readSource("src/components/navigation/Navbar.tsx");
+    check("nav underline layout animation", navbar.includes("layoutId"));
+    const homeHtml = await readFile("dist/index.html", "utf8");
+    check("nav underline no-js markup", homeHtml.includes("nav-link__indicator"));
+    const mobile = await readSource("src/components/navigation/MobileNavigation.tsx");
+    check("mobile menu item stagger", mobile.includes("staggerChildren"));
+    check(
+      "mobile menu motion is hydration gated",
+      mobile.includes("useHydrated"),
+    );
+    const button = await readSource("src/components/ui/Button.tsx");
+    check(
+      "button spring hover and press",
+      button.includes("whileHover") && button.includes("whileTap"),
+    );
+    const revealComponent = await readSource("src/components/motion/Reveal.tsx");
+    check("card spring hover", revealComponent.includes("whileHover"));
+    const allHtml = (
+      await Promise.all(documents.map((file) => readFile(file, "utf8")))
+    ).join("\n");
+    check(
+      "cards stay out of tab order",
+      !/class="[^"]*(?:service-card|value-card|project-card)[^"]*"[^>]*tabindex=/i.test(
+        allHtml,
+      ),
+    );
+
+    const manifest = JSON.parse(await readFile("dist/.vite/manifest.json", "utf8"));
+    check(
+      "motion features are a lazy chunk",
+      Object.values(manifest).some(
+        (entry) => entry.isDynamicEntry && /motionFeatures/.test(entry.src ?? ""),
+      ),
+    );
+
+    const revealHook = await readSource("src/hooks/useInViewOnce.ts");
+    check("observer disconnects", revealHook.includes("disconnect()"));
     check(
       "reveal arms only below viewport",
-      reveal.includes(
+      revealHook.includes(
         "getBoundingClientRect().top <= window.innerHeight",
       ),
     );

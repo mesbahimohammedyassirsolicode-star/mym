@@ -64,6 +64,7 @@ export default function AboutValues() {
               className="value-card"
               key={title}
               delay={index * 60}
+              hoverLift
             >
               <span className="value-card__icon" aria-hidden="true">
                 <Icon size={24} strokeWidth={1.75} />

@@ -15,7 +15,7 @@ function ServiceCard({ slug, title, description, delay }: ServiceCardProps) {
   const Icon = serviceIcons[slug] ?? Code2;
 
   return (
-    <Reveal as="li" className="service-card" delay={delay}>
+    <Reveal as="li" className="service-card" delay={delay} hoverLift>
       <span className="service-card__icon" aria-hidden="true">
         <Icon size={22} strokeWidth={1.75} />
       </span>

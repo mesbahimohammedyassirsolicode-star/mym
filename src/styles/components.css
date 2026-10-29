@@ -162,8 +162,7 @@
   color: var(--color-clay);
 }
 
-.nav-link.is-active::after {
-  content: "";
+.nav-link__indicator {
   position: absolute;
   right: var(--space-3);
   bottom: 0.5rem;
@@ -171,6 +170,7 @@
   height: 2px;
   border-radius: var(--radius-pill);
   background: currentcolor;
+  pointer-events: none;
 }
 
 .site-header__actions {

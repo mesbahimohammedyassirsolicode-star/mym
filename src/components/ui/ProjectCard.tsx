@@ -1,4 +1,6 @@
+import { m } from "motion/react";
 import type { Project, ProjectPreview } from "../../types/project";
+import { springSnappy } from "../motion/motionPresets";
 import ProjectPreviewGraphic from "./ProjectPreview";
 
 const statusLabels: Record<Project["status"], string> = {
@@ -23,7 +25,11 @@ export default function ProjectCard({
   preview,
 }: ProjectCardProps) {
   return (
-    <article className="project-card">
+    <m.article
+      className="project-card"
+      whileHover={{ y: -3 }}
+      transition={springSnappy}
+    >
       <div className="project-card__visual" aria-hidden="true">
         <ProjectPreviewGraphic variant={preview} />
       </div>
@@ -41,6 +47,6 @@ export default function ProjectCard({
           ))}
         </ul>
       </div>
-    </article>
+    </m.article>
   );
 }

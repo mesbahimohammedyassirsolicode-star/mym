@@ -1,5 +1,11 @@
 import { useEffect, useRef } from "react";
 import {
+  m,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
+import {
   activityBars,
   badgeAccentLine,
   badgeLines,
@@ -23,6 +29,12 @@ const MAX_TILT_DEG = 3;
 
 export default function HeroVisual() {
   const rootRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: rootRef,
+    offset: ["start start", "end start"],
+  });
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -24]);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -81,7 +93,11 @@ export default function HeroVisual() {
   }, []);
 
   return (
-    <div className="hv" ref={rootRef}>
+    <m.div
+      className="hv"
+      ref={rootRef}
+      style={prefersReducedMotion ? undefined : { y: parallaxY }}
+    >
       <div className="hv__glow" aria-hidden="true" />
       <div className="hv__grid" aria-hidden="true" />
       <div className="hv__streaks" aria-hidden="true">
@@ -118,6 +134,6 @@ export default function HeroVisual() {
       </div>
 
       <GlassBadge lines={badgeLines} accentLine={badgeAccentLine} />
-    </div>
+    </m.div>
   );
 }

@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "@fontsource-variable/inter/index.css";
 import App from "./app/App";
 import { clientRoutes } from "./app/clientRoutes";
+import MotionProvider from "./components/motion/MotionProvider";
 import "./styles/tokens.css";
 import "./styles/global.css";
 import "./styles/utilities.css";
@@ -50,10 +51,10 @@ async function bootstrap() {
 
   const app = (
     <StrictMode>
-      <>
+      <MotionProvider>
         <App router={router} />
         <Analytics />
-      </>
+      </MotionProvider>
     </StrictMode>
   );
 
