@@ -1,0 +1,29 @@
+---
+import Container from "../../layout/Container.astro";
+import SectionHeader from "../../ui/SectionHeader.astro";
+import { faqItems } from "../../../data/faq";
+---
+
+<section class="home-section home-section--alt" aria-labelledby="faq-title">
+  <Container>
+    <SectionHeader eyebrow="Questions" titleId="faq-title">
+      <Fragment slot="title">
+        Answers Before You <span class="hl">Start.</span>
+      </Fragment>
+      <Fragment slot="description">
+        What Aurasoli does, how a project runs, and how to get in touch.
+      </Fragment>
+    </SectionHeader>
+
+    <ul class="faq-list">
+      {
+        faqItems.map((item) => (
+          <li class="faq-item">
+            <h3 class="faq-item__question">{item.question}</h3>
+            <p class="faq-item__answer">{item.answer}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</section>

@@ -38,19 +38,18 @@ const metaTitle =
       : baseTitle;
 ---
 
-<BaseLayout title={metaTitle} description={project.seoDescription}>
+<BaseLayout
+  title={metaTitle}
+  description={project.seoDescription}
+  breadcrumbs={[
+    { name: "Home", path: "/" },
+    { name: "Projects", path: "/projects" },
+    { name: project.title, path: `/projects/${project.id}` },
+  ]}
+>
   <article>
     <header class="project-detail">
       <Container>
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          <ol class="breadcrumb__list">
-            <li>
-              <a href="/projects">Projects</a>
-            </li>
-            <li aria-current="page">{project.title}</li>
-          </ol>
-        </nav>
-
         <div class="project-detail__hero">
           <div class="project-detail__intro">
             <p class="eyebrow">{project.category}</p>

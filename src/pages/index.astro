@@ -5,18 +5,22 @@ import ServicesOverview from "../components/sections/home/ServicesOverview.astro
 import Approach from "../components/sections/home/Approach.astro";
 import WhyAurasoli from "../components/sections/home/WhyAurasoli.astro";
 import FeaturedProjects from "../components/sections/home/FeaturedProjects.astro";
+import Faq from "../components/sections/home/Faq.astro";
 import FinalCta from "../components/sections/home/FinalCta.astro";
+import { faqItems } from "../data/faq";
 import "../components/sections/home/homepage.css";
 ---
 
 <BaseLayout
   title="Aurasoli | Digital Solutions, Web Development & Automation"
   description="Aurasoli builds digital solutions that help businesses develop their ideas, automate operations, and grow their digital presence, from websites to automation."
+  faq={faqItems}
 >
   <Hero />
   <ServicesOverview />
   <Approach />
   <WhyAurasoli />
   <FeaturedProjects />
+  <Faq />
   <FinalCta />
 </BaseLayout>
